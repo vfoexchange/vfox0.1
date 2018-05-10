@@ -1,1 +1,1 @@
-# vfox0.1
+# vfox0.1: First version of VFOX.
