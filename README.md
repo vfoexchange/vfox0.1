@@ -2,6 +2,7 @@ Description about project :
 VFOX  is a personalized dashboard that can be private labeled by private wealth managers, CPAS,
 estate planning attorneys, insurance advisors and more.
 
+
 Purpose :
   Contain information about the installation process of backend as JAVA and frontend as Angular.
 
