@@ -1,0 +1,19 @@
+{
+  "Login Form Starts": "---------------------------------------------",
+  "LOGIN": "Sign In",
+  "REGISTER": "Register",
+  "EMAIL": "Email",
+  "EMAIL_Validate": "Email is required",
+  "EMAIL_Invalid": "Please enter valid email",
+  "PASSWORD": "Password",
+  "PASS_Req": "Password is required",
+  "PASS_Policy": "Password must be at least 8 characters long, contain a number and one special character.",
+  "CONFIRM_PASS": "Confirm Password",
+  "PASS_Confirm": "Confirm Password is required",
+  "PASS_Match": "Password do not match",
+  "NEW_Acc": "New account?",
+  "REG_Here": "Register here",
+  "SIGNIN": "Sign In",
+  "ALREADY_Reg": "Already have an account?",
+  "SOMETHING_Wrong": "Something went wrong please try again"
+}
