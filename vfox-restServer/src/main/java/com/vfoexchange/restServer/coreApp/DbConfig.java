@@ -1,8 +1,6 @@
 package com.vfoexchange.restServer.coreApp;
 
-
 import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,9 +16,7 @@ with configurable database properties
  */
 @Configuration
 @ComponentScan(basePackages = "com.vfoexchange")
-@PropertySource(value = {"classpath:application.properties"})
 public class DbConfig {
-
 
     @Autowired
     private Environment env;

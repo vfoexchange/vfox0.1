@@ -1,14 +1,19 @@
+DROP DATABASE IF EXISTS `vfox`;
+CREATE DATABASE `vfox`;
+
+DROP TABLE IF EXISTS `vfox`.`UserRole`;
 CREATE TABLE IF NOT EXISTS `vfox`.`UserRole` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Role` VARCHAR(45) NOT NULL,
   `RoleState` ENUM('A', 'D', 'I') NOT NULL COMMENT 'A=Active, D= Deleted, I= Inactive',
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`User`;
 CREATE TABLE IF NOT EXISTS `vfox`.`User` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `UserName` VARCHAR(45) NOT NULL,
@@ -17,10 +22,10 @@ CREATE TABLE IF NOT EXISTS `vfox`.`User` (
   `PasswordSetDate` DATETIME NULL,
   `UserState` ENUM('A', 'D', 'I') NOT NULL COMMENT 'A=Active, I= Inactive, D= Deleted',
   `isFirstLogin` boolean NOT NULL default true,
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
   INDEX `FK_USER_ROLE_idx` (`RoleId` ASC),
   CONSTRAINT `FK_USER_ROLE`
@@ -30,14 +35,15 @@ CREATE TABLE IF NOT EXISTS `vfox`.`User` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`AdvisorClient`;
  CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorClient` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `AdvisorId` INT NOT NULL,
   `ClientId` INT NOT NULL,
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
   INDEX `FK_ADVISORCLIENT_ADVISOR_idx` (`AdvisorId` ASC),
   INDEX `FK_ADVISORCLIENT_CLIENT_idx` (`ClientId` ASC),
@@ -53,15 +59,15 @@ ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
     ON UPDATE RESTRICT)
 ENGINE = innodb DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
+DROP TABLE IF EXISTS `vfox`.`AdvisorServices`;
 CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorServices` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `UserId` INT NOT NULL,
   `ServiceId` INT NOT NULL,
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
   INDEX `FK_ADVISORSERVICES_USER_idx` (`UserId` ASC),
   INDEX `FK_ADVISORSERVICES_SERVICES_idx` (`ServiceId` ASC),
@@ -77,16 +83,16 @@ CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorServices` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
+DROP TABLE IF EXISTS `vfox`.`Billing`;
 CREATE TABLE IF NOT EXISTS `vfox`.`Billing` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `ServiceId` INT NOT NULL,
   `ServiceProviderId` INT NOT NULL,
   `UserId` INT NULL,
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
   INDEX `FK_BILLING_SERVICES_idx` (`ServiceId` ASC),
   INDEX `FK_BILLING_SERVICEPROVIDER_idx` (`ServiceProviderId` ASC),
@@ -108,7 +114,7 @@ CREATE TABLE IF NOT EXISTS `vfox`.`Billing` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-
+DROP TABLE IF EXISTS `vfox`.`ServiceProvider`;
 CREATE TABLE IF NOT EXISTS `vfox`.`ServiceProvider` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `ServiceId` INT NOT NULL,
@@ -117,10 +123,10 @@ CREATE TABLE IF NOT EXISTS `vfox`.`ServiceProvider` (
   `LongDesc` VARCHAR(450) NULL,
   `Logo` longblob NULL,
   `RedirectUrl` VARCHAR(450) NULL,
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
     INDEX `FK_SERVICEPROVIDER_SERVICES_idx` (`ServiceId` ASC),
   CONSTRAINT `FK_SERVICEPROVIDER_SERVICES`
@@ -130,27 +136,29 @@ CREATE TABLE IF NOT EXISTS `vfox`.`ServiceProvider` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`Services`;
 CREATE TABLE IF NOT EXISTS `vfox`.`Services` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(150) NOT NULL,
   `ShortDesc` VARCHAR(250) NULL,
   `LongDesc` VARCHAR(450) NULL,
   `ServiceState` ENUM('A', 'I', 'D') NOT NULL COMMENT 'A=Active, I=Inactive,D=Deleted',
-  `CreatedBy` INT NULL,
-  `CreatedAt` DATETIME NULL,
-  `UpdatedBy` INT NULL,
-  `UpdatedAt` DATETIME NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`))
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`Token`;
 CREATE TABLE IF NOT EXISTS `vfox`.`Token` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `UserId` INT NOT NULL,
   `Expiry` TIMESTAMP NULL,
   `Token` BINARY(200) NULL,
   `TokenState` ENUM('A', 'I', 'D', 'U') NOT NULL COMMENT 'A=Active, I= Inactive, D= Deleted, U= Used',
-  `CreatedBy` VARCHAR(45) NULL DEFAULT 'System',
-  `CreatedAt` DATETIME NULL,
+  `CreatedBy` VARCHAR(45) NOT NULL DEFAULT 'System',
+  `CreatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
   INDEX `FK_TOKEN_USER_idx` (`UserId` ASC),
   CONSTRAINT `FK_TOKEN_USER`
