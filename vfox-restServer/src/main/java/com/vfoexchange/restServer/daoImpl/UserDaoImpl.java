@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.model.User;
+import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Qualifier("userDao")
@@ -19,6 +20,7 @@ public class UserDaoImpl implements UserDao {
     /*
     Method to add new user(as of now only for adviser registration, later should be moved to generic one)
      */
+    @Transactional
     public void add(User user) {
         jdbcTemplate.update("INSERT INTO User (UserName, Password, RoleId, PasswordSetDate, UserState, createdBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, 2, now(), 'A', 1, now(), 1, now())",
                 user.getUsername(), user.getPassword());
