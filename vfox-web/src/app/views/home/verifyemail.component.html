@@ -2,32 +2,29 @@
     <!--Home Header Starts here-->
     <div class="d-flex flex-column flex-md-row align-items-center home_header">
         <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-        <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">Sign In</a>
     </div>
     <!--Home Header Ends here-->
     <div class="row">
         <!--Home Left Container Starts here-->
-        <div class="col-lg-8 col-md-7">
-            <div class="home_heading">Preservation and<br/> Enhancement of Wealth</div>
+        <div class="col-lg-12 text-center">
+            <p class="email_ver_ico"><i class="fa fa-check-circle fa-lg mt-4"></i></p>
+            <div class="home_heading">Email Verification - Success!</div>
             <div class="clearfix"></div>
-            <p class="home_txt">Lorem ipsum dolor sit amet, consectetur adipscing elit,<br/>
-                sed do eiusmod tempor incididunt ut labore et dolore<br/> magna aliqua.
+            <p class="home_txt">You have successfully verified your e-mail address.
             </p>
+            <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">Go to Sign In</a>
+        </div>
+        <div class="col-lg-12 text-center" style="display:none;">
+            <p class="email_ver_ico"><i class="fa fa-times-circle fa-lg mt-4"></i></p>
+            <div class="home_heading">Email Verification - Failure!</div>
             <div class="clearfix"></div>
-            <p class="home_video"><img src="assets/img/video_placholder.png" alt="Video"/></p>
+            <p class="home_txt">Your email verification link has been expired.
+            </p>
+            <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">Back to home</a>
         </div>
         <!--Home Left Container Ends here-->
-        <!--Home Right Container Starts here-->
-        <div class="col-lg-4 col-md-5">
-            <div class="card reg_card">
-                <div class="card-body reg_form">
-                    Email Verification
-                </div>
-            </div>
-        </div>
-        <!--Home Right Container Ends here-->
     </div>
 </div>
 <!--Home Footer Starts here-->
-<div class="home_footer"></div>
+<div class="home_footer ver_em_foot"></div>
 <!--Home Footer Ends here-->

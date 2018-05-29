@@ -1,23 +1,23 @@
-import{Injectable}from'@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
-import {Configuration}from "../common-services/app-constant";
-import {Observable}from "rxjs/Observable";
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {Http, Headers, Response, RequestOptions }from '@angular/http';
+import { Configuration } from "../common-services/app-constant";
+import { Observable } from "rxjs/Observable";
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class HttpService {
 apiUrl: string;
-headers: any;
-requestUrl: string;
-responseData: any;
-options: any;
-baseUrl: any;
+  headers: any;
+  requestUrl: string;
+  responseData: any;
+  options: any;
+  baseUrl: any;
 
-Login_Response: any;
+  Login_Response: any;
 
 
-constructor(private _http: HttpClient, private configuration: Configuration, private http: Http) {
+ constructor(private _http: HttpClient, private configuration: Configuration, private http: Http) {
     let myLocation = window.location.href;
     this.headers = new Headers();
 

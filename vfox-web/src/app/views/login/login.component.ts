@@ -1,12 +1,12 @@
-import{Component}from'@angular/core';
-import {ActivatedRoute, Router}from '@angular/router';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TranslateService}from '@ngx-translate/core';
-import {LoginService}from '../../services/login.service';
-import {Response, Http, Headers} from '@angular/http';
-import {UtilService}from "../../common-services/util-services";
-import {ValidationService }from '../../common-services/validation-services';
-import {ToastrService}from 'ngx-toastr';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from '../../services/login.service';
+import { Response, Http, Headers } from '@angular/http';
+import { UtilService } from "../../common-services/util-services";
+import { ValidationService } from '../../common-services/validation-services';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: 'login.component.html'

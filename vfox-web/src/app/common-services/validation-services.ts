@@ -1,5 +1,5 @@
-import{FormGroup}from'@angular/forms';
-import {Configuration }from './app-constant';
+import { FormGroup } from '@angular/forms';
+import { Configuration } from './app-constant';
 
 
 /* Custom Validation for Model Driven Form */
@@ -7,9 +7,9 @@ import {Configuration }from './app-constant';
 export class ValidationService {
 
 
+  
 
-
-static emailValidator(control: any) {
+    static emailValidator(control: any) {
         // RFC 2822 compliant regex
         if (control.value === undefined || control.value === '' || control.value === null) {
             return null;

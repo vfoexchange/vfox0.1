@@ -1,8 +1,8 @@
-import{Component, OnInit, OnDestroy}from '@angular/core';
-import {UtilService}from '../../common-services/util-services';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { UtilService } from '../../common-services/util-services';
 //import { SearchService } from '../../services/search.service';
-import {TranslateService}from '@ngx-translate/core';
-import {ActivatedRoute, Router}from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-success',

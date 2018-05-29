@@ -1,16 +1,16 @@
-import{Injectable}from'@angular/core';
-import {Router, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot}from '@angular/router';
-import {Location} from '@angular/common';
-import {Configuration}from './app-constant';
+import { Injectable } from '@angular/core';
+import { Router, CanActivateChild, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Location } from '@angular/common';
+import { Configuration } from './app-constant';
 import 'rxjs/add/operator/filter';
-import {UtilService}from './util-services';
-import {Authentication}from './authentication';
+import { UtilService } from './util-services';
+import { Authentication } from './authentication';
 
 @Injectable()
 export class AuthGuard implements CanActivateChild {
-currentStat: any;
-baseUrl: string;
-constructor(private configuration: Configuration,private auth: Authentication, private router: Router, private location: Location, private utilService: UtilService
+  currentStat: any;
+  baseUrl: string;
+  constructor(private configuration: Configuration,private auth: Authentication, private router: Router, private location: Location, private utilService: UtilService
   ) {
 
     let getContextUrl = window.location.protocol + '//' + window.location.hostname +
