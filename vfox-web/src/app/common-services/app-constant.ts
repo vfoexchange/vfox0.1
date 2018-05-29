@@ -4,7 +4,7 @@ exportclassConfiguration {
     publicClientId:string = '123456';
     publicAuthorization:string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
 
-    publicApiUrl:string = 'http://localhost:8080/';
+    publicApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     publicHomeNavPageUrl:string = '/#/login';
 
     publicAppMode:string = 'DEV'; //For PROD set 'PROD' mode;
