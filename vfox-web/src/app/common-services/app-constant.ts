@@ -1,23 +1,23 @@
-exportclassConfiguration {
+export class Configuration {
 
     //*****************************API Auth *****************************/
-    publicClientId:string = '123456';
-    publicAuthorization:string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
+    public ClientId: string = '123456';
+    public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
 
-    publicApiUrl:string = 'http://192.0.0.20:7080/vfox/';
-    publicHomeNavPageUrl:string = '/#/login';
+    public ApiUrl:string = 'http://localhost:8080/';
+    public HomeNavPageUrl: string = '/#/login';
 
-    publicAppMode:string = 'DEV'; //For PROD set 'PROD' mode;
+    public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
     //*****************************User Roles *****************************/
-    publicADVISOR:string = 'Advisor';
-    publicADMIN:string = 'Admin';
-    publicCLIENT:string = 'Client';
+    public ADVISOR: string = 'Advisor';
+    public ADMIN: string = 'Admin';
+    public CLIENT: string = 'Client';
 
 
-    publicSESSION_TOKEN_REFRESH_TIME:number = 20000;
+    public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
-    publicrestrictedPageForAdmin:string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
+    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
 public restrictedPageForADVISOR: string[] = ['/dashboard/'];
 public restrictedPageForUser: string[] = ['/dashboard/'] ;
 
