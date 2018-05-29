@@ -1,14 +1,15 @@
 package com.vfoexchange.restServer.model;
 
-import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import java.util.Collection;
 
 public class User implements UserDetails {
 
     private int id;
     private String username;
     private String password;
+    private int roleId;
 
     public int getId() {
         return id;
@@ -68,4 +69,11 @@ public class User implements UserDetails {
         return true;
     }
 
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
 }
