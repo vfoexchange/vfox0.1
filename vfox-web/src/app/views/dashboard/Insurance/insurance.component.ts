@@ -1,10 +1,10 @@
-import{Component, OnInit}from '@angular/core';
-import {ActivatedRoute, Router}from '@angular/router';
-import {TranslateService} from '@ngx-translate/core';
-import {UtilService}from '../../../common-services/util-services';
-import {Response, Http, Headers}from '@angular/http';
-import {ProvidersService }from '../../../services/providers.service';
-import {ToastrService}from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { UtilService } from '../../../common-services/util-services';
+import { Response, Http, Headers } from '@angular/http';
+import { ProvidersService } from '../../../services/providers.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({

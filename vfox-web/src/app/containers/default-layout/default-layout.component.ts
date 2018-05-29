@@ -1,9 +1,9 @@
-import{Component, Input}from '@angular/core';
-import {TranslateService}from '@ngx-translate/core';
-import {TranslateLangService}from '../../services/translate.service';
-import {UtilService}from "../../common-services/util-services";
-import {ActivatedRoute, Router}from '@angular/router';
-import {Configuration }from "../../common-services/app-constant";
+import { Component, Input } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { TranslateLangService } from '../../services/translate.service';
+import { UtilService } from "../../common-services/util-services";
+import { ActivatedRoute, Router } from '@angular/router';
+import { Configuration } from "../../common-services/app-constant";
 
 @Component({
   selector: 'app-dashboard',

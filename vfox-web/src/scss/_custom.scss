@@ -73,6 +73,7 @@ a{cursor:pointer; text-decoration:none;}
 .mt_45{margin-top:45px;}
 .ins_bg{background:#c03aa5 url(../assets/img/ins_bg.jpg) no-repeat; background-size:cover; font-family: 'Quicksand', sans-serif; color:#fff;}
 .disable_link{cursor:auto!important;}
+.email_ver_ico{font-size:55px;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}
@@ -81,6 +82,7 @@ a{cursor:pointer; text-decoration:none;}
 .home_footer a{bottom:25px!important;}
 .ser_name{padding:48px 0 0 0;}
 .m_home_footer{height:29px!important;}
+.ver_em_foot{display:none;}
 }
 @media screen and (max-width: 767px){
 body{height:100%;}
