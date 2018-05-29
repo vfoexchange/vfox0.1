@@ -77,7 +77,6 @@ export class HomeComponent {
     templateUrl: 'verifyemail.component.html'
 })
 
-
 export class VerifyEmailPageComponent {
 sub: any;
 verifyKey: string = '';
@@ -85,8 +84,7 @@ error: boolean = false;
    errorMsg: string = '';
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
-  private utilService : UtilService, private http: Http,private _toastrService: ToastrService
-    ) {
+  private utilService : UtilService, private http: Http,private _toastrService: ToastrService) {
        //translate.setDefaultLang('en');
 
                 this.sub = this.route.params.subscribe(

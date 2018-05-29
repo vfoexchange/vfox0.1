@@ -11,7 +11,7 @@ import { ScModalModule } from 'angular-5-popup';
 import { FileUploadModule } from "angular-file-uploader";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
-import { ServiceCenterComponent } from './service-center/service-center.component';
+import { ServiceCenterComponent } from './select-service/select-service.component';
 import { InsuranceComponent } from './Insurance/insurance.component';
 
 @NgModule({
