@@ -64,6 +64,7 @@ CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorServices` (
   `Id` INT NOT NULL AUTO_INCREMENT,
   `UserId` INT NOT NULL,
   `ServiceId` INT NOT NULL,
+  `AdvisorServicesState` ENUM('A', 'D', 'I') NOT NULL DEFAULT 'A' COMMENT 'A=Active, I= Inactive, D= Deleted',
   `CreatedBy` INT NOT NULL,
   `CreatedAt` DATETIME NOT NULL,
   `UpdatedBy` INT NOT NULL,

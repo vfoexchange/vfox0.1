@@ -2,6 +2,7 @@ package com.vfoexchange.restServer.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 
 public class User implements UserDetails {
@@ -10,6 +11,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private int roleId;
+    private boolean isFirstLogin;
 
     public int getId() {
         return id;
@@ -75,5 +77,13 @@ public class User implements UserDetails {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public boolean isFirstLogin() {
+        return isFirstLogin;
+    }
+
+    public void setFirstLogin(boolean firstLogin) {
+        isFirstLogin = firstLogin;
     }
 }

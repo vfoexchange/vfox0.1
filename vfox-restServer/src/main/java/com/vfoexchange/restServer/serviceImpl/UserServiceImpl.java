@@ -1,8 +1,10 @@
 package com.vfoexchange.restServer.serviceImpl;
 
+import com.vfoexchange.restServer.dao.ServicesDao;
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
 import com.vfoexchange.restServer.dto.UserDTO;
+import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.model.UserRole;
 import com.vfoexchange.restServer.service.UserService;
@@ -11,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -21,15 +24,16 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRoleDao userRoleDao;
 
+    @Autowired
+    ServicesDao servicesDao;
+
     /*
     Method for encoding password before inserting in db and adding user as per new registration
      */
     public void addUser(UserDTO userDTO) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        UserRole userRole = new UserRole();
-        userRole = userRoleDao.findByRole(userDTO.getRole());
-
+        UserRole userRole = userRoleDao.findByRole(userDTO.getRole());
         User user = new User();
         user.setUsername(userDTO.getUsername());
         user.setRoleId(userRole.getId());
@@ -37,9 +41,22 @@ public class UserServiceImpl implements UserService {
         userDao.add(user);
     }
 
+    /*
+    Method for fetching user by username
+     */
+    public User getUser(String username) {
 
-    public User find(int userId) {
-        return userDao.find(userId);
+        return userDao.findByUsername(username);
+    }
+
+    /*
+    Method for fetching list of active advisor services
+     */
+    public List<Services> getAdvisorServices(String username) {
+        User user = userDao.findByUsername(username);
+        List<Services> list = servicesDao.findAdvisorServices(user.getId());
+        return list;
+
     }
 
     /*

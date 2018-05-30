@@ -25,14 +25,8 @@ public class UserDaoImpl implements UserDao {
                 user.getUsername(), user.getPassword(), user.getRoleId());
     }
 
-    public User find(int userId) {
-        User user = (User) jdbcTemplate.queryForObject("SELECT * FROM users where id = ? ",
-                new Object[]{userId}, new BeanPropertyRowMapper<>(User.class));
-        return user;
-    }
-
     /*
-    Method used to fetch user from DB while login authentication
+    Method used to fetch user from DB using username
      */
     @Override
     public User findByUsername(String username) {
