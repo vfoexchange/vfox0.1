@@ -6,8 +6,12 @@ import ch.qos.logback.classic.encoder.PatternLayoutEncoder;
 import ch.qos.logback.core.FileAppender;
 import org.slf4j.LoggerFactory;
 
+
 public class LoggingUtil {
 
+    /*
+      Set log file name based on user
+    */
     public static void updateLoggingFileName(String name){
         LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
 
