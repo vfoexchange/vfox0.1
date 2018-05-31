@@ -6,7 +6,7 @@
     <!--Home Header Ends here-->
     <div class="row">
         <!--Verify Email Container Starts here-->
-        <!--Success Message-->
+        <!--Success Message Starts here-->
         <div class="col-lg-12 text-center">
             <p class="email_ver_ico"><i class="fa fa-check-circle fa-lg mt-4"></i></p>
             <div class="home_heading">Email Verification - Success!</div>
@@ -15,7 +15,8 @@
             </p>
             <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">Go to Sign In</a>
         </div>
-        <!--Failed Message-->
+        <!--Success Message Ends here-->
+        <!--Failed Message Starts here-->
         <div class="col-lg-12 text-center" style="display:none;">
             <p class="email_ver_ico"><i class="fa fa-times-circle fa-lg mt-4"></i></p>
             <div class="home_heading">Email Verification - Failure!</div>
@@ -24,6 +25,7 @@
             </p>
             <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">Back to home</a>
         </div>
+        <!--Failed Message Ends here-->
         <!--Verify Email Container Ends here-->
     </div>
 </div>
