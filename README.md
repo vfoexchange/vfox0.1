@@ -113,7 +113,7 @@ To delete the MySQL container, stop it first, and then use the `docker rm` comma
     docker stop mysql1
              
     docker rm mysql1 
-             
+           
 
 ### Release history
 #### Release Date 
