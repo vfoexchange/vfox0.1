@@ -6,7 +6,9 @@ import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -18,7 +20,7 @@ public class UserController {
     /*
     Method for adding new user(user can be advisor or client or admin)
      */
-    @RequestMapping(value = "/add/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/add/user", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO addUser(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
@@ -36,7 +38,7 @@ public class UserController {
     /*
     Method for fetching user details
      */
-    @RequestMapping(value = "/fetch/user", method = RequestMethod.POST)
+    @RequestMapping(value = "/fetch/user", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO getUserDetail(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
@@ -55,7 +57,7 @@ public class UserController {
     /*
     Method for fetching advisor services
      */
-    @RequestMapping(value = "/get/advisor/services", method = RequestMethod.POST)
+    @RequestMapping(value = "/get/advisor/services", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO getAdvisorServices(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
