@@ -46,7 +46,7 @@ public class VfoxRestSeverTests {
                .contentType(MediaType.APPLICATION_JSON);
 
        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-       System.out.print("hello ");
+
    }
     @Test
     public void contextLoads() {
