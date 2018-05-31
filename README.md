@@ -128,13 +128,19 @@ vfox0.1POC
 
 Add additional notes about how to deploy this on a live system
 ### Backend
-Go to vfox-restServer directory and open terminal(cmd on window).
-run : mvn spring-boot:run
+####Go to project directory and open terminal(cmd on window).
+    Open command 
+    run :  mvn clean install
+
+####Go to vfox-restServer directory and open terminal(cmd on window).
+    run : mvn spring-boot:run
 open rest client and request send to http://localhost:8080/ url with required parameter.
 ### Frontend
-Go to the vfox-web directory .
-The npm start command launches the server
-npm start
+####Go to the vfox-web directory.
+    Install updated Node.js 
+    Install the Angular CLI globally.
+    npm install
+    npm start
 open your browser on
 http://localhost:4200/
 ## Built With
