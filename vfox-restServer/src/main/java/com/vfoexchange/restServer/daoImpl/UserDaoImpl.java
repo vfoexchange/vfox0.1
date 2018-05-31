@@ -1,6 +1,7 @@
 package com.vfoexchange.restServer.daoImpl;
 
 import com.vfoexchange.restServer.dao.UserDao;
+import com.vfoexchange.restServer.exceptions.UserNotFoundException;
 import com.vfoexchange.restServer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +33,8 @@ public class UserDaoImpl implements UserDao {
     public User findByUsername(String username) {
         User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where UserName = ? ",
                 new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
+        if(user != null)
+            throw new UserNotFoundException(username);
         return user;
     }
 }
