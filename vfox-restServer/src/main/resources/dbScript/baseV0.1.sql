@@ -59,6 +59,42 @@ DROP TABLE IF EXISTS `vfox`.`AdvisorClient`;
     ON UPDATE RESTRICT)
 ENGINE = innodb DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`Services`;
+CREATE TABLE IF NOT EXISTS `vfox`.`Services` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(150) NOT NULL,
+  `ShortDesc` VARCHAR(250) NULL,
+  `LongDesc` VARCHAR(450) NULL,
+  `ServiceState` ENUM('A', 'I', 'D') NOT NULL COMMENT 'A=Active, I=Inactive,D=Deleted',
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`Id`))
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `vfox`.`ServiceProvider`;
+CREATE TABLE IF NOT EXISTS `vfox`.`ServiceProvider` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `ServiceId` INT NOT NULL,
+  `Name` VARCHAR(150) NOT NULL,
+  `ShortDesc` VARCHAR(250) NULL,
+  `LongDesc` VARCHAR(450) NULL,
+  `Logo` longblob NULL,
+  `RedirectUrl` VARCHAR(450) NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`Id`),
+    INDEX `FK_SERVICEPROVIDER_SERVICES_idx` (`ServiceId` ASC),
+  CONSTRAINT `FK_SERVICEPROVIDER_SERVICES`
+    FOREIGN KEY (`ServiceId`)
+    REFERENCES `vfox`.`Services` (`Id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 DROP TABLE IF EXISTS `vfox`.`AdvisorServices`;
 CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorServices` (
   `Id` INT NOT NULL AUTO_INCREMENT,
@@ -115,42 +151,6 @@ CREATE TABLE IF NOT EXISTS `vfox`.`Billing` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-DROP TABLE IF EXISTS `vfox`.`ServiceProvider`;
-CREATE TABLE IF NOT EXISTS `vfox`.`ServiceProvider` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
-  `ServiceId` INT NOT NULL,
-  `Name` VARCHAR(150) NOT NULL,
-  `ShortDesc` VARCHAR(250) NULL,
-  `LongDesc` VARCHAR(450) NULL,
-  `Logo` longblob NULL,
-  `RedirectUrl` VARCHAR(450) NULL,
-  `CreatedBy` INT NOT NULL,
-  `CreatedAt` DATETIME NOT NULL,
-  `UpdatedBy` INT NOT NULL,
-  `UpdatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`),
-    INDEX `FK_SERVICEPROVIDER_SERVICES_idx` (`ServiceId` ASC),
-  CONSTRAINT `FK_SERVICEPROVIDER_SERVICES`
-    FOREIGN KEY (`ServiceId`)
-    REFERENCES `vfox`.`Services` (`Id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
-ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-DROP TABLE IF EXISTS `vfox`.`Services`;
-CREATE TABLE IF NOT EXISTS `vfox`.`Services` (
-  `Id` INT NOT NULL AUTO_INCREMENT,
-  `Name` VARCHAR(150) NOT NULL,
-  `ShortDesc` VARCHAR(250) NULL,
-  `LongDesc` VARCHAR(450) NULL,
-  `ServiceState` ENUM('A', 'I', 'D') NOT NULL COMMENT 'A=Active, I=Inactive,D=Deleted',
-  `CreatedBy` INT NOT NULL,
-  `CreatedAt` DATETIME NOT NULL,
-  `UpdatedBy` INT NOT NULL,
-  `UpdatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`))
-ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 DROP TABLE IF EXISTS `vfox`.`Token`;
 CREATE TABLE IF NOT EXISTS `vfox`.`Token` (
   `Id` INT NOT NULL AUTO_INCREMENT,
@@ -170,32 +170,32 @@ CREATE TABLE IF NOT EXISTS `vfox`.`Token` (
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-1,'admin','A',1,'2018-05-16 14:56:17.000',1,'2018-05-16 14:56:17.000');
+1,'admin','A',1,now(),1,now());
 INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-2,'advisor','A',1,'2018-05-16 14:57:00.000',1,'2018-05-16 14:57:00.000');
+2,'advisor','A',1,now(),1,now());
 INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-3,'client','A',1,'2018-05-16 14:57:07.000',1,'2018-05-16 14:57:07.000');
+3,'client','A',1,now(),1,now());
 
 INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
-1,'admin','adminpassword',1,'2018-05-17 18:16:56.000','A',1,'2018-05-17 18:16:56.000',1,'2018-05-17 18:16:56.000',1);
+1,'admin@vfox.com','$10$ZHNiei36NQLDou3DUrxoN.ODhnTzmnCRh2zkbM755QyFyLSilZPTi',1,now(),'A',1,now(),1,now(),1);
 
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-1,'Bill Pay','Bill Pay','Bill Pay','A',1,'2018-05-17 18:07:01.000',1,'2018-05-17 18:07:01.000');
+1,'Bill Pay','Bill Pay','Bill Pay','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-2,'Alternate Investment','Alternate Investment','Alternate Investment','A',1,'2018-05-17 18:08:22.000',1,'2018-05-17 18:08:22.000');
+2,'Alternate Investment','Alternate Investment','Alternate Investment','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-3,'Wealth Management','Wealth Management','Wealth Management','A',1,'2018-05-17 18:09:09.000',1,'2018-05-17 18:09:09.000');
+3,'Wealth Management','Wealth Management','Wealth Management','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-4,'Insurance','Insurance','Insurance','A',1,'2018-05-17 18:10:09.000',1,'2018-05-17 18:10:09.000');
+4,'Insurance','Insurance','Insurance','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-5,'Tax Mitigation','Tax Mitigation','Tax Mitigation','A',1,'2018-05-17 18:10:42.000',1,'2018-05-17 18:10:42.000');
+5,'Tax Mitigation','Tax Mitigation','Tax Mitigation','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-6,'Asset Protection','Asset Protection','Asset Protection','A',1,'2018-05-17 18:11:14.000',1,'2018-05-17 18:11:14.000');
+6,'Asset Protection','Asset Protection','Asset Protection','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-7,'Trust Services','Trust Services','Trust Services','A',1,'2018-05-17 18:12:51.000',1,'2018-05-17 18:12:51.000');
+7,'Trust Services','Trust Services','Trust Services','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-8,'Business Valuation','Business Valuation','Business Valuation','A',1,'2018-05-17 18:13:27.000',1,'2018-05-17 18:13:27.000');
+8,'Business Valuation','Business Valuation','Business Valuation','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-9,'Cost Remediation','Cost Remediation','Cost Remediation','A',1,'2018-05-17 18:14:02.000',1,'2018-05-17 18:14:02.000');
+9,'Cost Remediation','Cost Remediation','Cost Remediation','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-10,'Business Transition','Business Transition','Business Transition','A',1,'2018-05-17 18:14:36.000',1,'2018-05-17 18:14:36.000');
+10,'Business Transition','Business Transition','Business Transition','A',1,now(),1,now());
