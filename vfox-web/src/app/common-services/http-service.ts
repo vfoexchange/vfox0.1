@@ -26,6 +26,14 @@ apiUrl: string;
 
   CONTEXT_PATH: string = '';
 
+    post(url: string, data: any): Observable<any> {
+    //debugger;
+    let postUrl = this.configuration.ApiUrl + url;
+    return this._http.post(postUrl, JSON.stringify(data), { headers: new HttpHeaders().set('Content-Type', 'application/json') })
+      .map(this.extractData)
+      .catch(this.handleError);
+  }
+
 
      postLogin(url: string, data: any): Observable<any> {
       this.headers = new Headers({
@@ -45,7 +53,7 @@ apiUrl: string;
 
 
     get(url: string): Observable<any> {
- debugger
+ //debugger
  let getUrl = this.configuration.ApiUrl + url;
 
 
@@ -55,6 +63,21 @@ apiUrl: string;
     });
     this.options = new RequestOptions({ headers: this.headers });
     return this.http.get(getUrl, this.options)
+      .map(res => res.json());
+
+}
+
+    postWithToken(url: string, data: any): Observable<any> {
+     debugger
+    let postUrl = this.configuration.ApiUrl + url;
+
+
+    this.headers = new Headers({
+
+      'authorization': 'Bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: this.headers });
+    return this.http.post(postUrl, data, this.options)
       .map(res => res.json());
 
 }
@@ -82,13 +105,7 @@ apiUrl: string;
 
 
 
-  post(url: string, data: any): Observable<any> {
-    //debugger;
-    let postUrl = this.configuration.ApiUrl + url;
-    return this._http.post(postUrl, JSON.stringify(data), { headers: new HttpHeaders().set('Content-Type', 'application/json') })
-      .map(this.extractData)
-      .catch(this.handleError);
-  }
+
 
     put(url: string, data: any): Observable<any> {
     //debugger;

@@ -11,7 +11,8 @@ constructor(private httpService: HttpService, private configuration: Configurati
     register(username:string, password: String) {
        return this.httpService.post(this.configuration.API_REGISTER_URL, {
          username: username,
-         password: password
+         password: password,
+         role: this.configuration.ADVISOR
        });
      }
 

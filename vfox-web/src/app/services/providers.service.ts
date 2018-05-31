@@ -13,5 +13,12 @@ constructor(private httpService: HttpService, private configuration: Configurati
     var url = this.configuration.API_SERVICE_PROVIDER+'?serviceName='+serviceType;
     return this.httpService.get(url);
    }
-  
+
+
+    getUserService(user:string) {
+    return this.httpService.postWithToken(this.configuration.API_USER_SERVICE, {
+         username: user
+       });
+   }
+
 }

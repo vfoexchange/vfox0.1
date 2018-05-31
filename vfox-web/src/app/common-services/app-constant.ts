@@ -8,9 +8,9 @@ export class Configuration {
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
     //*****************************User Roles *****************************/
-    public ADVISOR: string = 'Advisor';
-    public ADMIN: string = 'Admin';
-    public CLIENT: string = 'Client';
+    public ADVISOR: string = 'advisor';
+    public ADMIN: string = 'admin';
+    public CLIENT: string = 'client';
 
 
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
@@ -26,6 +26,7 @@ export class Configuration {
     public API_LOGIN_URL: string = 'user/auth';
     public API_REGISTER_URL: string = 'add/user';
     public API_SERVICE_PROVIDER: string = 'get/serviceProviders';
+    public API_USER_SERVICE: string = 'get/advisor/services';
 
 
       //*****************************Api URLs Ends *****************************/
@@ -56,5 +57,33 @@ export class Configuration {
             value: 'Client'
         }
     ];
+
+
+    public ServiceName: any = {
+    'bill_pay': 'Bill Pay',
+    'insurance': 'Insurance',
+    'investment': 'Alternate Investment',
+    'welth_manage': 'Wealth Management',
+    'tax_mitigation': 'Tax Mitigation',
+    'asset_protection': 'Asset Protection',
+    'trust_services': 'Trust Services',
+    'business_valuation': 'Business Valuation',
+    'cost_remediation': 'Cost Remediation',
+    'business_transition': 'Business Transition'
+    };
+
+
+    public ServiceStatus: any = {
+    'bill_pay': false,
+    'insurance': false,
+    'investment': false,
+    'welth_manage': false,
+    'tax_mitigation': false,
+    'asset_protection': false,
+    'trust_services': false,
+    'business_valuation': false,
+    'cost_remediation': false,
+    'business_transition': false
+    };
 
 }

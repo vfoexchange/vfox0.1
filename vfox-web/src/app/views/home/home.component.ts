@@ -37,6 +37,7 @@ export class HomeComponent {
 
 
    onSubmit() {
+//debugger
        let obj = this.registerForm.value;
        if (obj.username !== '' || obj.password !== '') {
        this.homeService.register(obj.username, obj.password).subscribe(
@@ -44,10 +45,11 @@ export class HomeComponent {
            if(this.utilService.isEmpty(response)){
              this._toastrService.error("Something went wrong please try again", 'Oops!');
            }
-           if (response.statusCode === 200) {
-            this._toastrService.success(response.message);
+           if (response.code == 200) {
+            this._toastrService.success(response.msg);
+            this.registerForm.reset();
            } else {
-             this._toastrService.error(response.message, 'Oops!');
+             this._toastrService.error(response.msg, 'Oops!');
              this.registerForm.reset();
 
          }
@@ -58,7 +60,6 @@ export class HomeComponent {
            this.utilService.logError(error);
          },
          () => {  }
-
 
        );
      } else {
