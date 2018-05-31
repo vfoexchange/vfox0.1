@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
     public User findByUsername(String username) {
         User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where UserName = ? ",
                 new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
-        if(user != null)
+        if(user == null)
             throw new UserNotFoundException(username);
         return user;
     }
