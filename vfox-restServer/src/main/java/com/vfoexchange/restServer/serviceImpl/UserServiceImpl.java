@@ -3,6 +3,7 @@ package com.vfoexchange.restServer.serviceImpl;
 import com.vfoexchange.restServer.dao.ServicesDao;
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
+import com.vfoexchange.restServer.dto.LinkedServicesDTO;
 import com.vfoexchange.restServer.dto.UserDTO;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
@@ -56,6 +57,16 @@ public class UserServiceImpl implements UserService {
         User user = userDao.findByUsername(username);
         List<Services> list = servicesDao.findAdvisorServices(user.getId());
         return list;
+
+    }
+
+    /*
+    Method for updating list of active advisor services
+     */
+
+    public void updateAdvisorServices(LinkedServicesDTO linkedServicesDTO) {
+        User user = userDao.findByUsername(linkedServicesDTO.getUsername());
+        List<Services> list = servicesDao.findAdvisorServices(user.getId());
 
     }
 

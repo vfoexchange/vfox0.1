@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.controller;
 
+import com.vfoexchange.restServer.dto.LinkedServicesDTO;
 import com.vfoexchange.restServer.dto.ResponseDTO;
 import com.vfoexchange.restServer.dto.UserDTO;
 import com.vfoexchange.restServer.model.Services;
@@ -8,7 +9,6 @@ import com.vfoexchange.restServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -20,7 +20,7 @@ public class UserController {
     /*
     Method for adding new user(user can be advisor or client or admin)
      */
-    @RequestMapping(value = "/add/user", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/add/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO addUser(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
@@ -38,7 +38,7 @@ public class UserController {
     /*
     Method for fetching user details
      */
-    @RequestMapping(value = "/fetch/user", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/fetch/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO getUserDetail(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
@@ -57,7 +57,7 @@ public class UserController {
     /*
     Method for fetching advisor services
      */
-    @RequestMapping(value = "/get/advisor/services", method = RequestMethod.POST,consumes = MediaType.APPLICATION_JSON_VALUE,produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/get/advisor/services", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseDTO getAdvisorServices(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
@@ -70,6 +70,24 @@ public class UserController {
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while fetching advisor services");
+        }
+        return resp;
+    }
+
+    /*
+    Method for updating advisor services
+     */
+    @RequestMapping(value = "/update/advisor/services", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO updateAdvisorServices(@RequestBody LinkedServicesDTO linkedServicesDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            userService.updateAdvisorServices(linkedServicesDTO);
+            resp.setCode("200");
+            resp.setMsg("Advisor services updated successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while updating advisor services");
         }
         return resp;
     }
