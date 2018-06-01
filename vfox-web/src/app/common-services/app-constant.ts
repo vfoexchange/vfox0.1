@@ -3,7 +3,7 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    public ApiUrl:string = 'http://localhost:8080/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
@@ -16,8 +16,8 @@ export class Configuration {
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
     public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
-    public restrictedPageForADVISOR: string[] = ['/dashboard/'];
-    public restrictedPageForUser: string[] = ['/dashboard/'] ;
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
+    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance'];
 
 
 
@@ -25,8 +25,10 @@ export class Configuration {
     //*****************************Api URLs *****************************/
     public API_LOGIN_URL: string = 'user/auth';
     public API_REGISTER_URL: string = 'add/user';
+    public API_GET_USER: string = 'fetch/user';
     public API_SERVICE_PROVIDER: string = 'get/serviceProviders';
     public API_USER_SERVICE: string = 'get/advisor/services';
+    public API_UPDATE_SERVICE: string = 'update/advisor/services';
 
 
       //*****************************Api URLs Ends *****************************/
@@ -85,5 +87,6 @@ export class Configuration {
     'cost_remediation': false,
     'business_transition': false
     };
+    
 
 }

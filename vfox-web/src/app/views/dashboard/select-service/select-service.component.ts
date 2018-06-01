@@ -5,7 +5,7 @@ import { UtilService } from '../../../common-services/util-services';
 import { Response, Http, Headers } from '@angular/http';
 import { ProvidersService } from '../../../services/providers.service';
 import { ToastrService } from 'ngx-toastr';
-import {Configuration}from "../../../common-services/app-constant";
+import { Configuration } from "../../../common-services/app-constant";
 
 
 @Component({
@@ -14,81 +14,78 @@ import {Configuration}from "../../../common-services/app-constant";
 })
 export class ServiceCenterComponent implements OnInit {
   serviceForm: FormGroup;
-  serviceStatus: string;
-  ServiceName: string;
+  serviceStatus: any;
+  ServiceName: any;
+  currentUser:any ;
 
   constructor(private translate: TranslateService, private providersService: ProvidersService,
-  private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration) {
+    private utilService: UtilService, private http: Http, private _toastrService: ToastrService, private configuration: Configuration) {
 
-   }
+  }
   ngOnInit() {
-   // this.serviceStatus = 'true';
+    // this.serviceStatus = 'true';
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
 
     this.serviceForm = new FormGroup({
-      selectService: new FormControl(null),
       insurance: new FormControl(null),
-      users: new FormControl(null),
-      billPay: new FormControl(null),
+      bill_pay: new FormControl(null),
       investment: new FormControl(null),
-      wealthManagement: new FormControl(null),
-      manageProfile: new FormControl(null),
-      taxMigration: new FormControl(null),
+      welth_manage: new FormControl(null),
+      tax_mitigation: new FormControl(null),
+      asset_protection: new FormControl(null),
+      trust_services: new FormControl(null),
+      business_valuation: new FormControl(null),
+      cost_remediation: new FormControl(null),
+      business_transition: new FormControl(null)
     });
 
     this.getUserService();
   }
 
-    getUserService(){
+  getUserService() {
 
-        this.ServiceName = this.configuration.ServiceName;
-    this.serviceStatus = this.configuration.ServiceStatus;
-         this.providersService.getUserService('advisor@advisor.com').subscribe(
-         (response) => {
-
-           if(this.utilService.isEmpty(response)){
-             this._toastrService.error("Something went wrong please try again", 'Oops!');
-           }
-
-           if (response.code == 200) {
-            this._toastrService.success(response.message);
-          // response.result;
-debugger;
- for(let child of response.result){
-        if(child.name == this.ServiceName ){
-       // this.serviceStatus.bill_pay = true;
+   // this.ServiceName = this.configuration.ServiceName;
+   // this.serviceStatus = this.configuration.ServiceStatus;
+    if (this.utilService.getData('loginDataDetail') !== null) {
+      this.currentUser = this.utilService.getData('loginDataDetail');
     }
-    if(child.name == this.ServiceName ){
-       // this.serviceStatus.investment = true;
-    }
+    this.providersService.getUserService(this.currentUser.userEmail).subscribe(
+      (response) => {
 
-
-   }
-
-
-           // console.log(this.providers);
-           } else {
-             this._toastrService.error(response.msg, 'Oops!');
-
-
-         }
-         },
-
-         (error) => {
+        if (this.utilService.isEmpty(response)) {
           this._toastrService.error("Something went wrong please try again", 'Oops!');
-           this.utilService.logError(error);
-         },
-         () => { console.log('Registration Complete'); }
+        }
+
+        if (response.code == 200) {
+      
+          this.serviceStatus = this.providersService.bindUserServices(response);
+      
+        } else {
+          this._toastrService.error(response.msg, 'Oops!');
 
 
-       );
-}
+        }
+      },
+
+      (error) => {
+        this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      },
+      () => { console.log('Registration Complete'); }
+
+
+    );
+  }
 
   onSubmit() {
-    debugger
+    //debugger
     let obj = this.serviceForm.value;
-    console.log(obj);
+   // console.log(obj);
+   this.providersService.updateService(obj).subscribe(
+    (response) => {
+
+    })
   }
 
 }

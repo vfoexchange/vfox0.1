@@ -33,8 +33,7 @@ export class AuthGuard implements CanActivateChild {
     let resPage: boolean;
 
     let currentPath = currentStat.split(';')[0];
-    
-
+   
      if (this.utilService.getData('loginDataDetail') !== null) {
        if (this.utilService.getData('loginDataDetail').roleId.toString()) {
          switch (this.utilService.getData('loginDataDetail').roleId.toString()) {
@@ -44,11 +43,11 @@ export class AuthGuard implements CanActivateChild {
            
            
            case this.configuration.ADVISOR_ROLE_ID:
-              alert('restrictedPageForBroker---'+restrictedPageForADVISOR);
+             
              resPage = restrictedPageForADVISOR.indexOf(currentPath) === -1;
              break;
            case this.configuration.CLIENT_ROLE_ID:
-              alert('restrictedPageForUser---'+restrictedPageForUser);
+             
             resPage = restrictedPageForUser.indexOf(currentPath) === -1;
              break;
            

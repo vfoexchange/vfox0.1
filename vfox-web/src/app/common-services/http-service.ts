@@ -68,7 +68,7 @@ apiUrl: string;
 }
 
     postWithToken(url: string, data: any): Observable<any> {
-     debugger
+    
     let postUrl = this.configuration.ApiUrl + url;
 
 

@@ -20,7 +20,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input [(ngModel)]="serviceStatus.insurance" formControlName="selectService" id="selectService"  class="switch-input" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.insurance" formControlName="insurance" id="insurance"  class="switch-input" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.insurance}}</p>
@@ -29,7 +29,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input [checked] [(ngModel)]="serviceStatus.bill_pay" formControlName="insurance" id="insurance" class="switch-input" type="checkbox">
+                                        <input [checked] [(ngModel)]="serviceStatus.bill_pay" formControlName="bill_pay" id="bill_pay" class="switch-input" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.bill_pay}}</p>
@@ -38,7 +38,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input checked="" formControlName="users" id="users"class="switch-input" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.investment" formControlName="investment" id="investment" class="switch-input" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.investment}}</p>
@@ -47,7 +47,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input checked="" formControlName="billPay" id="billPay" class="switch-input" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.welth_manage" formControlName="welth_manage" id="welth_manage" class="switch-input" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.welth_manage}}</p>
@@ -56,7 +56,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input class="switch-input" formControlName="investment" id="investment" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.tax_mitigation" class="switch-input" formControlName="tax_mitigation" id="tax_mitigation" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.tax_mitigation}}</p>
@@ -68,7 +68,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input checked="" formControlName="wealthManagement" id="wealthManagement" class="switch-input" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.asset_protection" formControlName="asset_protection" id="asset_protection" class="switch-input" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.asset_protection}}</p>
@@ -76,9 +76,9 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
-                                            class="switch switch-3d switch-primary"><input class="switch-input" formControlName="manageProfile" id="manageProfile"
-                                                                                           type="checkbox"><span
-                                            class="switch-slider"></span></label></label>
+                                            class="switch switch-3d switch-primary">
+                                            <input [(ngModel)]="serviceStatus.trust_services" class="switch-input" formControlName="trust_services" id="trust_services" type="checkbox">
+                                            <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.trust_services}}</p>
                                     </div>
@@ -86,7 +86,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input class="switch-input" formControlName="taxMigration" id="taxMigration" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.business_valuation" class="switch-input" formControlName="business_valuation" id="business_valuation" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.business_valuation}}</p>
@@ -96,7 +96,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input class="switch-input" formControlName="investment" id="investment" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.cost_remediation" class="switch-input" formControlName="cost_remediation" id="cost_remediation" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.cost_remediation}}</p>
@@ -106,7 +106,7 @@
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
-                                        <input class="switch-input" formControlName="investment" id="investment" type="checkbox">
+                                        <input [(ngModel)]="serviceStatus.business_transition" class="switch-input" formControlName="business_transition" id="investment" type="checkbox">
                                         <span class="switch-slider"></span></label></label>
                                     <div class="col-7 col-sm-9">
                                         <p class="ser_title">{{ServiceName.business_transition}}</p>

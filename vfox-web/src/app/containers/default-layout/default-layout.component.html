@@ -11,7 +11,7 @@
             <a class="p-2" [routerLink]="['/dashboard']">Home</a>
             <a class="p-2" (click)="logout()">Sign Out</a>
             <div class="user_profile"><img src="assets/img/default_profile.png" alt="Profile" class="float-left"/>
-                <div class="float-left welcome_top">Welcome John Smith</div>
+                <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
             </div>
         </nav>
     </div>
@@ -34,13 +34,24 @@
                 <div class="col">
                     <!--<a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']"><img
                         src="assets/img/select_services.png"/> -->
-                    <a [routerLink]="['/dashboard']"><img
+                    <a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']"><img
                             src="assets/img/select_services.png"/>
                         <div class="ser_name">Select <br/>Services</div>
                     </a></div>
-                <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/insurance.png"/>
+
+
+                <div *ngIf="userServiceStatus.bill_pay" class="col"><a [routerLink]="['/dashboard/insurance']" [routerLinkActive]="['active']">
+                    <img src="assets/img/insurance.png"/>
                     <div class="ser_name">Insurance</div>
                 </a></div>
+
+                <div *ngIf="!userServiceStatus.bill_pay" class="col"><a  class="disable_link">
+                    <img src="assets/img/insurance_disable.png"/>
+                    <div class="ser_name">Insurance</div>
+                    </a></div>
+
+
+
                 <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/maintain_users.png"/>
                     <div class="ser_name">Maintain <br/>Users</div>
                 </a></div>

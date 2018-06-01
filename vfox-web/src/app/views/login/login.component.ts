@@ -47,20 +47,36 @@ export class LoginComponent {
           this._toastrService.error("Please Enter Correct Username or Password", 'Oops!');
         }
         response = response.json();
-
+        
         if (response.access_token) {
-
-           let loginDataTest = {
-                            role: "Admin",
-                            roleId: 1,
-                            loggedIn: 'true'
-                        }
-          this.utilService.setData(loginDataTest, 'loginDataDetail');
-          //set token and get profile
-
+           //set token and get profile
           localStorage.setItem('token', response.access_token);
+          
+          this.loginService.getUser(obj.username).subscribe(
+            (response) => {
+              
+              if (response.code == 200) {
+                //response.result;
+                let loginDataTest = {
+                  role: "Admin",
+                  //role: response.result.role,
+                  roleId: response.result.roleId,
+                  userEmail:response.result.username,
+                  userName:response.result.username,
+                  firstLogin:response.result.firstLogin,
+                  loggedIn: 'true'
+              }
+              this.utilService.setData(loginDataTest, 'loginDataDetail');
+              if(response.result.firstLogin){
+                this.router.navigate(['dashboard/selectservices']);
+              }else{
+                this.router.navigate(['dashboard']);
+              }
 
-          this.router.navigate(['dashboard']);
+              }
+
+            });
+
         } else {
           this._toastrService.error( response.message, 'Oops!'); //"Your username OR password is invalid !";
           this.loginForm.reset();
