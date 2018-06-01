@@ -39,22 +39,25 @@
                         <div class="ser_name">Select <br/>Services</div>
                     </a></div>
 
-
-                <div *ngIf="userServiceStatus.bill_pay" class="col"><a [routerLink]="['/dashboard/insurance']" [routerLinkActive]="['active']">
+                <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/maintain_users.png"/>
+                    <div class="ser_name">Maintain <br/>Users</div>
+                </a></div>
+                <div class="col"><a [routerLink]="['/dashboard']" class="disable_link"><img
+                        src="assets/img/manage_profile_disable.png"/>
+                    <div class="ser_name">Manage <br/>Profile</div>
+                </a></div>
+                <div *ngIf="userServiceStatus.bill_pay" class="col"><a [routerLink]="['/dashboard/insurance']"
+                                                                       [routerLinkActive]="['active']">
                     <img src="assets/img/insurance.png"/>
                     <div class="ser_name">Insurance</div>
                 </a></div>
 
-                <div *ngIf="!userServiceStatus.bill_pay" class="col"><a  class="disable_link">
+                <div *ngIf="!userServiceStatus.bill_pay" class="col"><a class="disable_link">
                     <img src="assets/img/insurance_disable.png"/>
                     <div class="ser_name">Insurance</div>
-                    </a></div>
-
-
-
-                <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/maintain_users.png"/>
-                    <div class="ser_name">Maintain <br/>Users</div>
                 </a></div>
+
+
                 <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/bill_pay.png"/>
                     <div class="ser_name">Bill Pay</div>
                 </a></div>
@@ -65,10 +68,7 @@
                 <div class="col"><a [routerLink]="['/dashboard']"><img src="assets/img/wealth_mgmt.png"/>
                     <div class="ser_name">Wealth <br/>Management</div>
                 </a></div>
-                <div class="col"><a [routerLink]="['/dashboard']" class="disable_link"><img
-                        src="assets/img/manage_profile_disable.png"/>
-                    <div class="ser_name">Manage <br/>Profile</div>
-                </a></div>
+
                 <div class="col"><a [routerLink]="['/dashboard']" class="disable_link"><img
                         src="assets/img/tax_migi_disable.png"/>
                     <div class="ser_name">Tax <br/>Migitation</div>
