@@ -11,23 +11,23 @@ body{background:#c03aa5 url(../assets/img/home_bg.jpg) no-repeat; background-siz
 .home_txt{font-size:20px; font-weight:400; letter-spacing:2px;}
 .home_video{margin-top:33px;}
 .card{border-color:#fff; border-radius:0.50rem;}
-.form-control{padding:0.375rem 0.1rem; height:23px; line-height:23px; border-bottom:solid 1px #979797; border-radius:0px; border-left:solid 1px #fff; border-right:solid 1px #fff; border-top:solid 1px #fff; font-size:12px!important; color:#535353!important; font-weight:500!important;}
+.form-control{padding:0.375rem 0.1rem; height:23px; line-height:23px; border-bottom:solid 1px #979797; border-radius:0px; border-left:solid 1px #fff; border-right:solid 1px #fff; border-top:solid 1px #fff; font-size:14px!important; color:#535353!important; font-weight:500!important;}
 .form-control:focus{box-shadow:none!important; border-bottom:solid 1px rgba(206, 55, 168, 1)!important; border-top:solid 1px #fff!important; border-right:solid 1px #fff!important; border-left:solid 1px #fff!important;}
 .reg_form{padding:32px 32px 17px 32px;}
 .btn-outline-purple{border:solid 1px #ce37a8; color:#ce37a8; font-size:14px!important; font-weight:500!important; border-radius:0px;}
 .btn-outline-purple:hover, .btn-outline-purple:not(:disabled):not(.disabled):active, .btn-outline-purple:not(:disabled):not(.disabled).active, .show > .btn-outline-purple.dropdown-toggle{background:#ce37a8; border-color:#fff;}
 .btn-outline-purple:focus, .btn-outline-purple.focus{box-shadow:0 0 0 0.2rem rgba(255, 255, 255, 0.2)!important;}
 .mtop_34{margin-top:34px;}
-.form-group label{font-size:10px!important; color:#535353!important; font-weight:500!important;}
+.form-group label{font-size:14px!important; color:#535353!important; font-weight:500!important;}
 .alrdy_txt{font-size:14px; font-weight:400; color:#535353; text-align:center;}
 .alrdy_txt a{color:#ce37a8; font-weight:500; text-decoration:none;}
 .home_footer{height:29px; background-color:#003a5d; position:fixed; bottom:0; left:0; right:0; width:100%;}
 .reg_card{width:265px; float:right;}
-.erros-msg{color:#ff0000; font-size:11px;}
+.erros-msg{color:#ff0000; font-size:14px;}
 .reg_form button[disabled]{background:#fff!important; border:solid 1px #ce37a8!important; color:#ce37a8!important; opacity:0.3!important; cursor:auto!important;}
 .welcome_top{font-size:14px; font-weight:500; padding:0 8px 0 12px; margin-top:24px;}
 .top_nav{text-align:right; top:44px!important; position:relative;}
-.top_nav a{font-size:10px!important; color:#fff; font-weight:400; text-decoration:none; outline:none;}
+.top_nav a{font-size:14px!important; color:#fff; font-weight:400; text-decoration:none; outline:none;}
 .user_profile{position:relative; bottom:20px;}
 .home_footer a{position:relative; bottom:28px; text-decoration:none; padding:0 20px 0 20px; text-align:center; line-height:11px; outline:none;}
 .ser_name{font-size:11px; color:#fff; font-weight:500; padding:10px 0 0 0;}
@@ -52,10 +52,10 @@ body{background:#c03aa5 url(../assets/img/home_bg.jpg) no-repeat; background-siz
 .mbtm_37{margin-bottom:37px;}
 .started_bg .form-group{margin-bottom:4px;}
 .home_footer a.active img{transform: scale(1.22); top:-47px; left:50%; margin-left:0px;}
-.loading {background: url(../assets/img/animate_bg.png) no-repeat 25px 50px; opacity: 1; position: fixed; height: 100%; width: 100%; padding-top: 20vh; text-align: center; z-index: -1; -webkit-transition: opacity 3s ease-out; transition: opacity 3s ease-out; font-size:14px; position: relative;
--webkit-animation: mymove 3s;  /* Safari 4.0 - 8.0 */ -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */ animation: mymove 3s; animation-fill-mode: forwards;}
+.loading {background: url(../assets/img/animate_bg.png) no-repeat 25px 50px; opacity: 1; position: fixed; height: 100%; width: 100%; padding-top: 20vh; text-align: center; z-index: -1; -webkit-transition: opacity 250s ease-out; transition: opacity 250s ease-out; font-size:14px; position: relative;
+-webkit-animation: mymove 200s;  /* Safari 4.0 - 8.0 */ -webkit-animation-fill-mode: forwards; /* Safari 4.0 - 8.0 */ animation: mymove 12s; animation-fill-mode: forwards;}
 @-webkit-keyframes mymove {from {top: 0px; opacity:0;} to {top: 60px; opacity:1;}}
-@keyframes mymove {0% {top: 0px; opacity:0;}25% {top: 60px; opacity:1;} 50% {top: 60px; opacity:1;}100% {top: 0px; opacity:0;}}
+@keyframes mymove {0% {top: 0px; opacity:0.1;}25% {top: 60px; opacity:0.5;} 50% {top: 60px; opacity:1;}100% {top: 0px; opacity:0.1;}}
 .loading {opacity: 1; z-index: 100;
   h1 {font-family: 'Quicksand', sans-serif; color: #EEE; margin-bottom: 50px;
   }
