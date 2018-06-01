@@ -116,7 +116,7 @@ vfox0.1POC
 Add additional notes about how to deploy this on a live system
 ### Backend
 #### Go to project directory and open terminal(cmd on window).
-    Open command 
+    
      mvn clean install
 
 #### Go to vfox-restServer directory and open terminal(cmd on window).
