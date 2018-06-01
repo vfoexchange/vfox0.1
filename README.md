@@ -8,20 +8,10 @@ estate planning attorneys, insurance advisors and more.
 ### Prerequisites
 ```
 Java 1.8+
-```
-```
 Maven 3.5+ required, but recommended
-```
-```
 Mysql 5.x
-```
-```
 Intellij Community
-```
-```
 Node v9.11.1
-```
-```
 docker 1.3x
 ```
 ### Installing
@@ -57,11 +47,8 @@ You can list downloaded Docker images with this command:
 
 Start a new Docker container for the MySQL Community Server with this command:
 
-    shell>  docker run -p 3306:3306 --name=vfox -e MYSQL_ROOT_PASSWORD=vfox -e
-            MYSQL_ROOT_HOST=% --mount type=bind,src=/var/lib/mysql,dst=/var/lib/mysql -d
-            mysql/mysql-server:latest --default-authentication-plugin=mysql_native_password --
-            character-set-server=latin1 --collation-server=latin1_swedish_ci
-
+    shell>  docker run -p 3306:3306 --name=vfox-mysql -e MYSQL_ROOT_PASSWORD=vfox -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:latest
+            --default-authentication-plugin=mysql_native_password --character-set-server=latin1 --collation-server=latin1_swedish_ci
 
 The--name option, for supplying a custom name for your server container (mysql1 in the example),
 is optional; if no container name is supplied, a random one is generated. If the Docker image of the
