@@ -14,7 +14,7 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
 
 
     serviceProviders(serviceType:string) {
-    var url = this.configuration.API_SERVICE_PROVIDER+'?serviceName='+serviceType;
+    var url = this.configuration.API_SERVICE_PROVIDER+'?servicesName='+serviceType;
     return this.httpService.get(url);
    }
 

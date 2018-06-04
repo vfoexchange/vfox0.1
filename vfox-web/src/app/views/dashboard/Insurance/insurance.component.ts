@@ -22,7 +22,7 @@ export class InsuranceComponent {
 
   ngOnInit() {
    
-       this.providersService.serviceProviders('Insurance').subscribe(
+       this.providersService.serviceProviders('insurance').subscribe(
          (response) => {
 
            if(this.utilService.isEmpty(response)){
@@ -30,7 +30,7 @@ export class InsuranceComponent {
            }
 
            if (response.code == 200) {
-            this._toastrService.success(response.message);
+           // this._toastrService.success(response.message);
             this.providers = response.result;
            } else {
              this._toastrService.error(response.msg, 'Oops!');

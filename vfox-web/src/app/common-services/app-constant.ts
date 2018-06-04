@@ -3,7 +3,7 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    public ApiUrl:string = 'http://localhost:8080/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 

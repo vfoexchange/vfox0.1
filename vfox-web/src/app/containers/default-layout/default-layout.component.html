@@ -47,7 +47,7 @@
                 </div>
 
                 <div class="col">
-                    <a [routerLink]="['/dashboard/addclient']">
+                    <a [routerLink]="['/dashboard/addnewclient']" [routerLinkActive]="['active']">
                         <img src="assets/img/maintain_users.png" />
                         <div class="ser_name">Maintain
                             <br/>Users</div>
@@ -61,7 +61,7 @@
                     </a>
                 </div>
                 <div *ngIf="userServiceStatus.insurance_menu" class="col">
-                    <a [routerLink]="['/dashboard/insurance']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/viewinsurance']" [routerLinkActive]="['active']">
                         <img src="assets/img/insurance.png" />
                         <div class="ser_name">Insurance</div>
                     </a>
@@ -76,7 +76,7 @@
 
 
                 <div *ngIf="userServiceStatus.bill_pay_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/billpay']" [routerLinkActive]="['active']">
                         <img src="assets/img/bill_pay.png" />
                         <div class="ser_name">Bill Pay</div>
                     </a>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div *ngIf="userServiceStatus.investment_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/investment']" [routerLinkActive]="['active']">
                         <img src="assets/img/alt_invest.png" />
                        <div class="ser_name">Alternate
                             <br/>Investment</div>
@@ -106,7 +106,7 @@
                 </div>
 
                 <div *ngIf="userServiceStatus.welth_manage_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/wealth']" [routerLinkActive]="['active']">
                         <img src="assets/img/wealth_mgmt.png" />
                         <div class="ser_name">Wealth
                             <br/>Management</div>
@@ -123,7 +123,7 @@
 
 
                 <div *ngIf="userServiceStatus.tax_mitigation_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/tax']" [routerLinkActive]="['active']">
                         <img src="assets/img/tax_migi.png" />
                         <div class="ser_name">Tax
                             <br/>Migitation</div>
@@ -140,7 +140,7 @@
 
 
                 <div *ngIf="userServiceStatus.asset_protection_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/assets']" [routerLinkActive]="['active']">
                         <img src="assets/img/asset_protect.png" />
                         <div class="ser_name">Asset
                             <br/>Protection</div>
@@ -156,7 +156,7 @@
                 </div>
 
                 <div *ngIf="userServiceStatus.trust_services_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/trust']" [routerLinkActive]="['active']">
                         <img src="assets/img/trust_services.png" />
                         <div class="ser_name">Trust
                             <br/>Services</div>
@@ -172,7 +172,7 @@
                 </div>
 
                 <div *ngIf="userServiceStatus.business_valuation_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/business']" [routerLinkActive]="['active']">
                         <img src="assets/img/business_value.png" />
                         <div class="ser_name">Business
                             <br/>Valuation</div>
@@ -189,7 +189,7 @@
 
 
                 <div *ngIf="userServiceStatus.cost_remediation_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/cost']" [routerLinkActive]="['active']">
                         <img src="assets/img/cost_remed.png" />
                         <div class="ser_name">Cost
                             <br/>Remediation</div>
@@ -205,7 +205,7 @@
                 </div>
 
                 <div *ngIf="userServiceStatus.business_transition_menu" class="col">
-                    <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/business_trans']" [routerLinkActive]="['active']">
                         <img src="assets/img/business_trans.png" />
                         <div class="ser_name">Business
                             <br/>Transition</div>
