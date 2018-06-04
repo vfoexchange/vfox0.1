@@ -4,23 +4,18 @@ import {Configuration} from "../common-services/app-constant";
 import {HttpService} from "../common-services/http-service";
 
 @Injectable()
-export class HomeService {
+export class ClientService {
 constructor(private httpService: HttpService, private configuration: Configuration) {
    }
 
-    register(username:string, password: String) {
+   addClient(username:string, password: String) {
        return this.httpService.post(this.configuration.API_REGISTER_URL, {
          username: username,
          password: password,
-         role: this.configuration.ADVISOR
+         role: this.configuration.CLIENT
        });
      }
 
-    verifyEmail(emailKey:string) {
-       return this.httpService.post(this.configuration.API_REGISTER_URL, {
-         email: emailKey
-       });
-     }
 
 
   

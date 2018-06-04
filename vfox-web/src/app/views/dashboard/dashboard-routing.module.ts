@@ -4,6 +4,7 @@ import { AuthGuard } from '../../common-services/auth-guard-service';
 import { DashboardComponent } from './dashboard.component';
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { InsuranceComponent } from './Insurance/insurance.component';
+import { AddClientComponent } from './manage-client/client.component';
 
 
 const routes: Routes = [
@@ -28,7 +29,14 @@ const routes: Routes = [
       data: {
       title: 'Insurance'
      }
-  }
+  },
+  {
+    path: 'addclient',
+    component: AddClientComponent,
+    data: {
+    title: 'addclient'
+   }
+}
 
 ];
 
