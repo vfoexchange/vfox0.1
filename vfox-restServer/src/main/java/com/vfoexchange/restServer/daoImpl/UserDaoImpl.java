@@ -15,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserDaoImpl implements UserDao {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     /*
     Method to add new user(user can be advisor, client or admin)

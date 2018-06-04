@@ -27,7 +27,7 @@ export class DefaultLayoutComponent {
    ngOnInit(){
     //Set service name and status
     this.ServiceName = this.configuration.ServiceName;
-    this.userServiceStatus = this.configuration.ServiceStatus;
+    this.userServiceStatus = this.configuration.footerMenu;
 
     if (this.utilService.getData('loginDataDetail') !== null) {
       this.currentUser = this.utilService.getData('loginDataDetail');
@@ -49,7 +49,7 @@ export class DefaultLayoutComponent {
 
       if (response.code == 200) {
         
-        this.userServiceStatus = this.providersService.bindUserServices(response);
+        this.userServiceStatus = this.providersService.bindUserMenu(response, this.userServiceStatus);
             // console.log(this.providers);
           } 
         },

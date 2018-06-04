@@ -2,6 +2,7 @@ package com.vfoexchange.restServer.controllerAdvice;
 
 
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
+import com.vfoexchange.restServer.exceptions.UserRoleNotFoundException;
 import com.vfoexchange.restServer.model.ErrorDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,15 @@ public class CustomizedResponseEntityExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public final ResponseEntity<ErrorDetails> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
         LOGGER.debug("handling 404 error on a user entry");
+        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+
+    @ExceptionHandler(UserRoleNotFoundException.class)
+    public final ResponseEntity<ErrorDetails> handleUserRoleNotFoundException(UserRoleNotFoundException ex, WebRequest request) {
+        LOGGER.debug("handling 404 error on a role entry");
         ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
