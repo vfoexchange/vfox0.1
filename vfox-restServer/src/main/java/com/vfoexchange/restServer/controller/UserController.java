@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-    UserService userService;
+     private UserService userService;
 
     /*
     Method for adding new user(user can be advisor or client or admin)
