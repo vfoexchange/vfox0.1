@@ -27,13 +27,13 @@ export class DefaultLayoutComponent {
    ngOnInit(){
     //Set service name and status
     this.ServiceName = this.configuration.ServiceName;
-    this.userServiceStatus = this.configuration.ServiceStatus;
+    this.userServiceStatus = this.configuration.footerMenu;
 
     if (this.utilService.getData('loginDataDetail') !== null) {
       this.currentUser = this.utilService.getData('loginDataDetail');
     }
 
-    setTimeout(() => { this.isCreatingAccount = false; }, 8000);
+    setTimeout(() => { this.isCreatingAccount = false; }, 4000);
     this.translate.setDefaultLang('en');
     this.getUserService();
   }
@@ -49,7 +49,7 @@ export class DefaultLayoutComponent {
 
       if (response.code == 200) {
         
-        this.userServiceStatus = this.providersService.bindUserServices(response);
+        this.userServiceStatus = this.providersService.bindUserMenu(response, this.userServiceStatus);
             // console.log(this.providers);
           } 
         },

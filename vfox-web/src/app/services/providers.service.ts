@@ -1,7 +1,7 @@
-import{Injectable}from'@angular/core';
+import {Injectable} from '@angular/core';
 import 'rxjs/Rx';
-import {Configuration}from "../common-services/app-constant";
-import {HttpService}from "../common-services/http-service";
+import {Configuration} from "../common-services/app-constant";
+import {HttpService} from "../common-services/http-service";
 import { UtilService } from "../common-services/util-services";
 
 @Injectable()
@@ -39,9 +39,61 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
       cost_remediation: value.cost_remediation,
       business_transition: value.business_transition
        });
+   } 
+
+   //Set footer menu for advisor and client
+   bindUserMenu(response, serviceStatus){ 
+//debugger
+    this.ServiceName = this.configuration.ServiceName;
+
+    for (let child of response.result) {
+
+      switch (child.name) {
+        case this.ServiceName.bill_pay:
+          serviceStatus.bill_pay_menu = true;
+          break;
+        case this.ServiceName.investment:
+          serviceStatus.investment_menu = true;
+          break;
+          case this.ServiceName.insurance:
+          serviceStatus.insurance_menu = true;
+          break;
+        case this.ServiceName.welth_manage:
+          serviceStatus.welth_manage_menu = true;
+          break;
+        case this.ServiceName.tax_mitigation:
+          serviceStatus.tax_mitigation_menu = true;
+          break;
+        case this.ServiceName.asset_protection:
+          serviceStatus.asset_protection_menu = true;
+          break;
+        case this.ServiceName.trust_services:
+          serviceStatus.trust_services_menu = true;
+          break;
+        case this.ServiceName.business_valuation:
+          serviceStatus.business_valuation_menu = true;
+          break;
+        case this.ServiceName.cost_remediation:
+          serviceStatus.cost_remediation_menu = true;
+          break;
+        case this.ServiceName.business_transition:
+          serviceStatus.business_transition_menu = true;
+          break;
+        default:
+        //Nothing
+      }
+
+
+    }
+    //serviceStatus.bill_pay_menu = true;
+    return serviceStatus;
+
    }
 
-   bindUserServices(response){
+
+
+//Set Get Update services page buttons
+   bindUserServices(response){ 
 //debugger
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
@@ -90,5 +142,10 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
     return this.serviceStatus;
 
    }
+
+
+
+
+
 
 }

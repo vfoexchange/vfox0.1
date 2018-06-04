@@ -3,7 +3,7 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    public ApiUrl:string = 'http://localhost:8080/';
+    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
@@ -15,8 +15,8 @@ export class Configuration {
 
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
-    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance'];
+    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/addclient'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/addclient'];
     public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance'];
 
 
@@ -88,5 +88,17 @@ export class Configuration {
     'business_transition': false
     };
     
+    public footerMenu: any = {
+        'bill_pay_menu': false,
+        'insurance_menu': false,
+        'investment_menu': false,
+        'welth_manage_menu': false,
+        'tax_mitigation_menu': false,
+        'asset_protection_menu': false,
+        'trust_services_menu': false,
+        'business_valuation_menu': false,
+        'cost_remediation_menu': false,
+        'business_transition_menu': false
+        };
 
 }

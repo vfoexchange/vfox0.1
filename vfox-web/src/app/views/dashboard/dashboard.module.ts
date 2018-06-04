@@ -13,6 +13,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { InsuranceComponent } from './Insurance/insurance.component';
+import { AddClientComponent } from './manage-client/client.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { InsuranceComponent } from './Insurance/insurance.component';
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, InsuranceComponent  ]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, InsuranceComponent, AddClientComponent]
 })
 export class DashboardModule {
 
