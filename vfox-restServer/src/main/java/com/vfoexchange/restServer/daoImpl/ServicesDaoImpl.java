@@ -14,7 +14,7 @@ import java.util.List;
 public class ServicesDaoImpl implements ServicesDao {
 
     @Autowired
-    JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     /*
     Method used to fetch advisor services list from DB using advisor id
