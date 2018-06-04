@@ -33,7 +33,7 @@ export class DefaultLayoutComponent {
       this.currentUser = this.utilService.getData('loginDataDetail');
     }
 
-    setTimeout(() => { this.isCreatingAccount = false; }, 8000);
+    setTimeout(() => { this.isCreatingAccount = false; }, 4000);
     this.translate.setDefaultLang('en');
     this.getUserService();
   }
