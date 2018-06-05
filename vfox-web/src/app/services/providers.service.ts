@@ -17,6 +17,11 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
     var url = this.configuration.API_SERVICE_PROVIDER+'?servicesName='+serviceType;
     return this.httpService.get(url);
    }
+   //Insurance Providers Billing
+   addBilling(providerName:string, userEmail: any) {
+    var url = this.configuration.API_SERVICE_BILLING+'?userName='+userEmail+'&providerName='+providerName;
+    return this.httpService.get(url);
+   }
 
 
     getUserService(user:string) {
@@ -46,7 +51,7 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
 
    //Set footer menu for advisor and client
    bindUserMenu(response, serviceStatus){ 
-debugger
+
     this.ServiceName = this.configuration.ServiceName;
     serviceStatus.bill_pay_menu = false;
     serviceStatus.investment_menu = false;

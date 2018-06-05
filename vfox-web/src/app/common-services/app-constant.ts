@@ -30,6 +30,7 @@ export class Configuration {
     public API_SERVICE_PROVIDER: string = 'get/serviceProviders';
     public API_USER_SERVICE: string = 'get/advisor/services';
     public API_UPDATE_SERVICE: string = 'update/advisor/services';
+    public API_SERVICE_BILLING: string = 'update/provider/billing';
 
 
       //*****************************Api URLs Ends *****************************/

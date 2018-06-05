@@ -16,23 +16,10 @@
                     
                     </div>
                     <div class="col-lg-10"><p class="ins_desc">{{provider.longDesc}}</p>
-                        <p class="lrn_more"><a href="{{provider.redirectUrl}}">Learn more &gt;</a></p></div>
+                        <p class="lrn_more"><a (click)="addBilling(provider.name, provider.redirectUrl)" >Learn more &gt;</a></p></div>
                 </div>
             </div>
         </div>
     </div>
 
-   <!-- <div class="col-lg-6">
-        <div class="card ins_card">
-            <div class="card-body ins_body">
-                <div class="row">
-                    <div class="col-lg-2 ins_img"><img src="assets/img/capital_group.png" class="img-fluid"/></div>
-                    <div class="col-lg-10"><p class="ins_desc">Lorem ipsum dolor sit amet, consectetur adipscing elit,
-                        sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                        <p class="lrn_more"><a href="#">Learn more &gt;</a></p></div>
-                </div>
-            </div>
-        </div>
-    </div> -->
 </div>
