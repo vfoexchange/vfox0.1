@@ -15,8 +15,9 @@ import { Configuration } from "../../../common-services/app-constant";
 export class ServiceCenterComponent implements OnInit {
   serviceForm: FormGroup;
   serviceStatus: any;
+  userServiceStatus: any;
   ServiceName: any;
-  currentUser:any ;
+  currentUser: any;
 
   constructor(private translate: TranslateService, private providersService: ProvidersService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService, private configuration: Configuration) {
@@ -26,6 +27,8 @@ export class ServiceCenterComponent implements OnInit {
     // this.serviceStatus = 'true';
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
+    this.currentUser = this.utilService.getData('loginDataDetail');
+    
 
     this.serviceForm = new FormGroup({
       insurance: new FormControl(null),
@@ -45,11 +48,7 @@ export class ServiceCenterComponent implements OnInit {
 
   getUserService() {
 
-   // this.ServiceName = this.configuration.ServiceName;
-   // this.serviceStatus = this.configuration.ServiceStatus;
-    if (this.utilService.getData('loginDataDetail') !== null) {
-      this.currentUser = this.utilService.getData('loginDataDetail');
-    }
+
     this.providersService.getUserService(this.currentUser.userEmail).subscribe(
       (response) => {
 
@@ -58,13 +57,11 @@ export class ServiceCenterComponent implements OnInit {
         }
 
         if (response.code == 200) {
-      
+
           this.serviceStatus = this.providersService.bindUserServices(response);
-      
+
         } else {
           this._toastrService.error(response.msg, 'Oops!');
-
-
         }
       },
 
@@ -72,20 +69,44 @@ export class ServiceCenterComponent implements OnInit {
         this._toastrService.error("Something went wrong please try again", 'Oops!');
         this.utilService.logError(error);
       },
-      () => { console.log('Registration Complete'); }
-
-
-    );
+      () => {
+        console.log('Registration Complete');
+      });
   }
 
   onSubmit() {
     //debugger
     let obj = this.serviceForm.value;
-   // console.log(obj);
-   this.providersService.updateService(obj).subscribe(
-    (response) => {
+    // console.log(obj);
+    this.providersService.updateService(obj, this.currentUser.userEmail).subscribe(
+      (response) => {
+        if (this.utilService.isEmpty(response)) {
+          this._toastrService.error("Something went wrong please try again", 'Oops!');
+        }
 
-    })
+        if (response.code == 200) {
+          this._toastrService.success(response.msg);
+          this.providersService.getUserService(this.currentUser.userEmail).subscribe(
+            (responseData) => {
+              if (responseData.code == 200) {
+                debugger
+                this.userServiceStatus = this.configuration.footerMenu;
+                this.userServiceStatus = this.providersService.bindUserMenu(responseData, this.userServiceStatus);
+              }
+            });
+
+        } else {
+          this._toastrService.error(response.msg, 'Oops!');
+        }
+      },
+
+      (error) => {
+        this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      },
+      () => {
+        console.log('Service update Complete');
+      });
   }
 
 }

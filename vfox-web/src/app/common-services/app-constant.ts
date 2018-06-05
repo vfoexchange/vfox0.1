@@ -4,6 +4,7 @@ export class Configuration {
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
     public ApiUrl:string = 'http://localhost:8080/';
+    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
@@ -29,6 +30,7 @@ export class Configuration {
     public API_SERVICE_PROVIDER: string = 'get/serviceProviders';
     public API_USER_SERVICE: string = 'get/advisor/services';
     public API_UPDATE_SERVICE: string = 'update/advisor/services';
+    public API_SERVICE_BILLING: string = 'update/provider/billing';
 
 
       //*****************************Api URLs Ends *****************************/

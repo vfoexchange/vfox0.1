@@ -17,6 +17,11 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
     var url = this.configuration.API_SERVICE_PROVIDER+'?servicesName='+serviceType;
     return this.httpService.get(url);
    }
+   //Insurance Providers Billing
+   addBilling(providerName:string, userEmail: any) {
+    var url = this.configuration.API_SERVICE_BILLING+'?userName='+userEmail+'&providerName='+providerName;
+    return this.httpService.get(url);
+   }
 
 
     getUserService(user:string) {
@@ -25,26 +30,39 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
        });
    }
 
-   updateService(value: any) {
+   updateService(value: any, userEmail: any) {
      //debugger
     return this.httpService.postWithToken(this.configuration.API_UPDATE_SERVICE, {
-      bill_pay: value.bill_pay,
-      investment: value.investment,
-      insurance: value.insurance,
-      welth_manage: value.welth_manage,
-      tax_mitigation: value.tax_mitigation,
-      asset_protection: value.asset_protection,
-      trust_services: value.trust_services,
-      business_valuation: value.business_valuation,
-      cost_remediation: value.cost_remediation,
-      business_transition: value.business_transition
+      username:userEmail,
+      services:{
+      'Insurance': value.insurance,
+      'Alternate Investment': value.investment,
+      'Bill Pay': value.bill_pay,
+      'Wealth Management': value.welth_manage,
+      'Tax Mitigation': value.tax_mitigation,
+      'Asset Protection': value.asset_protection,
+      'Trust Services': value.trust_services,
+      'Business Valuation': value.business_valuation,
+      'Cost Remediation': value.cost_remediation,
+      'Business Transition': value.business_transition
+      }
        });
    } 
 
    //Set footer menu for advisor and client
    bindUserMenu(response, serviceStatus){ 
-//debugger
+
     this.ServiceName = this.configuration.ServiceName;
+    serviceStatus.bill_pay_menu = false;
+    serviceStatus.investment_menu = false;
+    serviceStatus.insurance_menu = false;
+    serviceStatus.welth_manage_menu = false;
+    serviceStatus.tax_mitigation_menu = false;
+    serviceStatus.asset_protection_menu = false;
+    serviceStatus.trust_services_menu = false;
+    serviceStatus.business_valuation_menu = false;
+    serviceStatus.cost_remediation_menu = false;
+    serviceStatus.business_transition_menu = false;
 
     for (let child of response.result) {
 
