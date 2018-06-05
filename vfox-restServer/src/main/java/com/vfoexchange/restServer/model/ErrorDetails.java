@@ -3,21 +3,21 @@ package com.vfoexchange.restServer.model;
 import java.util.Date;
 
 public class ErrorDetails {
-    private Date timestamp;
+    private String timestamp;
     private String message;
     private String details;
-    public ErrorDetails(Date timestamp, String message, String details) {
-        super();
+
+    public ErrorDetails(String timestamp, String message, String details) {
         this.timestamp = timestamp;
         this.message = message;
         this.details = details;
     }
 
-    public Date getTimestamp() {
+    public String getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(Date timestamp) {
+    public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
 
