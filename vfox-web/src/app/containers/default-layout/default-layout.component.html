@@ -37,7 +37,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div *ngIf="currentUser.role === 'client'" class="col">                    
-                    <a [routerLink]="['/dashboard']" class="disable_link">
+                    <a class="disable_link">
                         <img src="assets/img/select_services_disable.png" />
                         <div class="ser_name">Select
                             <br/>Services</div>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div *ngIf="currentUser.role !== 'client'" class="col">
-                    <a [routerLink]="['/dashboard/addnewclient']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/addclient']" [routerLinkActive]="['active']">
                         <img src="assets/img/maintain_users.png" />
                         <div class="ser_name">Maintain
                             <br/>Users</div>
@@ -69,7 +69,7 @@
                 </div>
 
                 <div class="col">
-                    <a [routerLink]="['/dashboard']" class="disable_link">
+                    <a  class="disable_link">
                         <img src="assets/img/manage_profile_disable.png" />
                         <div class="ser_name">Manage
                             <br/>Profile</div>
@@ -138,7 +138,7 @@
 
 
                 <div *ngIf="userServiceStatus.tax_mitigation_menu" class="col">
-                    <a [routerLink]="['/dashboard/tax']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/taxmigitation']" [routerLinkActive]="['active']">
                         <img src="assets/img/tax_migi.png" />
                         <div class="ser_name">Tax
                             <br/>Migitation</div>
