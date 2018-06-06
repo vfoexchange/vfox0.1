@@ -52,7 +52,7 @@ export class TaxComponent {
         this.utilService.logError(error);
       },
       () => {
-        console.log('Registration Complete');
+        console.log('Done');
       });
 
   }
@@ -83,7 +83,7 @@ export class TaxComponent {
         this.utilService.logError(error);
       },
       () => {
-        console.log('Registration Complete');
+        console.log('Done');
       });
 
   }

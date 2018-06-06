@@ -81,8 +81,8 @@ export class HomeComponent {
 export class VerifyEmailPageComponent {
 sub: any;
 verifyKey: string = '';
-error: boolean = false;
-   errorMsg: string = '';
+verify: boolean = false;
+verifyMsg: string ='';
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
   private utilService : UtilService, private http: Http,private _toastrService: ToastrService) {
@@ -105,17 +105,16 @@ error: boolean = false;
         //        console.log(this.verifyCode);
         this.homeService.verifyEmail(this.verifyKey).subscribe(
          (response) => {
-                if (response.statusCode === 200) {
-                    this.router.navigate(['home']);
+                if (response.Code === 200) {
+                  //  this.router.navigate(['home']);
+                  this.verify = true;
                 } else {
-                    this.errorMsg = response.message;
-                    this.error = true;
+                 // this._toastrService.error(response.msg, 'Oops!');
+                    this.verify = false;
+                    this.verifyMsg = response.msg;
                 }
             }, (error) => {
-           console.log('Registration error: ', error);
-           this.utilService.logError(error);
-           this.errorMsg = error;
-           this.error = true;
+          
          },
          () => {  }
             );

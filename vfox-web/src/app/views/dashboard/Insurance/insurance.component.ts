@@ -52,7 +52,7 @@ export class InsuranceComponent {
         this.utilService.logError(error);
       },
       () => {
-        console.log('Registration Complete');
+        console.log('Done');
       });
 
   }
@@ -87,7 +87,7 @@ export class InsuranceComponent {
         this.utilService.logError(error);
       },
       () => {
-        console.log('Registration Complete');
+        console.log('Done');
       });
 
   }

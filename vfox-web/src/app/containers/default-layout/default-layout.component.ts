@@ -58,7 +58,7 @@ export class DefaultLayoutComponent {
           this._toastrService.error("Something went wrong please try again", 'Oops!');
           this.utilService.logError(error);
         },
-        () => { console.log('Registration Complete'); }
+        () => { console.log('Done'); }
   
   
       );

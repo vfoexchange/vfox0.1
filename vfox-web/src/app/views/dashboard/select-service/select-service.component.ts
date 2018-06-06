@@ -70,7 +70,7 @@ export class ServiceCenterComponent implements OnInit {
         this.utilService.logError(error);
       },
       () => {
-        console.log('Registration Complete');
+        console.log('Done');
       });
   }
 
