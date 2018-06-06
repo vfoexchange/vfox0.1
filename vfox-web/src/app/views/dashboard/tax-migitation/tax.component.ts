@@ -9,10 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
-  selector: 'app-select-service',
-  templateUrl: './insurance.component.html'
+  selector: 'tax-migitation',
+  templateUrl: './tax.component.html'
 })
-export class InsuranceComponent {
+export class TaxComponent {
   providers: any;
   currentUser: any;
   ServiceName: any;
@@ -24,13 +24,11 @@ export class InsuranceComponent {
   }
 
   ngOnInit() {
-    //Add background class
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.add('ins_bg');
+   
     //End here
     this.ServiceName = this.configuration.ServiceName;
     this.currentUser = this.utilService.getData('loginDataDetail');
-    this.providersService.serviceProviders(this.ServiceName.insurance).subscribe(
+    this.providersService.serviceProviders(this.ServiceName.tax_mitigation).subscribe(
       (response) => {
 
         if (this.utilService.isEmpty(response)) {
@@ -56,11 +54,7 @@ export class InsuranceComponent {
       });
 
   }
-//Remove background class
-  ngOnDestroy() {
-    const body = document.getElementsByTagName('body')[0];
-    body.classList.remove('ins_bg');
-  }
+
 
   addBilling(providerName, redirectURL) {
 

@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { InsuranceComponent } from './Insurance/insurance.component';
 import { AddClientComponent } from './manage-client/client.component';
+import { TaxComponent } from './tax-migitation/tax.component';
 
 
 const routes: Routes = [
@@ -36,6 +37,13 @@ const routes: Routes = [
     data: {
     title: 'addclient'
    }
+},
+{
+  path: 'taxmigitation',
+  component: TaxComponent,
+  data: {
+  title: 'Tax Migitation'
+ }
 }
 
 ];
