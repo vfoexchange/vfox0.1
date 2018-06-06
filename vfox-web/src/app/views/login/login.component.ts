@@ -57,16 +57,15 @@ export class LoginComponent {
               
               if (response.code == 200) {
                 //response.result;
-                let loginDataTest = {
-                  role: "Admin",
-                  //role: response.result.role,
+                let loginData = {
+                  role: response.result.role,
                   roleId: response.result.roleId,
                   userEmail:response.result.username,
                   userName:response.result.username,
                   firstLogin:response.result.firstLogin,
                   loggedIn: 'true'
               }
-              this.utilService.setData(loginDataTest, 'loginDataDetail');
+              this.utilService.setData(loginData, 'loginDataDetail');
               if(response.result.firstLogin){
                 this.router.navigate(['dashboard/selectservices']);
               }else{

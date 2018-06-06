@@ -36,9 +36,15 @@
     <div class="home_footer">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
-                    <!--<a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']"><img
-                        src="assets/img/select_services.png"/> -->
+                <div *ngIf="currentUser.role === 'client'" class="col">                    
+                    <a [routerLink]="['/dashboard']" class="disable_link">
+                        <img src="assets/img/select_services_disable.png" />
+                        <div class="ser_name">Select
+                            <br/>Services</div>
+                    </a>
+                </div>
+
+                <div *ngIf="currentUser.role !== 'client'" class="col">                    
                     <a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">
                         <img src="assets/img/select_services.png" />
                         <div class="ser_name">Select
@@ -46,13 +52,22 @@
                     </a>
                 </div>
 
-                <div class="col">
+                <div *ngIf="currentUser.role === 'client'" class="col">
+                    <a [routerLink]="['/dashboard']" class="disable_link">
+                        <img src="assets/img/maintain_users_disable.png" />
+                        <div class="ser_name">Maintain
+                            <br/>Users</div>
+                    </a>
+                </div>
+
+                <div *ngIf="currentUser.role !== 'client'" class="col">
                     <a [routerLink]="['/dashboard/addnewclient']" [routerLinkActive]="['active']">
                         <img src="assets/img/maintain_users.png" />
                         <div class="ser_name">Maintain
                             <br/>Users</div>
                     </a>
                 </div>
+
                 <div class="col">
                     <a [routerLink]="['/dashboard']" class="disable_link">
                         <img src="assets/img/manage_profile_disable.png" />
