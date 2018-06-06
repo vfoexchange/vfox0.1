@@ -30,4 +30,22 @@ public class ProviderController {
         return resp;
     }
 
+    /*
+    Method for updating provider billing with user
+    */
+    @RequestMapping(value = "/update/provider/billing", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO updateProviderBilling(@RequestParam String userName, @RequestParam String providerName) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            providerService.updateProviderBilling(userName, providerName);
+            resp.setCode("200");
+            resp.setMsg("Service Providers billing updated successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while update service providers billing");
+        }
+        return resp;
+    }
+
 }

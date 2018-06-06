@@ -6,4 +6,6 @@ public interface UserRoleDao {
 
     public UserRole findByRole(String role);
 
+    public UserRole findByRoleId(int roleId);
+
 }

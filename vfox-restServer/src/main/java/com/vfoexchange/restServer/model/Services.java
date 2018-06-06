@@ -5,7 +5,7 @@ public class Services {
 
     private int id;
     private String name;
-    private boolean serviceState;
+    private String serviceState;
     private String shortDesc;
     private String longDesc;
 
@@ -25,11 +25,11 @@ public class Services {
         this.name = name;
     }
 
-    public boolean isServiceState() {
+    public String getServiceState() {
         return serviceState;
     }
 
-    public void setServiceState(boolean serviceState) {
+    public void setServiceState(String serviceState) {
         this.serviceState = serviceState;
     }
 

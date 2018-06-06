@@ -7,4 +7,6 @@ public interface ProviderService {
 
     public List<ServiceProviders> getServiceProviders(String serviceName);
 
+    public void updateProviderBilling(String username, String providerName);
+
 }

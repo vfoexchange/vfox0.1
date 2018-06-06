@@ -5,6 +5,7 @@ import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
 import com.vfoexchange.restServer.dto.LinkedServicesDTO;
 import com.vfoexchange.restServer.dto.UserDTO;
+import com.vfoexchange.restServer.dto.UserProfileDTO;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.model.UserRole;
@@ -15,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Map;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {
@@ -43,11 +45,18 @@ public class UserServiceImpl implements UserService {
     }
 
     /*
-    Method for fetching user by username
+    Method for fetching user profile by username
      */
-    public User getUser(String username) {
+    public UserProfileDTO getUserProfile(String username) {
+        User user = userDao.findByUsername(username);
+        UserRole userRole = userRoleDao.findByRoleId(user.getRoleId());
 
-        return userDao.findByUsername(username);
+        UserProfileDTO userProfile = new UserProfileDTO();
+        userProfile.setUsername(username);
+        userProfile.setFirstLogin(user.isFirstLogin());
+        userProfile.setRoleId(user.getRoleId());
+        userProfile.setRole(userRole.getRole());
+        return userProfile;
     }
 
     /*
@@ -55,19 +64,36 @@ public class UserServiceImpl implements UserService {
      */
     public List<Services> getAdvisorServices(String username) {
         User user = userDao.findByUsername(username);
-        List<Services> list = servicesDao.findAdvisorServices(user.getId());
+        List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
         return list;
 
     }
 
     /*
-    Method for updating list of active advisor services
+    Method for adding/updating list of advisor services
      */
-
     public void updateAdvisorServices(LinkedServicesDTO linkedServicesDTO) {
         User user = userDao.findByUsername(linkedServicesDTO.getUsername());
-        List<Services> list = servicesDao.findAdvisorServices(user.getId());
-
+        List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
+        Map<String, Boolean> serviceMap = linkedServicesDTO.getServices();
+        for (Map.Entry<String, Boolean> entry : serviceMap.entrySet()) {
+            boolean isExisting = false;
+            for (Services each : list) {
+                if (entry.getKey().equalsIgnoreCase(each.getName())) {
+                    isExisting = true;
+                    //update db
+                    if (entry.getValue().booleanValue()) {
+                        servicesDao.updateAdvisorServices("A", user.getId(), each.getId());
+                    } else {
+                        servicesDao.updateAdvisorServices("I", user.getId(), each.getId());
+                    }
+                }
+            }
+            if (!isExisting && entry.getValue().booleanValue()) {
+                //  insert in db
+                servicesDao.addAdvisorServices(user.getId(), entry.getKey());
+            }
+        }
     }
 
     /*

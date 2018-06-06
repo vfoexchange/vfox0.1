@@ -28,5 +28,18 @@ public class UserRoleDaoImpl implements UserRoleDao {
             throw new UserRoleNotFoundException(role);
         return userRole;
     }
+
+    /*
+    Method used to fetch userrole object from DB using role id
+    */
+    @Override
+    public UserRole findByRoleId(int roleId) {
+        UserRole userRole = (UserRole) jdbcTemplate.queryForObject("SELECT * FROM UserRole where id = ? ",
+                new Object[]{roleId}, new BeanPropertyRowMapper<>(UserRole.class));
+
+        if (userRole == null)
+            throw new UserRoleNotFoundException(String.valueOf(roleId));
+        return userRole;
+    }
 }
 

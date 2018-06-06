@@ -1,16 +1,10 @@
 package com.vfoexchange.restServer.model;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-
-
 public class UserRole {
 
     private int id;
-    private String role;
-    private String roleState;
+    private String Role;
+    private String RoleState;
 
     public int getId() {
         return id;
@@ -21,18 +15,18 @@ public class UserRole {
     }
 
     public String getRole() {
-        return role;
+        return Role;
     }
 
     public void setRole(String role) {
-        role = role;
+        Role = role;
     }
 
     public String getRoleState() {
-        return roleState;
+        return RoleState;
     }
 
     public void setRoleState(String roleState) {
-        roleState = roleState;
+        RoleState = roleState;
     }
 }

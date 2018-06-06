@@ -3,8 +3,8 @@ package com.vfoexchange.restServer.controller;
 import com.vfoexchange.restServer.dto.LinkedServicesDTO;
 import com.vfoexchange.restServer.dto.ResponseDTO;
 import com.vfoexchange.restServer.dto.UserDTO;
+import com.vfoexchange.restServer.dto.UserProfileDTO;
 import com.vfoexchange.restServer.model.Services;
-import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,7 +15,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired
-     private UserService userService;
+    private UserService userService;
 
     /*
     Method for adding new user(user can be advisor or client or admin)
@@ -43,10 +43,10 @@ public class UserController {
     public ResponseDTO getUserDetail(@RequestBody UserDTO userDto) {
         ResponseDTO resp = new ResponseDTO();
         try {
-            User user = userService.getUser(userDto.getUsername());
+            UserProfileDTO userProfile = userService.getUserProfile(userDto.getUsername());
             resp.setCode("200");
             resp.setMsg("User details fetched successfully");
-            resp.setResult(user);
+            resp.setResult(userProfile);
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while fetching user details");
