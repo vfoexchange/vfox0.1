@@ -68,7 +68,7 @@ a{cursor:pointer; text-decoration:none;}
 .ins_desc{font-size:14px; color:#535353; min-height:119px; font-weight:400;}
 .lrn_more{margin-bottom:0px; position:absolute; bottom:20px;}
 .lrn_more a{color:#195e86!important; font-size:14px; font-weight:400; text-decoration:none;}
-.ins_img{vertical-align:middle; margin:5% 0 0 0; text-align:center;}
+.ins_img{vertical-align:middle; text-align:center; display:flex; align-items:center;}
 .ins_body{padding:1.25rem 1.25rem 0rem 1.25rem;}
 .mt_45{margin-top:45px;}
 .ins_bg{background:#c03aa5 url(../assets/img/ins_bg.jpg) no-repeat; background-size:cover; font-family: 'Quicksand', sans-serif; color:#fff;}
@@ -76,6 +76,7 @@ a{cursor:pointer; text-decoration:none;}
 .email_ver_ico{font-size:55px;}
 iframe{border:none; width:450px; height:302px;}
 .disable_link .ser_name{opacity:0.6; cursor:auto; -webkit-opacity: 0.6;}
+.min_205{min-height:205px;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}
@@ -85,6 +86,10 @@ iframe{border:none; width:450px; height:302px;}
 .ser_name{padding:48px 0 0 0; font-size:11px;}
 .m_home_footer{height:29px!important;}
 .ver_em_foot{display:none;}
+}
+@media screen and (max-width: 768px){
+.card{height:auto!important;}
+.ins_img img{margin:auto!important;}
 }
 @media screen and (max-width: 767px){
 body{height:100%;}

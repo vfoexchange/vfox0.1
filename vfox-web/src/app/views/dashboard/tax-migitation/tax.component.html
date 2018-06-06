@@ -7,15 +7,15 @@
 <div class="clearfix mt_45"></div>
 <div class="row" >
     <div class="col-lg-6" *ngFor="let provider of providers">
-        <div class="card">
-            <div class="card-body ins_body">
+        <div class="card h-100">
+            <div class="card-body ins_body justify-content-center align-items-center">
                 <div class="row">
-                    <div class="col-lg-2 ins_img">
-                        <img *ngIf="provider.name=='Trust CFO'" src="assets/img/service_provider/trust_cfo.png" class="img-fluid"/>
-                        <img *ngIf="provider.name=='Capital Group'" src="assets/img/service_provider/capital_group.png" class="img-fluid"/>
+                    <div class="col-lg-4 ins_img">
+                        <img *ngIf="provider.name=='Restricted Property Trust'" src="assets/img/service_provider/restricted.jpg" class="img-fluid"/>
+                        <img *ngIf="provider.name=='Ornstein-Schuler Investments'" src="assets/img/service_provider/ornstein.jpg" class="img-fluid"/>
                     
                     </div>
-                    <div class="col-lg-10"><p class="ins_desc">{{provider.longDesc}}</p>
+                    <div class="col-lg-8"><p class="ins_desc min_205">{{provider.longDesc}}</p>
                         <p class="lrn_more"><a (click)="addBilling(provider.name, provider.redirectUrl)" >Learn more &gt;</a></p></div>
                 </div>
             </div>
