@@ -24,7 +24,9 @@ export class TaxComponent {
   }
 
   ngOnInit() {
-   
+       //Add background class
+       const body = document.getElementsByTagName('body')[0];
+       body.classList.add('ins_bg');
     //End here
     this.ServiceName = this.configuration.ServiceName;
     this.currentUser = this.utilService.getData('loginDataDetail');
@@ -85,5 +87,9 @@ export class TaxComponent {
       });
 
   }
-
+//Remove background class
+  ngOnDestroy() {
+    const body = document.getElementsByTagName('body')[0];
+    body.classList.remove('ins_bg');
+  }
 }
