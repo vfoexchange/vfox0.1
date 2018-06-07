@@ -107,4 +107,22 @@ public class UserController {
         return resp;
     }
 
+    /*
+    Method for verification of user
+    */
+    @RequestMapping(value = "/user/verification", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO userVerification(@RequestBody UserDTO userDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            userService.userVerification(userDTO.getUsername());
+            resp.setCode("200");
+            resp.setMsg("User verification done successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while updating user verification");
+        }
+        return resp;
+    }
+
 }

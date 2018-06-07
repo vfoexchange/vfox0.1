@@ -128,4 +128,11 @@ public class UserServiceImpl implements UserService {
         return userDao.findByUsername(username);
     }
 
+    /*
+    Method for user verification by username
+    */
+    public void userVerification(String username) {
+        userDao.userVerification(username);
+    }
+
 }

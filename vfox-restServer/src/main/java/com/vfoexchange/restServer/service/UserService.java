@@ -21,4 +21,6 @@ public interface UserService extends UserDetailsService {
 
     public void updateAdvisorServices(LinkedServicesDTO linkedServicesDTO);
 
+    public void userVerification(String username);
+
 }

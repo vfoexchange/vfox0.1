@@ -14,4 +14,6 @@ public interface UserDao {
 
     public User findAdvisorByClient(int clientId);
 
+    public void userVerification(String username);
+
 }

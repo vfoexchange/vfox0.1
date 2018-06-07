@@ -66,5 +66,14 @@ public class UserDaoImpl implements UserDao {
             throw new UserNotFoundException(username);
         return user;
     }
+
+    /*
+    Method for marking user as verified using username
+     */
+    public void userVerification(String username) {
+        jdbcTemplate.update("Update User set UserState = 'A' where UserName = ?",
+                username);
+    }
+
 }
 
