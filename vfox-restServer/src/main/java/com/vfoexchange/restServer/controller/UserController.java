@@ -1,10 +1,16 @@
 package com.vfoexchange.restServer.controller;
 
 import com.vfoexchange.restServer.dto.*;
+import com.vfoexchange.restServer.model.Mail;
 import com.vfoexchange.restServer.model.Services;
+import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
+import com.vfoexchange.restServer.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -13,24 +19,43 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EmailServices emailServices;
 
+    @Autowired
+    Environment environment;
     /*
     Method for adding new user(user can be advisor or admin)
      */
     @RequestMapping(value = "/add/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO addUser(@RequestBody UserDTO userDto) {
-        ResponseDTO resp = new ResponseDTO();
-        try {
-            userService.addUser(userDto);
-            resp.setCode("200");
-            resp.setMsg("New user added successfully");
-        } catch (Exception e) {
-            resp.setCode("400");
-            resp.setMsg("Error occured while adding new user");
+    public ResponseEntity<String> addUser(@RequestBody UserDTO userDto) {
+        userService.addUser(userDto);
+        String url = null;
+        String msg = null;
+        ResponseEntity<String> responseEntity = null;
+        if (userService.isValidUser(userDto.getUsername())) {
+            msg = "Mail already register";
+            responseEntity =  new ResponseEntity<String>(msg,HttpStatus.ALREADY_REPORTED);
+            return responseEntity;
         }
-        return resp;
+        try {
+            url = AppUtil.getURL(environment.getProperty("angular.host"),environment.getProperty("angular.port"),AppUtil.getEncodedString(userDto.getUsername()));
+            Mail mail = new Mail();
+            mail.setFrom(environment.getProperty("spring.mail.username"));
+            mail.setTo(userDto.getUsername());
+            mail.setSubject("Verify Your Email Address");
+            mail.setContent(AppUtil.getHtmlString(url));
+            emailServices.sendMail(mail);
+            msg = "mail has been successfully send ";
+            responseEntity = new ResponseEntity<String>(msg,HttpStatus.ACCEPTED);
+        } catch (Exception  e){
+            responseEntity = new ResponseEntity<String>(msg,HttpStatus.BAD_REQUEST);
+        }
+
+        return responseEntity;
     }
+
 
     /*
     Method for adding new client

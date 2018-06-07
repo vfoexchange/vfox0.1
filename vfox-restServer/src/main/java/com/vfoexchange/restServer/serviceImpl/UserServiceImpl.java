@@ -136,4 +136,15 @@ public class UserServiceImpl implements UserService {
         userDao.userVerification(username);
     }
 
+    public boolean isValidUser(String username){
+        boolean result = false;
+        try {
+            User user = userDao.findByUsername(username);
+            if (user != null)
+                result = true;
+        }catch (Exception e){
+            result = false;
+        }
+        return result;
+    }
 }

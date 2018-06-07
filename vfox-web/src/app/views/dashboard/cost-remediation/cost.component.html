@@ -10,12 +10,11 @@
         <div class="card h-100">
             <div class="card-body ins_body justify-content-center align-items-center">
                 <div class="row">
-                    <div class="col-lg-2 ins_img">
-                        <img *ngIf="provider.name=='Trust CFO'" src="assets/img/service_provider/trust_cfo.png" class="img-fluid"/>
-                        <img *ngIf="provider.name=='Capital Group'" src="assets/img/service_provider/capital_group.png" class="img-fluid"/>
+                    <div class="col-lg-4 ins_img">
+                        <img *ngIf="provider.name=='Stryde'" src="assets/img/service_provider/stryde.png" class="img-fluid"/>
                     
                     </div>
-                    <div class="col-lg-10"><p class="ins_desc">{{provider.longDesc}}</p>
+                    <div class="col-lg-8 "><p class="ins_desc min_190">{{provider.longDesc}}</p>
                         <p class="lrn_more"><a (click)="addBilling(provider.name, provider.redirectUrl)" >Learn more &gt;</a></p></div>
                 </div>
             </div>

@@ -29,9 +29,8 @@ export class DefaultLayoutComponent {
     this.ServiceName = this.configuration.ServiceName;
     this.userServiceStatus = this.configuration.footerMenu;
 
-    if (this.utilService.getData('loginDataDetail') !== null) {
       this.currentUser = this.utilService.getData('loginDataDetail');
-    }
+
 
     setTimeout(() => { this.isCreatingAccount = false; }, 4000);
     this.translate.setDefaultLang('en');
