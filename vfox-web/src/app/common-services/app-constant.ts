@@ -3,8 +3,8 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    //public ApiUrl:string = 'http://localhost:8080/';
-    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    public ApiUrl:string = 'http://localhost:8080/';
+    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
@@ -26,6 +26,8 @@ export class Configuration {
     //*****************************Api URLs *****************************/
     public API_LOGIN_URL: string = 'user/auth';
     public API_REGISTER_URL: string = 'add/user';
+    public API_CLIENT_REGISTER_URL: string = 'add/client';
+    public API_EMAIL_VERIFY: string = 'user/verification';
     public API_GET_USER: string = 'fetch/user';
     public API_SERVICE_PROVIDER: string = 'get/serviceProviders';
     public API_USER_SERVICE: string = 'get/advisor/services';

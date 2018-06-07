@@ -70,6 +70,7 @@ public class UserServiceImpl implements UserService {
         UserRole userRole = userRoleDao.findByRoleId(user.getRoleId());
 
         UserProfileDTO userProfile = new UserProfileDTO();
+        userProfile.setUserId(user.getId());
         userProfile.setUsername(username);
         userProfile.setFirstLogin(user.isFirstLogin());
         userProfile.setRoleId(user.getRoleId());
