@@ -11,6 +11,7 @@ import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.model.UserRole;
 import com.vfoexchange.restServer.service.UserService;
+import com.vfoexchange.restServer.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -132,7 +133,8 @@ public class UserServiceImpl implements UserService {
     Method for user verification by username
     */
     public void userVerification(String username) {
-        userDao.userVerification(username);
+
+        userDao.userVerification(AppUtil.getDecodedString(username));
     }
 
     public boolean isValidUser(String username){
