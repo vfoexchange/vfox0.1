@@ -6,6 +6,12 @@ public interface UserDao {
 
     public void add(User user);
 
+    public void addClient(User user);
+
+    public void addAdvisorClient(String clientUserName, int advisorId);
+
     public User findByUsername(String username);
+
+    public User findAdvisorByClient(int clientId);
 
 }

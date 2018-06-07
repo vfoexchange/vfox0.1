@@ -1,9 +1,6 @@
 package com.vfoexchange.restServer.controller;
 
-import com.vfoexchange.restServer.dto.LinkedServicesDTO;
-import com.vfoexchange.restServer.dto.ResponseDTO;
-import com.vfoexchange.restServer.dto.UserDTO;
-import com.vfoexchange.restServer.dto.UserProfileDTO;
+import com.vfoexchange.restServer.dto.*;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     /*
-    Method for adding new user(user can be advisor or client or admin)
+    Method for adding new user(user can be advisor or admin)
      */
     @RequestMapping(value = "/add/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -26,6 +23,24 @@ public class UserController {
         ResponseDTO resp = new ResponseDTO();
         try {
             userService.addUser(userDto);
+            resp.setCode("200");
+            resp.setMsg("New user added successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occured while adding new user");
+        }
+        return resp;
+    }
+
+    /*
+    Method for adding new client
+    */
+    @RequestMapping(value = "/add/client", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO addClient(@RequestBody ClientDetailsDTO clientDetailsDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            userService.addClient(clientDetailsDTO);
             resp.setCode("200");
             resp.setMsg("New user added successfully");
         } catch (Exception e) {

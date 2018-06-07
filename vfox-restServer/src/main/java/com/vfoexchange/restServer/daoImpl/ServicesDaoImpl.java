@@ -80,7 +80,7 @@ public class ServicesDaoImpl implements ServicesDao {
      */
     @Override
     public void updateProviderBilling(int userId, int serviceId, int serviceProviderId) {
-        jdbcTemplate.update("INSERT INTO vfox.Billing (ServiceId, ServiceProviderId, UserId, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, 1, now(), 1, now()) ",
+        jdbcTemplate.update("INSERT INTO Billing (ServiceId, ServiceProviderId, UserId, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, 1, now(), 1, now()) ",
                 new Object[]{serviceId, serviceProviderId, userId});
     }
 }

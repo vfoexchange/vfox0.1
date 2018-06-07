@@ -3,6 +3,7 @@ package com.vfoexchange.restServer.serviceImpl;
 import com.vfoexchange.restServer.dao.ServicesDao;
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
+import com.vfoexchange.restServer.dto.ClientDetailsDTO;
 import com.vfoexchange.restServer.dto.LinkedServicesDTO;
 import com.vfoexchange.restServer.dto.UserDTO;
 import com.vfoexchange.restServer.dto.UserProfileDTO;
@@ -31,7 +32,7 @@ public class UserServiceImpl implements UserService {
     ServicesDao servicesDao;
 
     /*
-    Method for encoding password before inserting in db and adding user as per new registration
+    Method for advisor registration, encoding password before inserting in db and adding user
      */
     public void addUser(UserDTO userDTO) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -42,6 +43,22 @@ public class UserServiceImpl implements UserService {
         user.setRoleId(userRole.getId());
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userDao.add(user);
+    }
+
+    /*
+    Method for Client registration, encoding password before inserting in db and adding user
+    */
+    public void addClient(ClientDetailsDTO clientDetailsDTO) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
+        UserRole userRole = userRoleDao.findByRole(clientDetailsDTO.getRole());
+        User user = new User();
+        user.setUsername(clientDetailsDTO.getUsername());
+        user.setRoleId(userRole.getId());
+        user.setPassword(passwordEncoder.encode(clientDetailsDTO.getPassword()));
+        userDao.addClient(user);
+        //Adding advisor=client relation
+        userDao.addAdvisorClient(clientDetailsDTO.getUsername(), clientDetailsDTO.getAdvisorId());
     }
 
     /*
@@ -60,13 +77,19 @@ public class UserServiceImpl implements UserService {
     }
 
     /*
-    Method for fetching list of active advisor services
-     */
+    Method for fetching list of active advisor services for advisor or advisor's client
+    */
     public List<Services> getAdvisorServices(String username) {
         User user = userDao.findByUsername(username);
-        List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
-        return list;
-
+        UserRole userRole = userRoleDao.findByRoleId(user.getRoleId());
+        if (userRole.getRole().equalsIgnoreCase("advisor")) {
+            List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
+            return list;
+        } else {
+            User advisor = userDao.findAdvisorByClient(user.getId());
+            List<Services> list = servicesDao.findActiveAdvisorServices(advisor.getId());
+            return list;
+        }
     }
 
     /*

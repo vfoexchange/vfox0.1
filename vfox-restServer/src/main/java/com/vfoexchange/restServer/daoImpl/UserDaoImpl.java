@@ -18,12 +18,41 @@ public class UserDaoImpl implements UserDao {
     private JdbcTemplate jdbcTemplate;
 
     /*
-    Method to add new user(user can be advisor, client or admin)
+    Method to add new user(user can be advisor or admin)
      */
     @Transactional
     public void add(User user) {
+        jdbcTemplate.update("INSERT INTO User (UserName, Password, RoleId, PasswordSetDate, UserState, createdBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, now(), 'I', 1, now(), 1, now())",
+                user.getUsername(), user.getPassword(), user.getRoleId());
+    }
+
+    /*
+    Method to add new client user
+    */
+    @Transactional
+    public void addClient(User user) {
         jdbcTemplate.update("INSERT INTO User (UserName, Password, RoleId, PasswordSetDate, UserState, createdBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, now(), 'A', 1, now(), 1, now())",
                 user.getUsername(), user.getPassword(), user.getRoleId());
+    }
+
+    /*
+    Method to add advisor-client relation
+    */
+    @Transactional
+    public void addAdvisorClient(String clientUserName, int advisorId) {
+        jdbcTemplate.update("INSERT INTO AdvisorClient (AdvisorId, ClientId, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, (Select id from User where UserName= ?), 1, now(), 1, now())",
+                advisorId, clientUserName);
+    }
+
+    /*
+    Method used to fetch advisor liked with client using clientID
+    */
+    @Override
+    public User findAdvisorByClient(int clientId) {
+        User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where id IN (select AdvisorId from AdvisorClient where ClientId = ?) ",
+                new Object[]{clientId}, new BeanPropertyRowMapper<>(User.class));
+
+        return user;
     }
 
     /*
@@ -31,9 +60,9 @@ public class UserDaoImpl implements UserDao {
      */
     @Override
     public User findByUsername(String username) {
-        User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where UserName = ? ",
+        User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where UserState = 'A' and UserName = ? ",
                 new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
-        if(user == null)
+        if (user == null)
             throw new UserNotFoundException(username);
         return user;
     }
