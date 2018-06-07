@@ -6,6 +6,7 @@ public class UserProfileDTO {
     private boolean firstLogin;
     private String role;
     private int roleId;
+    private int userId;
 
     public String getUsername() {
         return username;
@@ -37,6 +38,14 @@ public class UserProfileDTO {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
 
