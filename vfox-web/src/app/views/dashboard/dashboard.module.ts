@@ -15,6 +15,7 @@ import { ServiceCenterComponent } from './select-service/select-service.componen
 import { InsuranceComponent } from './Insurance/insurance.component';
 import { AddClientComponent } from './manage-client/client.component';
 import { TaxComponent } from './tax-migitation/tax.component';
+import { CostComponent } from './cost-remediation/cost.component';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { TaxComponent } from './tax-migitation/tax.component';
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, InsuranceComponent, AddClientComponent, TaxComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, InsuranceComponent, AddClientComponent, TaxComponent, CostComponent]
 })
 export class DashboardModule {
 

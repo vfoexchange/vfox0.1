@@ -12,7 +12,7 @@
             <img src="assets/img/vfox_logo.png" alt="VFOX" />
         </h5>
         <nav class="my-2 my-md-0 mr-md-4 top_nav">
-            <a class="p-2" [routerLink]="['/dashboard']">Home</a>
+           <!-- <a class="p-2" [routerLink]="['/dashboard']">Home</a> -->
             <a class="p-2" (click)="logout()">Sign Out</a>
             <div class="user_profile">
                 <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
@@ -138,10 +138,10 @@
 
 
                 <div *ngIf="userServiceStatus.tax_mitigation_menu" class="col">
-                    <a [routerLink]="['/dashboard/taxmigitation']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/taxmitigation']" [routerLinkActive]="['active']">
                         <img src="assets/img/tax_migi.png" />
                         <div class="ser_name">Tax
-                            <br/>Migitation</div>
+                            <br/>Mitigation</div>
                     </a>
                 </div>
 
@@ -149,7 +149,7 @@
                     <a class="disable_link">
                         <img src="assets/img/tax_migi_disable.png" />
                         <div class="ser_name">Tax
-                            <br/>Migitation</div>
+                            <br/>Mitigation</div>
                     </a>
                 </div>
 
@@ -204,7 +204,7 @@
 
 
                 <div *ngIf="userServiceStatus.cost_remediation_menu" class="col">
-                    <a [routerLink]="['/dashboard/cost']" [routerLinkActive]="['active']">
+                    <a [routerLink]="['/dashboard/costremediation']" [routerLinkActive]="['active']">
                         <img src="assets/img/cost_remed.png" />
                         <div class="ser_name">Cost
                             <br/>Remediation</div>

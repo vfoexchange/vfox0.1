@@ -1,4 +1,4 @@
-<div class="home_heading">Tax Mitigation</div>
+<div class="home_heading">Cost Remediation</div>
 <div class="clearfix"></div>
 <p class="home_txt">Lorem ipsum dolor sit amet, consectetur adipscing elit,
     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
@@ -10,12 +10,12 @@
         <div class="card h-100">
             <div class="card-body ins_body justify-content-center align-items-center">
                 <div class="row">
-                    <div class="col-lg-4 ins_img">
-                        <img *ngIf="provider.name=='Restricted Property Trust'" src="assets/img/service_provider/restricted.jpg" class="img-fluid"/>
-                        <img *ngIf="provider.name=='Ornstein-Schuler Investments'" src="assets/img/service_provider/ornstein.jpg" class="img-fluid"/>
+                    <div class="col-lg-2 ins_img">
+                        <img *ngIf="provider.name=='Trust CFO'" src="assets/img/service_provider/trust_cfo.png" class="img-fluid"/>
+                        <img *ngIf="provider.name=='Capital Group'" src="assets/img/service_provider/capital_group.png" class="img-fluid"/>
                     
                     </div>
-                    <div class="col-lg-8"><p class="ins_desc min_205">{{provider.longDesc}}</p>
+                    <div class="col-lg-10"><p class="ins_desc">{{provider.longDesc}}</p>
                         <p class="lrn_more"><a (click)="addBilling(provider.name, provider.redirectUrl)" >Learn more &gt;</a></p></div>
                 </div>
             </div>
