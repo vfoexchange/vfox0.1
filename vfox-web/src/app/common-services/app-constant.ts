@@ -3,8 +3,8 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    public ApiUrl:string = 'http://localhost:8080/';
-    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    //public ApiUrl:string = 'http://localhost:8080/';
+    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/#/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
@@ -16,9 +16,9 @@ export class Configuration {
 
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
-    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmigitation','/dashboard/addclient'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmigitation','/dashboard/addclient'];
-    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmigitation'];
+    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient'];
+    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmitigation'];
 
 
 
