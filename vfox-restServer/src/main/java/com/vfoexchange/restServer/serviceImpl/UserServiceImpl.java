@@ -134,7 +134,6 @@ public class UserServiceImpl implements UserService {
     Method for user verification by username
     */
     public void userVerification(String username) {
-
         userDao.userVerification(AppUtil.getDecodedString(username));
     }
 
