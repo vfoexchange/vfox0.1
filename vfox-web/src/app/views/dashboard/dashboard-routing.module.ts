@@ -39,10 +39,10 @@ const routes: Routes = [
    }
 },
 {
-  path: 'taxmigitation',
+  path: 'taxmitigation',
   component: TaxComponent,
   data: {
-  title: 'Tax Migitation'
+  title: 'Tax Mitigation'
  }
 }
 
