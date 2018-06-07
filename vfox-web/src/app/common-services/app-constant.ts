@@ -16,9 +16,9 @@ export class Configuration {
 
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
-    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient'];
-    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmitigation'];
+    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
+    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/costremediation'];
 
 
 

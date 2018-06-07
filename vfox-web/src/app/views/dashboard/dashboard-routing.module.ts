@@ -6,6 +6,7 @@ import { ServiceCenterComponent } from './select-service/select-service.componen
 import { InsuranceComponent } from './Insurance/insurance.component';
 import { AddClientComponent } from './manage-client/client.component';
 import { TaxComponent } from './tax-migitation/tax.component';
+import { CostComponent } from './cost-remediation/cost.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,13 @@ const routes: Routes = [
   component: TaxComponent,
   data: {
   title: 'Tax Mitigation'
+ }
+},
+{
+  path: 'costremediation',
+  component: CostComponent,
+  data: {
+  title: 'Tax Remediation'
  }
 }
 
