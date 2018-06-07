@@ -90,7 +90,7 @@ verifyMsg: string ='';
 
                 this.sub = this.route.params.subscribe(
             (param: any) => {
-                this.verifyKey = param['key'];
+                this.verifyKey = param['token'];
 
             });
 

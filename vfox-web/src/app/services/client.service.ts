@@ -8,11 +8,12 @@ export class ClientService {
 constructor(private httpService: HttpService, private configuration: Configuration) {
    }
 
-   addClient(username:string, password: String) {
-       return this.httpService.post(this.configuration.API_REGISTER_URL, {
+   addClient(username:string, password: String, userId: string) {
+       return this.httpService.post(this.configuration.API_CLIENT_REGISTER_URL, {
          username: username,
          password: password,
-         role: this.configuration.CLIENT
+         role: this.configuration.CLIENT,
+         advisorId: userId
        });
      }
 

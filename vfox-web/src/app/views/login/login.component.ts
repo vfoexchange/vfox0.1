@@ -60,6 +60,7 @@ export class LoginComponent {
                 let loginData = {
                   role: response.result.role,
                   roleId: response.result.roleId,
+                  userId: response.result.userId,
                   userEmail:response.result.username,
                   userName:response.result.username,
                   firstLogin:response.result.firstLogin,

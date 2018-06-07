@@ -21,6 +21,8 @@ export class AuthGuard implements CanActivateChild {
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 
     let url = '/dashboard/' + route.routeConfig.path.split('/:')[0];
+    //Add here to check current route 
+    //console.log('CurrentURL'+url);
     return this.checkLogin(url);
   }
 

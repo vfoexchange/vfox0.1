@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AddClientComponent {
 
   clientForm: FormGroup;
+  currentUser:any ;
  
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public clientService: ClientService,
     private utilService : UtilService, private http: Http,private _toastrService: ToastrService
@@ -25,6 +26,7 @@ export class AddClientComponent {
 
   ngOnInit() {
 
+    this.currentUser = this.utilService.getData('loginDataDetail');
     var formBuilder = new FormBuilder();
     this.clientForm = formBuilder.group({
 
@@ -42,7 +44,7 @@ export class AddClientComponent {
     //debugger
            let obj = this.clientForm.value;
            if (obj.username !== '' || obj.password !== '') {
-           this.clientService.addClient(obj.username, obj.password).subscribe(
+           this.clientService.addClient(obj.username, obj.password, this.currentUser.userId).subscribe(
              (response) => {
                if(this.utilService.isEmpty(response)){
                  this._toastrService.error("Something went wrong please try again", 'Oops!');
