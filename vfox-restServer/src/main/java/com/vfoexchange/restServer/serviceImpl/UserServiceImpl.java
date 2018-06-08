@@ -137,7 +137,7 @@ public class UserServiceImpl implements UserService {
         userDao.userVerification(AppUtil.getDecodedString(username));
     }
 
-    public boolean isValidUser(String username){
+    public boolean isAleadyExist(String username){
         boolean result = false;
         try {
             User user = userDao.findByUsername(username);
