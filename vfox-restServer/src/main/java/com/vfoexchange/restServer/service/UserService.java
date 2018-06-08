@@ -23,6 +23,6 @@ public interface UserService extends UserDetailsService {
 
     public void userVerification(String username);
 
-    public boolean isValidUser(String username);
+    public boolean isAleadyExist(String username);
 
 }
