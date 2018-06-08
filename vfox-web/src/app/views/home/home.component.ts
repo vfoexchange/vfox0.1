@@ -105,7 +105,7 @@ verifyMsg: string ='';
         //        console.log(this.verifyCode);
         this.homeService.verifyEmail(this.verifyKey).subscribe(
          (response) => {
-           debugger
+           
                 if (response.code == 200) {
                   //  this.router.navigate(['home']);
                   this.verify = true;

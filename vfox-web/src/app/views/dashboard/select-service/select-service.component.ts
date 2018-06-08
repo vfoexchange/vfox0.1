@@ -89,7 +89,7 @@ export class ServiceCenterComponent implements OnInit {
           this.providersService.getUserService(this.currentUser.userEmail).subscribe(
             (responseData) => {
               if (responseData.code == 200) {
-                debugger
+                
                 this.userServiceStatus = this.configuration.footerMenu;
                 this.userServiceStatus = this.providersService.bindUserMenu(responseData, this.userServiceStatus);
               }
