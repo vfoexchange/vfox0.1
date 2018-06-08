@@ -179,7 +179,7 @@ INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,Upd
 INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
 1,'admin@vfox.com','$10$ZHNiei36NQLDou3DUrxoN.ODhnTzmnCRh2zkbM755QyFyLSilZPTi',1,now(),'A',1,now(),1,now(),1);
 INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
-2,'advisor@vfox.com','$2a$10$2hOjoc19YcZoi2ZyNLJemuUczsiqMwKQVsiONkZhKD8xDdw97Xpou',2,now(),'A',1,now(),1,now(),1);
+2,'james@vfoexchange.com','$2a$10$2hOjoc19YcZoi2ZyNLJemuUczsiqMwKQVsiONkZhKD8xDdw97Xpou',2,now(),'A',1,now(),1,now(),1);
 
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 1,'Bill Pay','Bill Pay','Bill Pay','A',1,now(),1,now());
