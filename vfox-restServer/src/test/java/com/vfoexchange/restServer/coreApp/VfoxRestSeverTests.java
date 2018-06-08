@@ -2,8 +2,10 @@ package com.vfoexchange.restServer.coreApp;
 
 import com.vfoexchange.restServer.controller.UserController;
 import com.vfoexchange.restServer.dao.UserDao;
+import com.vfoexchange.restServer.dao.UserRoleDao;
 import com.vfoexchange.restServer.dto.UserDTO;
 import com.vfoexchange.restServer.model.User;
+import com.vfoexchange.restServer.model.UserRole;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,10 +32,13 @@ public class VfoxRestSeverTests {
 
     @MockBean
     private UserDao userDao;
+
+    @MockBean
+    UserRoleDao userRoleDao;
     /*
     Commented for now because fetch user API is changes and unit test needs to be updated
      */
-    /*@Before
+    @Before
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
@@ -51,10 +56,12 @@ public class VfoxRestSeverTests {
        user.setId(13);
        user.setUsername("admin");
        user.setFirstLogin(false);
-       user.setPassword("pwd");
        user.setRoleId(1);
+       UserRole userRole = new UserRole();
+       userRole.setRole("advisor");
 
           Mockito.when(userDao.findByUsername(Mockito.anyString())).thenReturn(user);
+          Mockito.when(userRoleDao.findByRoleId(Mockito.anyInt())).thenReturn(userRole);
 
               RequestBuilder requestBuilder = MockMvcRequestBuilders
                .post("/fetch/user")
@@ -63,14 +70,14 @@ public class VfoxRestSeverTests {
 
        mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk()).
                andExpect(MockMvcResultMatchers.jsonPath("$.msg").value("User details fetched successfully"))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.id").value(13))
+              .andExpect(MockMvcResultMatchers.jsonPath("$.result.userId").value(13))
               .andExpect(MockMvcResultMatchers.jsonPath("$.result.username").value("admin"))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.password").value("pwd"))
               .andExpect(MockMvcResultMatchers.jsonPath("$.result.roleId").value(1))
               .andExpect(MockMvcResultMatchers.jsonPath("$.result.firstLogin").value(false))
+               .andExpect(MockMvcResultMatchers.jsonPath("$.result.role").value("advisor"))
               .andReturn();
 
-   }*/
+   }
     @Test
     public void contextLoads() {
 

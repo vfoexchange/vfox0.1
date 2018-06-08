@@ -6,6 +6,7 @@ import { LoginService } from '../../services/login.service';
 import { Response, Http, Headers } from '@angular/http';
 import { UtilService } from "../../common-services/util-services";
 import { ValidationService } from '../../common-services/validation-services';
+import {Configuration} from "../../common-services/app-constant";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -19,7 +20,7 @@ export class LoginComponent {
   errorMsg: string = '';
   
 
-  constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private loginService: LoginService,
+  constructor(private configuration: Configuration, private route: ActivatedRoute, private router: Router, private translate: TranslateService, private loginService: LoginService,
   private utilService : UtilService, private http: Http,private _toastrService: ToastrService
     ) { 
        translate.setDefaultLang('en');
@@ -66,8 +67,9 @@ export class LoginComponent {
                   firstLogin:response.result.firstLogin,
                   loggedIn: 'true'
               }
+              
               this.utilService.setData(loginData, 'loginDataDetail');
-              if(response.result.firstLogin){
+              if(response.result.role == this.configuration.ADVISOR){
                 this.router.navigate(['dashboard/selectservices']);
               }else{
                 this.router.navigate(['dashboard']);

@@ -6,6 +6,8 @@ import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
 import com.vfoexchange.restServer.util.AppUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
@@ -24,22 +26,25 @@ public class UserController {
 
     @Autowired
     Environment environment;
+    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     /*
     Method for adding new user(user can be advisor or admin)
      */
     @RequestMapping(value = "/add/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity<String> addUser(@RequestBody UserDTO userDto) {
-        userService.addUser(userDto);
-        String url = null;
+    public ResponseEntity<ResponseDTO> addUser(@RequestBody UserDTO userDto) {
+        String url;
         String msg = null;
-        ResponseEntity<String> responseEntity = null;
-        if (userService.isValidUser(userDto.getUsername())) {
-            msg = "Mail already register";
-            responseEntity =  new ResponseEntity<String>(msg,HttpStatus.ALREADY_REPORTED);
+        ResponseDTO resp = new ResponseDTO();
+        ResponseEntity<ResponseDTO> responseEntity;
+        if (userService.isAleadyExist(userDto.getUsername())) {
+            resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
+            resp.setMsg("This email already exists in our system. Please try another email for registration");
+            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
             return responseEntity;
         }
         try {
+            userService.addUser(userDto);
             url = AppUtil.getURL(environment.getProperty("angular.host"),environment.getProperty("angular.port"),AppUtil.getEncodedString(userDto.getUsername()));
             Mail mail = new Mail();
             mail.setFrom(environment.getProperty("spring.mail.username"));
@@ -47,10 +52,14 @@ public class UserController {
             mail.setSubject("Verify Your Email Address");
             mail.setContent(AppUtil.getHtmlString(url));
             emailServices.sendMail(mail);
-            msg = "mail has been successfully send ";
-            responseEntity = new ResponseEntity<String>(msg,HttpStatus.ACCEPTED);
+            resp.setCode(HttpStatus.OK.toString());
+            resp.setMsg("Your account has been created,  please verify it by clicking the activation link that has been send to your email.");
+            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
         } catch (Exception  e){
-            responseEntity = new ResponseEntity<String>(msg,HttpStatus.BAD_REQUEST);
+            LOGGER.error("User "+e.getMessage());
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
+            resp.setMsg("mail has been successfully send ");
+            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
         }
 
         return responseEntity;
@@ -62,17 +71,29 @@ public class UserController {
     */
     @RequestMapping(value = "/add/client", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO addClient(@RequestBody ClientDetailsDTO clientDetailsDTO) {
+    public ResponseEntity addClient(@RequestBody ClientDetailsDTO clientDetailsDTO) {
+        String msg = null;
+        ResponseEntity<ResponseDTO> responseEntity;
         ResponseDTO resp = new ResponseDTO();
+        if (userService.isAleadyExist(clientDetailsDTO.getUsername())) {
+            resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
+            resp.setMsg("Client already register");
+            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
+            return responseEntity;
+        }
         try {
             userService.addClient(clientDetailsDTO);
-            resp.setCode("200");
-            resp.setMsg("New user added successfully");
+            resp.setCode(HttpStatus.OK.toString());
+            resp.setMsg("Client added successfully");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         } catch (Exception e) {
-            resp.setCode("400");
-            resp.setMsg("Error occured while adding new user");
+            LOGGER.error("Client "+e.getMessage());
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
+            resp.setMsg("Error occured while adding new client");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+
         }
-        return resp;
+        return responseEntity;
     }
 
     /*
