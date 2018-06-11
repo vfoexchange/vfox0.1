@@ -70,10 +70,10 @@ export class InsuranceComponent {
         if (this.utilService.isEmpty(response)) {
           this._toastrService.error("Something went wrong please try again", 'Oops!');
         }
-
+this._toastrService.success(response.msg, 'Oops!');
         if (response.code == 200) {
 
-          window.open(redirectURL, "_blank");
+          //window.open(redirectURL, "_blank");
 
         } else {
           this._toastrService.error(response.msg, 'Oops!');
