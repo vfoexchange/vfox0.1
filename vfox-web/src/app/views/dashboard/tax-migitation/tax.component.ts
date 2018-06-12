@@ -69,7 +69,7 @@ export class TaxComponent {
 
         if (response.code == 200) {
 
-          window.open(redirectURL, "_blank");
+         // window.open(redirectURL, "_blank");
 
         } else {
           this._toastrService.error(response.msg, 'Oops!');
