@@ -71,8 +71,7 @@ public class UserController {
     */
     @RequestMapping(value = "/add/client", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseEntity addClient(@RequestBody ClientDetailsDTO clientDetailsDTO) {
-        String msg = null;
+    public ResponseEntity<ResponseDTO> addClient(@RequestBody ClientDetailsDTO clientDetailsDTO) {
         ResponseEntity<ResponseDTO> responseEntity;
         ResponseDTO resp = new ResponseDTO();
         if (userService.isAleadyExist(clientDetailsDTO.getUsername())) {
@@ -91,7 +90,6 @@ public class UserController {
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occured while adding new client");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
-
         }
         return responseEntity;
     }
@@ -101,18 +99,22 @@ public class UserController {
      */
     @RequestMapping(value = "/fetch/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO getUserDetail(@RequestBody UserDTO userDto) {
+    public ResponseEntity<ResponseDTO> getUserDetail(@RequestBody UserDTO userDto) {
+        ResponseEntity<ResponseDTO> responseEntity;
         ResponseDTO resp = new ResponseDTO();
         try {
             UserProfileDTO userProfile = userService.getUserProfile(userDto.getUsername());
-            resp.setCode("200");
+            resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("User details fetched successfully");
             resp.setResult(userProfile);
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         } catch (Exception e) {
-            resp.setCode("400");
+            LOGGER.error("User details "+e.getMessage());
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching user details");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         }
-        return resp;
+        return responseEntity;
     }
 
     /*
@@ -120,19 +122,23 @@ public class UserController {
      */
     @RequestMapping(value = "/get/advisor/services", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO getAdvisorServices(@RequestBody UserDTO userDto) {
+    public ResponseEntity<ResponseDTO> getAdvisorServices(@RequestBody UserDTO userDto) {
+        ResponseEntity<ResponseDTO> responseEntity;
         ResponseDTO resp = new ResponseDTO();
         try {
             List<Services> list = userService.getAdvisorServices(userDto.getUsername());
-            resp.setCode("200");
+            resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Advisor services fetched successfully");
             resp.setResult(list);
             resp.setResultSize(list.size());
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         } catch (Exception e) {
-            resp.setCode("400");
+            LOGGER.error("Fetching advisor services "+e.getMessage());
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching advisor services");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         }
-        return resp;
+        return responseEntity;
     }
 
     /*

@@ -87,15 +87,24 @@ verifyMsg: string ='';
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
   private utilService : UtilService, private http: Http,private _toastrService: ToastrService) {
        //translate.setDefaultLang('en');
-
-                this.sub = this.route.params.subscribe(
+debugger
+              this.sub = this.route.params.subscribe(
             (param: any) => {
-                this.verifyKey = param['token'];
+               // this.verifyKey = param['token'];
+
+            });
+      /*    this.route.queryParams.subscribe(params => {
+        this.verifyKey = params['startdate'];
 
             });
 
+        this.route.params.subscribe(params => {
+            this.verifyKey = params['id'];   //<----- + sign converts string value to number
+        });
+    //this.verifyKey = this.route.snapshot.paramMap.get('id');
+*/
             console.log(this.verifyKey);
-            this.verifyEmailCode();
+          //  this.verifyEmailCode();
 
      }
 
@@ -105,7 +114,7 @@ verifyMsg: string ='';
         //        console.log(this.verifyCode);
         this.homeService.verifyEmail(this.verifyKey).subscribe(
          (response) => {
-debugger
+
                 if (response.Code === 200) {
                   //  this.router.navigate(['home']);
                   this.verify = true;
