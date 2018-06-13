@@ -1,11 +1,9 @@
 package com.vfoexchange.restServer.controller;
 
 import com.vfoexchange.restServer.dto.*;
-import com.vfoexchange.restServer.model.Mail;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
-import com.vfoexchange.restServer.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -33,33 +32,28 @@ public class UserController {
     @RequestMapping(value = "/add/user", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<ResponseDTO> addUser(@RequestBody UserDTO userDto) {
-        String url;
-        String msg = null;
+
         ResponseDTO resp = new ResponseDTO();
         ResponseEntity<ResponseDTO> responseEntity;
         if (userService.isAleadyExist(userDto.getUsername())) {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("This email already exists in our system. Please try another email for registration");
-            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             return responseEntity;
         }
         try {
+
+            emailServices.sendMail(userDto.getUsername());
             userService.addUser(userDto);
-            url = AppUtil.getURL(environment.getProperty("angular.host"),environment.getProperty("angular.port"),AppUtil.getEncodedString(userDto.getUsername()));
-            Mail mail = new Mail();
-            mail.setFrom(environment.getProperty("spring.mail.username"));
-            mail.setTo(userDto.getUsername());
-            mail.setSubject("Verify Your Email Address");
-            mail.setContent(AppUtil.getHtmlString(url));
-            emailServices.sendMail(mail);
             resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Your account has been created,  please verify it by clicking the activation link that has been send to your email.");
-            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
-        } catch (Exception  e){
-            LOGGER.error("User "+e.getMessage());
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info("Mail has been sent for verify");
+        } catch (Exception e) {
+            LOGGER.error("User " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("mail has been successfully send ");
-            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         }
 
         return responseEntity;
