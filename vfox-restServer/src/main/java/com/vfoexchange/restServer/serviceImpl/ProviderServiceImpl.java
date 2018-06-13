@@ -30,7 +30,7 @@ public class ProviderServiceImpl implements ProviderService {
     Method to update provider billing using provider name and user name
     */
     public void updateProviderBilling(String userName, String providerName) {
-        User user = userDao.findByUsername(userName);
+        User user = userDao.findByUsernameWithState(userName);
         ServiceProviders provider = servicesDao.findProviderByName(providerName);
         servicesDao.updateProviderBilling(user.getId(), provider.getServiceId(), provider.getId());
     }
