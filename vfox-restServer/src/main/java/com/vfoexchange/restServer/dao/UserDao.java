@@ -10,6 +10,8 @@ public interface UserDao {
 
     public void addAdvisorClient(String clientUserName, int advisorId);
 
+    public User findByUsernameWithState(String username);
+
     public User findByUsername(String username);
 
     public User findAdvisorByClient(int clientId);
