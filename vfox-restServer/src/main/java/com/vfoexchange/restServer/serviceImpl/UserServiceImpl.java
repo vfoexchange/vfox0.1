@@ -66,7 +66,7 @@ public class UserServiceImpl implements UserService {
     Method for fetching user profile by username
      */
     public UserProfileDTO getUserProfile(String username) {
-        User user = userDao.findByUsername(username);
+        User user = userDao.findByUsernameWithState(username);
         UserRole userRole = userRoleDao.findByRoleId(user.getRoleId());
 
         UserProfileDTO userProfile = new UserProfileDTO();
@@ -82,7 +82,7 @@ public class UserServiceImpl implements UserService {
     Method for fetching list of active advisor services for advisor or advisor's client
     */
     public List<Services> getAdvisorServices(String username) {
-        User user = userDao.findByUsername(username);
+        User user = userDao.findByUsernameWithState(username);
         UserRole userRole = userRoleDao.findByRoleId(user.getRoleId());
         if (userRole.getRole().equalsIgnoreCase("advisor")) {
             List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
@@ -98,7 +98,7 @@ public class UserServiceImpl implements UserService {
     Method for adding/updating list of advisor services
      */
     public void updateAdvisorServices(LinkedServicesDTO linkedServicesDTO) {
-        User user = userDao.findByUsername(linkedServicesDTO.getUsername());
+        User user = userDao.findByUsernameWithState(linkedServicesDTO.getUsername());
         List<Services> list = servicesDao.findActiveAdvisorServices(user.getId());
         Map<String, Boolean> serviceMap = linkedServicesDTO.getServices();
         for (Map.Entry<String, Boolean> entry : serviceMap.entrySet()) {
@@ -127,7 +127,7 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userDao.findByUsername(username);
+        return userDao.findByUsernameWithState(username);
     }
 
     /*
