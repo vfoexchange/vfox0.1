@@ -66,7 +66,7 @@ body{background:#c03aa5 url(../assets/img/home_bg.jpg) no-repeat; background-siz
 .loading img{margin-botttom:50px;}
 a{cursor:pointer; text-decoration:none;}
 .ins_desc{font-size:14px; color:#535353; min-height:119px; font-weight:400;}
-.lrn_more{margin-bottom:0px; position:absolute; bottom:20px;}
+.lrn_more{margin-bottom:0px; /*position:absolute; bottom:20px;*/}
 .lrn_more a{color:#195e86!important; font-size:14px; font-weight:400; text-decoration:none;}
 .ins_img{vertical-align:middle; text-align:center; display:flex; align-items:center;}
 .ins_body{padding:1.25rem 1.25rem 0rem 1.25rem;}
