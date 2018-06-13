@@ -42,23 +42,5 @@ public class DbConfig {
         return jdbcTemplate;
     }
 
-    @Bean
-    public JavaMailSender javaMailService() {
-        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-
-        Properties mailProperties = new Properties();
-        mailProperties.put("mail.smtp.auth", env.getProperty("spring.mail.properties.mail.smtp.auth"));
-        mailProperties.put("mail.smtp.starttls.enable",  env.getProperty("spring.mail.properties.mail.smtp.starttls.enable"));
-        mailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-
-        mailSender.setJavaMailProperties(mailProperties);
-        mailSender.setHost(env.getProperty("spring.mail.host"));
-        mailSender.setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
-        mailSender.setProtocol(env.getProperty("spring.mail.protocol"));
-        mailSender.setUsername(env.getProperty("spring.mail.username"));
-        mailSender.setPassword(env.getProperty("spring.mail.password"));
-        return mailSender;
-    }
 
 }
