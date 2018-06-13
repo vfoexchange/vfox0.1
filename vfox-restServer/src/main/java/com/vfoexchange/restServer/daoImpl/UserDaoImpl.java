@@ -56,10 +56,10 @@ public class UserDaoImpl implements UserDao {
     }
 
     /*
-    Method used to fetch user from DB using username
+    Method used to fetch user from DB using username and active state
      */
     @Override
-    public User findByUsername(String username) {
+    public User findByUsernameWithState(String username) {
         User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where UserState = 'A' and UserName = ? ",
                 new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
         if (user == null)
@@ -75,5 +75,16 @@ public class UserDaoImpl implements UserDao {
                 username);
     }
 
+    /*
+    Method used to fetch user from DB using username
+     */
+    @Override
+    public User findByUsername(String username) {
+        User user = (User) jdbcTemplate.queryForObject("SELECT * FROM User where  UserName = ? ",
+                new Object[]{username}, new BeanPropertyRowMapper<>(User.class));
+        if (user == null)
+            throw new UserNotFoundException(username);
+        return user;
+    }
 }
 
