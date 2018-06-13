@@ -57,7 +57,10 @@ export class AuthGuard implements CanActivateChild {
              //console.log('Selectd Role Not Defined');
          }
        }
-     } else { window.location.href = this.baseUrl + this.configuration.HomeNavPageUrl; }
+     } else {
+       // window.location.href = this.baseUrl + this.configuration.HomeNavPageUrl;
+       this.router.navigate(['login']);
+       }
 
     if (this.utilService.getData('loginDataDetail').roleId === '' || this.utilService.getData('loginDataDetail').roleId === null || this.utilService.getData('loginDataDetail').roleId === undefined) {
       this.router.navigate(['login']);
@@ -67,7 +70,7 @@ export class AuthGuard implements CanActivateChild {
 
       this.auth.logout();
 
-      window.location.href = this.baseUrl + this.configuration.HomeNavPageUrl;
+      this.router.navigate(['login']);
       return false;
     } else {
 

@@ -5,7 +5,7 @@ export class Configuration {
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
     public ApiUrl:string = 'http://localhost:8080/';
     //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
-    public HomeNavPageUrl: string = '/#/login';
+    public HomeNavPageUrl: string = '/login';
     public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
 
     //*****************************User Roles *****************************/
@@ -17,7 +17,7 @@ export class Configuration {
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
     public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
     public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/costremediation'];
 
 
@@ -93,16 +93,16 @@ export class Configuration {
     };
     
     public footerMenu: any = {
-        'bill_pay_menu': false,
-        'insurance_menu': false,
-        'investment_menu': false,
-        'welth_manage_menu': false,
-        'tax_mitigation_menu': false,
-        'asset_protection_menu': false,
-        'trust_services_menu': false,
-        'business_valuation_menu': false,
-        'cost_remediation_menu': false,
-        'business_transition_menu': false
+        'bill_pay_menu': true,
+        'insurance_menu': true,
+        'investment_menu': true,
+        'welth_manage_menu': true,
+        'tax_mitigation_menu': true,
+        'asset_protection_menu': true,
+        'trust_services_menu': true,
+        'business_valuation_menu': true,
+        'cost_remediation_menu': true,
+        'business_transition_menu': true
         };
 
 }

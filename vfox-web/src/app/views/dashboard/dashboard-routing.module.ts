@@ -7,6 +7,7 @@ import { InsuranceComponent } from './Insurance/insurance.component';
 import { AddClientComponent } from './manage-client/client.component';
 import { TaxComponent } from './tax-migitation/tax.component';
 import { CostComponent } from './cost-remediation/cost.component';
+import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
 
 
 const routes: Routes = [
@@ -25,6 +26,13 @@ const routes: Routes = [
       title: 'Service Center'
      }
   },
+  {
+    path: 'service/:name',
+    component: ServiceProviderComponent,
+    data: {
+    title: 'Insurance'
+   }
+},
   {
       path: 'insurance',
       component: InsuranceComponent,

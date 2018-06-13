@@ -101,10 +101,14 @@ debugger
         this.route.params.subscribe(params => {
             this.verifyKey = params['id'];   //<----- + sign converts string value to number
         });
-    //this.verifyKey = this.route.snapshot.paramMap.get('id');
+
+//last working
+    //
 */
+
+    this.verifyKey = this.route.snapshot.paramMap.get('id');
             console.log(this.verifyKey);
-          //  this.verifyEmailCode();
+            this.verifyEmailCode();
 
      }
 
@@ -114,8 +118,8 @@ debugger
         //        console.log(this.verifyCode);
         this.homeService.verifyEmail(this.verifyKey).subscribe(
          (response) => {
-
-                if (response.Code === 200) {
+            debugger
+                if (response.code == 200) {
                   //  this.router.navigate(['home']);
                   this.verify = true;
                 } else {
