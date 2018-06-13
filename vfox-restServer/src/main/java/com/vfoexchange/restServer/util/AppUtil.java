@@ -14,15 +14,13 @@ public class AppUtil {
     }
 
     public static String getURL(String hostname,String port,String token){
-        String url = null;
-        url = "http://"+hostname+":"+port+"/#/verify;token="+token+" ";
+        String url;
+        url = "http://"+hostname+":"+port+"/verify/"+token+" ";
         return url;
     }
 
     public static String getEncodedString(String originalInput) {
-
         String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
-
         return encodedString;
     }
 
@@ -32,8 +30,10 @@ public class AppUtil {
         return decodedString;
     }
 
-    public static String getHtmlString(String url){
-        String html = "<table width=\"600\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\n" +
+
+
+    public static String getMailBody(String url){
+        String body = "<table width=\"600\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\">\n" +
                 "      <td>&nbsp;</td>\n" +
                 "  </tr>\n" +
                 "  <tr>\n" +
@@ -62,6 +62,6 @@ public class AppUtil {
                 "    <td valign=\"top\" style=\"height:40px;\"></td>\n" +
                 "  </tr>\n" +
                 "</table>";
-        return html;
+        return body;
     }
 }
