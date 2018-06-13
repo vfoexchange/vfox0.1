@@ -60,7 +60,7 @@ public class VfoxRestSeverTests {
        UserRole userRole = new UserRole();
        userRole.setRole("advisor");
 
-          Mockito.when(userDao.findByUsername(Mockito.anyString())).thenReturn(user);
+          Mockito.when(userDao.findByUsernameWithState(Mockito.anyString())).thenReturn(user);
           Mockito.when(userRoleDao.findByRoleId(Mockito.anyInt())).thenReturn(userRole);
 
               RequestBuilder requestBuilder = MockMvcRequestBuilders
