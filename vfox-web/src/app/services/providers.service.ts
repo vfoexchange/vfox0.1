@@ -53,6 +53,7 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
    bindUserMenu(response, serviceStatus){ 
 
     this.ServiceName = this.configuration.ServiceName;
+if(response.result.length > 0){
     serviceStatus.bill_pay_menu = false;
     serviceStatus.investment_menu = false;
     serviceStatus.insurance_menu = false;
@@ -63,6 +64,18 @@ constructor(private utilService: UtilService, private httpService: HttpService, 
     serviceStatus.business_valuation_menu = false;
     serviceStatus.cost_remediation_menu = false;
     serviceStatus.business_transition_menu = false;
+}else{
+ serviceStatus.bill_pay_menu = true;
+    serviceStatus.investment_menu = true;
+    serviceStatus.insurance_menu = true;
+    serviceStatus.welth_manage_menu = true;
+    serviceStatus.tax_mitigation_menu = true;
+    serviceStatus.asset_protection_menu = true;
+    serviceStatus.trust_services_menu = true;
+    serviceStatus.business_valuation_menu = true;
+    serviceStatus.cost_remediation_menu = true;
+    serviceStatus.business_transition_menu = true;
+}
 
     for (let child of response.result) {
 
