@@ -21,7 +21,7 @@ export class LoginService {
      let creds = 'grant_type=password&username='+username+'&password='+password+'&client_id='+this.configuration.ClientId;
      return this.httpService.postLogin(this.configuration.API_LOGIN_URL, creds);
    }
-
+//Get current logged in user detail API
    getUser(user:string) {
     return this.httpService.postWithToken(this.configuration.API_GET_USER, {
       username: user

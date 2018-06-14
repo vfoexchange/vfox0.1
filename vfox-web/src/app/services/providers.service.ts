@@ -1,81 +1,81 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import 'rxjs/Rx';
-import {Configuration} from "../common-services/app-constant";
-import {HttpService} from "../common-services/http-service";
+import { Configuration } from "../common-services/app-constant";
+import { HttpService } from "../common-services/http-service";
 import { UtilService } from "../common-services/util-services";
 
 @Injectable()
 export class ProvidersService {
   serviceStatus: any;
   ServiceName: any;
-  currentUser:any ;
-constructor(private utilService: UtilService, private httpService: HttpService, private configuration: Configuration) {
-   }
+  currentUser: any;
+  constructor(private utilService: UtilService, private httpService: HttpService, private configuration: Configuration) {
+  }
 
-
-    serviceProviders(serviceType:string) {
-    var url = this.configuration.API_SERVICE_PROVIDER+'?servicesName='+serviceType;
+  //Get service provider list API
+  serviceProviders(serviceType: string) {
+    var url = this.configuration.API_SERVICE_PROVIDER + '?servicesName=' + serviceType;
     return this.httpService.get(url);
-   }
-   //Insurance Providers Billing
-   addBilling(providerName:string, userEmail: any) {
-    var url = this.configuration.API_SERVICE_BILLING+'?userName='+userEmail+'&providerName='+providerName;
+  }
+  //Insurance Providers Billing API
+  addBilling(providerName: string, userEmail: any) {
+    var url = this.configuration.API_SERVICE_BILLING + '?userName=' + userEmail + '&providerName=' + providerName;
     return this.httpService.get(url);
-   }
+  }
 
-
-    getUserService(user:string) {
+  //Get current logged in user services API
+  getUserService(user: string) {
     return this.httpService.postWithToken(this.configuration.API_USER_SERVICE, {
-         username: user
-       });
-   }
-
-   updateService(value: any, userEmail: any) {
-     //debugger
+      username: user
+    });
+  }
+  //Advisor services update API
+  updateService(value: any, userEmail: any) {
+    //debugger
     return this.httpService.postWithToken(this.configuration.API_UPDATE_SERVICE, {
-      username:userEmail,
-      services:{
-      'Insurance': value.insurance,
-      'Alternate Investment': value.investment,
-      'Bill Pay': value.bill_pay,
-      'Wealth Management': value.welth_manage,
-      'Tax Mitigation': value.tax_mitigation,
-      'Asset Protection': value.asset_protection,
-      'Trust Services': value.trust_services,
-      'Business Valuation': value.business_valuation,
-      'Cost Remediation': value.cost_remediation,
-      'Business Transition': value.business_transition
+      username: userEmail,
+      services: {
+        'Insurance': value.insurance,
+        'Alternate Investment': value.investment,
+        'Bill Pay': value.bill_pay,
+        'Wealth Management': value.welth_manage,
+        'Tax Mitigation': value.tax_mitigation,
+        'Asset Protection': value.asset_protection,
+        'Trust Services': value.trust_services,
+        'Business Valuation': value.business_valuation,
+        'Cost Remediation': value.cost_remediation,
+        'Business Transition': value.business_transition
       }
-       });
-   } 
+    });
+  }
 
-   //Set footer menu for advisor and client
-   bindUserMenu(response, serviceStatus){ 
+  //Set footer menu for advisor and client
+  bindUserMenu(response, serviceStatus) {
 
     this.ServiceName = this.configuration.ServiceName;
-if(response.result.length > 0){
-    serviceStatus.bill_pay_menu = false;
-    serviceStatus.investment_menu = false;
-    serviceStatus.insurance_menu = false;
-    serviceStatus.welth_manage_menu = false;
-    serviceStatus.tax_mitigation_menu = false;
-    serviceStatus.asset_protection_menu = false;
-    serviceStatus.trust_services_menu = false;
-    serviceStatus.business_valuation_menu = false;
-    serviceStatus.cost_remediation_menu = false;
-    serviceStatus.business_transition_menu = false;
-}else{
- serviceStatus.bill_pay_menu = true;
-    serviceStatus.investment_menu = true;
-    serviceStatus.insurance_menu = true;
-    serviceStatus.welth_manage_menu = true;
-    serviceStatus.tax_mitigation_menu = true;
-    serviceStatus.asset_protection_menu = true;
-    serviceStatus.trust_services_menu = true;
-    serviceStatus.business_valuation_menu = true;
-    serviceStatus.cost_remediation_menu = true;
-    serviceStatus.business_transition_menu = true;
-}
+    if (response.result.length > 0) {
+      serviceStatus.bill_pay_menu = false;
+      serviceStatus.investment_menu = false;
+      serviceStatus.insurance_menu = false;
+      serviceStatus.welth_manage_menu = false;
+      serviceStatus.tax_mitigation_menu = false;
+      serviceStatus.asset_protection_menu = false;
+      serviceStatus.trust_services_menu = false;
+      serviceStatus.business_valuation_menu = false;
+      serviceStatus.cost_remediation_menu = false;
+      serviceStatus.business_transition_menu = false;
+    } else {
+      serviceStatus.bill_pay_menu = true;
+      serviceStatus.investment_menu = true;
+      serviceStatus.insurance_menu = true;
+      serviceStatus.welth_manage_menu = true;
+      serviceStatus.tax_mitigation_menu = true;
+      serviceStatus.asset_protection_menu = true;
+      serviceStatus.trust_services_menu = true;
+      serviceStatus.business_valuation_menu = true;
+      serviceStatus.cost_remediation_menu = true;
+      serviceStatus.business_transition_menu = true;
+    }
 
     for (let child of response.result) {
 
@@ -86,7 +86,7 @@ if(response.result.length > 0){
         case this.ServiceName.investment:
           serviceStatus.investment_menu = true;
           break;
-          case this.ServiceName.insurance:
+        case this.ServiceName.insurance:
           serviceStatus.insurance_menu = true;
           break;
         case this.ServiceName.welth_manage:
@@ -114,18 +114,16 @@ if(response.result.length > 0){
         //Nothing
       }
 
-
     }
-    //serviceStatus.bill_pay_menu = true;
     return serviceStatus;
 
-   }
+  }
 
 
 
-//Set Get Update services page buttons
-   bindUserServices(response){ 
-//debugger
+  //Set Get Update services page buttons
+  bindUserServices(response) {
+    //debugger
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
 
@@ -169,14 +167,8 @@ if(response.result.length > 0){
 
 
     }
-    //this.serviceStatus.insurance = true;
     return this.serviceStatus;
 
-   }
-
-
-
-
-
+  }
 
 }

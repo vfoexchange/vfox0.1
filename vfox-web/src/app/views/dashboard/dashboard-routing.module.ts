@@ -6,7 +6,7 @@ import { ServiceCenterComponent } from './select-service/select-service.componen
 import { AddClientComponent } from './manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
 
-
+//Dashboard route
 const routes: Routes = [
    {
     path: '',

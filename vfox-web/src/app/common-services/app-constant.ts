@@ -50,19 +50,6 @@ export class Configuration {
     public PHONE_REGEX: string = '^[0-9-+]*$';
     public ALPHABETS_REGEX: string = '^[ a-zA-Z]*$';
 
-//*****************************User Roles *****************************/
-    public RolesList = [
-        {
-            key: 'ADMIN',
-            value: 'Admin'
-        },{
-            key: 'ADVISOR',
-            value: 'Advisor'
-        }, {
-            key: 'CLIENT',
-            value: 'Client'
-        }
-    ];
 
 
     public ServiceName: any = {
@@ -92,6 +79,7 @@ export class Configuration {
     'business_transition': false
     };
     
+    //*****************************Footer Menu *****************************/
     public footerMenu: any = {
         'bill_pay_menu': true,
         'insurance_menu': true,
