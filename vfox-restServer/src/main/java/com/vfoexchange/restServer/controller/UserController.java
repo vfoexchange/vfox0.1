@@ -25,6 +25,7 @@ public class UserController {
 
     @Autowired
     Environment environment;
+
     private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     /*
     Method for adding new user(user can be advisor or admin)
@@ -39,6 +40,7 @@ public class UserController {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("This email already exists in our system. Please try another email for registration");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info(userDto.getUsername()+" email already exists in our system.");
             return responseEntity;
         }
         try {
@@ -52,7 +54,7 @@ public class UserController {
         } catch (Exception e) {
             LOGGER.error("User " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
-            resp.setMsg("mail has been successfully send ");
+            resp.setMsg("Error occurred while sending mail.");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         }
 
@@ -72,6 +74,7 @@ public class UserController {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("Client already register");
             responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
+            LOGGER.info(clientDetailsDTO.getUsername()+" client already exists in our system.");
             return responseEntity;
         }
         try {
@@ -79,6 +82,7 @@ public class UserController {
             resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Client added successfully");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info("Client added successfully");
         } catch (Exception e) {
             LOGGER.error("Client "+e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
@@ -102,6 +106,7 @@ public class UserController {
             resp.setMsg("User details fetched successfully");
             resp.setResult(userProfile);
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info("User details fetched successfully");
         } catch (Exception e) {
             LOGGER.error("User details "+e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
@@ -126,6 +131,7 @@ public class UserController {
             resp.setResult(list);
             resp.setResultSize(list.size());
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info("Advisor services fetched successfully");
         } catch (Exception e) {
             LOGGER.error("Fetching advisor services "+e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
@@ -146,9 +152,11 @@ public class UserController {
             userService.updateAdvisorServices(linkedServicesDTO);
             resp.setCode("200");
             resp.setMsg("Advisor services updated successfully");
+            LOGGER.info("Advisor services updated successfully");
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating advisor services");
+            LOGGER.error("Error occurred while updating advisor services "+e.getMessage());
         }
         return resp;
     }
@@ -164,9 +172,11 @@ public class UserController {
             userService.userVerification(userDTO.getUsername());
             resp.setCode("200");
             resp.setMsg("User verification done successfully");
+            LOGGER.info("User verification done successfully");
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating user verification");
+            LOGGER.error("Error occurred while updating user verification "+e.getMessage());
         }
         return resp;
     }
