@@ -7,7 +7,7 @@ import {HttpService} from "../common-services/http-service";
 export class ClientService {
 constructor(private httpService: HttpService, private configuration: Configuration) {
    }
-
+   //Add new client API
    addClient(username:string, password: String, userId: string) {
        return this.httpService.post(this.configuration.API_CLIENT_REGISTER_URL, {
          username: username,

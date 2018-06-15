@@ -246,31 +246,6 @@ export class ValidationService {
         }
     }
 
-    static isCDSCodeValidByValue(control: any) {
-        if (control === undefined || control === '' || control === null) {
-            return { 'invalidNumber': false };
-        } else {
-            if (control.match('^([0-9]{4,14})$')) {
-                return { 'invalidNumber': false };
-            } else {
-                return { 'invalidNumber': true };
-            }
-        }
-    }
-    //National Id Validation
-    static isNationalIdValid(control: any) {
-        if (control === undefined || control === '' || control === null) {
-            return { 'invalidNationalId': false };
-        } else {
-            if (control.match(/^((19|20)\d\d)((0)[1-9]|1[012])((0)[1-9]|[12][0-9]|3[01])-\d{5}-\d{5}-\d{2}$/)) {
-                return { 'invalidNationalId': false };
-            } else {
-                return { 'invalidNationalId': true };
-            }
-        }
-    }
-
-
 
 }
 

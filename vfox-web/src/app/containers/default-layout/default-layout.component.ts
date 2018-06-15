@@ -13,23 +13,23 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class DefaultLayoutComponent {
 
-   userType: string = '';
-   userServiceStatus: any;
+  userType: string = '';
+  userServiceStatus: any;
   ServiceName: any;
-   currentUser:any ;
-  constructor(private utilService: UtilService,private router:Router, private providersService: ProvidersService, private _toastrService: ToastrService,
-	private configuration:Configuration, private translate: TranslateService, private translateService: TranslateLangService) {
+  currentUser: any;
+  constructor(private utilService: UtilService, private router: Router, private providersService: ProvidersService, private _toastrService: ToastrService,
+    private configuration: Configuration, private translate: TranslateService, private translateService: TranslateLangService) {
 
-    
+
 
   }
   isCreatingAccount: boolean = true;
-   ngOnInit(){
+  ngOnInit() {
     //Set service name and status
     this.ServiceName = this.configuration.ServiceName;
     this.userServiceStatus = this.configuration.footerMenu;
 
-      this.currentUser = this.utilService.getData('loginDataDetail');
+    this.currentUser = this.utilService.getData('loginDataDetail');
 
 
     setTimeout(() => { this.isCreatingAccount = false; }, 4000);
@@ -39,41 +39,38 @@ export class DefaultLayoutComponent {
 
   getUserService() {
 
-  this.providersService.getUserService(this.currentUser.userEmail).subscribe(
-    (response) => {
+    this.providersService.getUserService(this.currentUser.userEmail).subscribe(
+      (response) => {
 
-      if (this.utilService.isEmpty(response)) {
-        this._toastrService.error("Something went wrong please try again", 'Oops!');
-      }
-
-      if (response.code == 200) {
-        
-        this.userServiceStatus = this.providersService.bindUserMenu(response, this.userServiceStatus);
-            // console.log(this.providers);
-          } 
-        },
-  
-        (error) => {
+        if (this.utilService.isEmpty(response)) {
           this._toastrService.error("Something went wrong please try again", 'Oops!');
-          this.utilService.logError(error);
-        },
-        () => { console.log('Done'); }
-  
-  
-      );
-}
+        }
 
-  switchLanguage(language: string, userType: string) {
-    this.translateService.translateLang(language, userType);
-  } 
-logout() {
+        if (response.code == 200) {
+
+          this.userServiceStatus = this.providersService.bindUserMenu(response, this.userServiceStatus);
+          // console.log(this.providers);
+        }
+      },
+
+      (error) => {
+        this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      },
+      () => { console.log('Done'); }
+
+
+    );
+  }
+
+  //Logout current user
+  logout() {
     //this.token = undefined;
     localStorage.removeItem('token');
     localStorage.removeItem('loginDataDetail');
 
     localStorage.clear();
-     this.router.navigate(['/']);
-
+    this.router.navigate(['/']);
 
   }
 }

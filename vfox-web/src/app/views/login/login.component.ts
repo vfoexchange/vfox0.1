@@ -32,13 +32,14 @@ export class LoginComponent {
      }
 
   ngOnInit() {
+    //set login form field and validation
     this.loginForm = new FormGroup({
       username: new FormControl(null, [Validators.required, ValidationService.emailValidator]),
       password: new FormControl(null, [Validators.required, ValidationService.passwordValidator, Validators.minLength(8)]),
     });
   }
 
-
+//On submit login form post data to API server
   onSubmit() {  
     let obj = this.loginForm.value;   
     if (obj.username !== '' || obj.password !== '') {
@@ -57,7 +58,7 @@ export class LoginComponent {
             (response) => {
               
               if (response.code == 200) {
-                //response.result;
+                //Set logged in user detail in local storage
                 let loginData = {
                   role: response.result.role,
                   roleId: response.result.roleId,
@@ -70,8 +71,10 @@ export class LoginComponent {
               
               this.utilService.setData(loginData, 'loginDataDetail');
               if(response.result.role == this.configuration.ADVISOR){
+                //Advisor redirect to service page
                 this.router.navigate(['dashboard/selectservices']);
               }else{
+                //other user except advisor
                 this.router.navigate(['dashboard']);
               }
 
