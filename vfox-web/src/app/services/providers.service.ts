@@ -123,9 +123,36 @@ export class ProvidersService {
 
   //Set Get Update services page buttons
   bindUserServices(response) {
-    //debugger
+    debugger
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
+
+
+    if (response.result.length > 0) {
+      this.serviceStatus.bill_pay = false;
+      this.serviceStatus.investment = false;
+      this.serviceStatus.insurance = false;
+      this.serviceStatus.welth_manage = false;
+      this.serviceStatus.tax_mitigation = false;
+      this.serviceStatus.asset_protection = false;
+      this.serviceStatus.trust_services = false;
+      this.serviceStatus.business_valuation = false;
+      this.serviceStatus.cost_remediation = false;
+      this.serviceStatus.business_transition = false;
+    } else {
+      this.serviceStatus.bill_pay = true;
+      this.serviceStatus.investment = true;
+      this.serviceStatus.insurance = true;
+      this.serviceStatus.welth_manage = true;
+      this.serviceStatus.tax_mitigation = true;
+      this.serviceStatus.asset_protection = true;
+      this.serviceStatus.trust_services = true;
+      this.serviceStatus.business_valuation = true;
+      this.serviceStatus.cost_remediation = true;
+      this.serviceStatus.business_transition = true;
+    }
+
+
 
     for (let child of response.result) {
 
