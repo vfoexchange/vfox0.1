@@ -67,16 +67,16 @@ export class Configuration {
 
 
     public ServiceStatus: any = {
-    'bill_pay': false,
-    'insurance': false,
-    'investment': false,
-    'welth_manage': false,
-    'tax_mitigation': false,
-    'asset_protection': false,
-    'trust_services': false,
-    'business_valuation': false,
-    'cost_remediation': false,
-    'business_transition': false
+    'bill_pay': true,
+    'insurance': true,
+    'investment': true,
+    'welth_manage': true,
+    'tax_mitigation': true,
+    'asset_protection': true,
+    'trust_services': true,
+    'business_valuation': true,
+    'cost_remediation': true,
+    'business_transition': true
     };
     
     //*****************************Footer Menu *****************************/
