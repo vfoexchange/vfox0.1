@@ -4,9 +4,9 @@ export class Configuration {
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
     public ApiUrl:string = 'http://localhost:8080/';
-    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    //public ApiUrl:string = 'http://192.0.0.20:7070/vfox/';
     public HomeNavPageUrl: string = '/login';
-    public AppMode: string = 'DEV'; //For PROD set 'PROD' mode;
+    public AppMode: string = 'PROD'; //For PROD set 'PROD' mode;
 
     //*****************************User Roles *****************************/
     public ADVISOR: string = 'advisor';
@@ -16,9 +16,9 @@ export class Configuration {
 
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
-    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/addclient','/dashboard/costremediation'];
-    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/insurance','/dashboard/taxmitigation','/dashboard/costremediation'];
+    public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/addclient'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/addclient'];
+    public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/service'];
 
 
 
