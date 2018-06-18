@@ -1,10 +1,10 @@
-import{Injectable, EventEmitter}from '@angular/core';
-import {TranslateService}from '@ngx-translate/core';
+import { Injectable, EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable()
 export class TranslateLangService {
 translateObject = new EventEmitter<any>();
-constructor(private translate: TranslateService) { }
+  constructor(private translate: TranslateService) { }
 
   translateLang(language, usertype=null){
     //debugger;

@@ -1,0 +1,123 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-9">
+            <div class="card started_bg">
+                <div class="card-body">
+                    <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()">
+                        <div class="row mbtm_37">
+                            <div class="col-12 col-lg-8">
+                                <div class="def_head">Select or De-select Services as per your needs</div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <button class="btn btn-lg btn-outline-primary btn-purple float-right"
+                                        type="submit">Save
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.insurance" formControlName="insurance" id="insurance"  class="switch-input" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.insurance}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [checked] [(ngModel)]="serviceStatus.bill_pay" formControlName="bill_pay" id="bill_pay" class="switch-input" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.bill_pay}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.investment" formControlName="investment" id="investment" class="switch-input" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.investment}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.welth_manage" formControlName="welth_manage" id="welth_manage" class="switch-input" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.welth_manage}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.tax_mitigation" class="switch-input" formControlName="tax_mitigation" id="tax_mitigation" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.tax_mitigation}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.asset_protection" formControlName="asset_protection" id="asset_protection" class="switch-input" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.asset_protection}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                            <input [(ngModel)]="serviceStatus.trust_services" class="switch-input" formControlName="trust_services" id="trust_services" type="checkbox">
+                                            <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.trust_services}}</p>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.business_valuation" class="switch-input" formControlName="business_valuation" id="business_valuation" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.business_valuation}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.cost_remediation" class="switch-input" formControlName="cost_remediation" id="cost_remediation" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.cost_remediation}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.business_transition" class="switch-input" formControlName="business_transition" id="investment" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.business_transition}}</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

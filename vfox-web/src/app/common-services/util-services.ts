@@ -1,24 +1,24 @@
-import{Injectable}from'@angular/core';
-import {Configuration }from './app-constant';
+import { Injectable } from '@angular/core';
+import { Configuration } from './app-constant';
 import * as _ from "lodash";
-import {FormGroup, FormControl}from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 
 declare let jQuery: any;
 /**
-* Async modal dialog service
-* DialogService makes this app easier to test by faking this service.
-*/
+ * Async modal dialog service
+ * DialogService makes this app easier to test by faking this service.
+ */
 @Injectable()
 export class UtilService {
-error: boolean = false;
-errorMsg: string = '';
-/**
-* Ask user to confirm an action. `message` explains the action and choices.
-* Returns promise resolving to `true`=confirm or `false`=cancel
-*/
+    error: boolean = false;
+    errorMsg: string = '';
+    /**
+     * Ask user to confirm an action. `message` explains the action and choices.
+     * Returns promise resolving to `true`=confirm or `false`=cancel
+     */
 
 
-constructor(public configuration: Configuration) {
+    constructor(public configuration: Configuration) {
 
     }
 

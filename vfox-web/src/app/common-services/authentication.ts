@@ -1,16 +1,16 @@
-import{Injectable}from'@angular/core';
-import {Observable }from 'rxjs/Rx';
-import {Configuration}from './app-constant';
-import {ActivatedRoute, Router}from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { Configuration } from './app-constant';
+import { ActivatedRoute, Router } from '@angular/router';
 
 // Google's login API namespace
 declare var gapi: any;
 
 @Injectable()
 export class Authentication {
-token: string;
-data: any;
-constructor( private configuration: Configuration,private router:Router) {
+  token: string;
+  data: any;
+  constructor( private configuration: Configuration,private router:Router) {
     this.token = localStorage.getItem('token');
   }
 

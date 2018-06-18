@@ -1,12 +1,13 @@
-import{Component}from'@angular/core';
-import {ActivatedRoute, Router}from '@angular/router';
-import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {TranslateService}from '@ngx-translate/core';
-import {LoginService}from '../../services/login.service';
-import {Response, Http, Headers} from '@angular/http';
-import {UtilService}from "../../common-services/util-services";
-import {ValidationService }from '../../common-services/validation-services';
-import {ToastrService}from 'ngx-toastr';
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { LoginService } from '../../services/login.service';
+import { Response, Http, Headers } from '@angular/http';
+import { UtilService } from "../../common-services/util-services";
+import { ValidationService } from '../../common-services/validation-services';
+import {Configuration} from "../../common-services/app-constant";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   templateUrl: 'login.component.html'
@@ -19,7 +20,7 @@ export class LoginComponent {
   errorMsg: string = '';
   
 
-  constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private loginService: LoginService,
+  constructor(private configuration: Configuration, private route: ActivatedRoute, private router: Router, private translate: TranslateService, private loginService: LoginService,
   private utilService : UtilService, private http: Http,private _toastrService: ToastrService
     ) { 
        translate.setDefaultLang('en');
@@ -31,13 +32,14 @@ export class LoginComponent {
      }
 
   ngOnInit() {
+    //set login form field and validation
     this.loginForm = new FormGroup({
       username: new FormControl(null, [Validators.required, ValidationService.emailValidator]),
       password: new FormControl(null, [Validators.required, ValidationService.passwordValidator, Validators.minLength(8)]),
     });
   }
 
-
+//On submit login form post data to API server
   onSubmit() {  
     let obj = this.loginForm.value;   
     if (obj.username !== '' || obj.password !== '') {
@@ -47,20 +49,39 @@ export class LoginComponent {
           this._toastrService.error("Please Enter Correct Username or Password", 'Oops!');
         }
         response = response.json();
-
+        
         if (response.access_token) {
-
-           let loginDataTest = {
-                            role: "Admin",
-                            roleId: 1,
-                            loggedIn: 'true'
-                        }
-          this.utilService.setData(loginDataTest, 'loginDataDetail');
-          //set token and get profile
-
+           //set token and get profile
           localStorage.setItem('token', response.access_token);
+          
+          this.loginService.getUser(obj.username).subscribe(
+            (response) => {
+              
+              if (response.code == 200) {
+                //Set logged in user detail in local storage
+                let loginData = {
+                  role: response.result.role,
+                  roleId: response.result.roleId,
+                  userId: response.result.userId,
+                  userEmail:response.result.username,
+                  userName:response.result.username,
+                  firstLogin:response.result.firstLogin,
+                  loggedIn: 'true'
+              }
+              
+              this.utilService.setData(loginData, 'loginDataDetail');
+              if(response.result.role == this.configuration.ADVISOR){
+                //Advisor redirect to service page
+                this.router.navigate(['dashboard/selectservices']);
+              }else{
+                //other user except advisor
+                this.router.navigate(['dashboard']);
+              }
 
-          this.router.navigate(['dashboard']);
+              }
+
+            });
+
         } else {
           this._toastrService.error( response.message, 'Oops!'); //"Your username OR password is invalid !";
           this.loginForm.reset();

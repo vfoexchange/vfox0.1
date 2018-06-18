@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <!--Home Left Container Starts here-->
+        <div class="col-lg-8 col-md-7">
+            <div class="home_heading">Add Clients</div>
+            <div class="clearfix"></div>
+            <p class="home_txt">Lorem ipsum dolor sit amet, consectetur adipscing elit,<br/>
+                sed do eiusmod tempor incididunt ut labore et dolore<br/> magna aliqua.
+            </p>
+        </div>
+        <!--Home Left Container Ends here-->
+        <!--Home Right Container Starts here-->
+        <div class="col-lg-4 col-md-5">
+            <div class="card reg_card">
+                <div class="card-body reg_form">
+                    <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+
+                        <div class="form-group">
+                            <label for="inputEmail">{{'EMAIL' | translate}}</label>
+                            <input type="email" formControlName="username" maxlength="100" id="inputEmail"
+                                   class="form-control"
+                                   placeholder=""
+                                   required autofocus>
+                            <p class="erros-msg"
+                               *ngIf="clientForm.get('username').hasError('required') && clientForm.get('username').touched">
+                                {{'EMAIL_Validate' | translate}}</p>
+
+                            <p class="erros-msg"
+                               *ngIf="clientForm.get('username').hasError('invalidEmailAddress')">{{'EMAIL_Invalid' |
+                                translate}}</p>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword">{{'PASSWORD' | translate}}</label>
+                            <input type="password" formControlName="password" maxlength="20" id="inputPassword"
+                                   class="form-control"
+                                   placeholder=""
+                                   required>
+                            <p class="erros-msg"
+                               *ngIf="clientForm.get('password').hasError('required') && clientForm.get('password').touched">
+                                {{'PASS_Req' | translate}}</p>
+                            <p class="erros-msg"
+                               *ngIf="clientForm.get('password').hasError('invalidPassword')">{{'PASS_Policy' |
+                                translate}}</p>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="inputPassword2">{{'CONFIRM_PASS' | translate}}</label>
+                            <input type="password" formControlName="confirmPassword" id="inputPassword2"
+                                   class="form-control" placeholder=""
+                                   required>
+                            <p class="erros-msg"
+                               *ngIf="clientForm.get('confirmPassword').hasError('required') && clientForm.get('confirmPassword').touched">
+                                {{'PASS_Confirm' | translate}}</p>
+                            <p class="erros-msg"
+                               *ngIf="clientForm.hasError('mismatchedPasswords')">{{'PASS_Match' | translate}}</p>
+                        </div>
+                        <button class="btn btn-lg btn-outline-primary btn-outline-purple btn-block mtop_34"
+                                type="submit" [disabled]="clientForm.invalid">{{'ADD' | translate}}
+                        </button>
+                        <div class="clearfix">&nbsp;</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--Home Right Container Ends here-->
+    </div>
+</div>

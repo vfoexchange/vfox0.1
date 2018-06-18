@@ -42,7 +42,7 @@ title: 'Home Page'
 },
 
 {
-path: 'verify',
+path: 'verify/:id',
 component: VerifyEmailPageComponent,
 data: {
 title: 'Email Verification'
