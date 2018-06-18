@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -20,11 +19,9 @@ import java.util.Properties;
 @Service("emailServices")
 public class EmailServicesImpl implements EmailServices {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(EmailServicesImpl.class);
     @Autowired
     private Environment environment;
-
-
-    private static Logger LOGGER = LoggerFactory.getLogger(EmailServicesImpl.class);
 
     @Override
     public void sendMail(final String toEmailId) throws Exception {
@@ -41,7 +38,6 @@ public class EmailServicesImpl implements EmailServices {
         MimeMessage msg = new MimeMessage(session);
         Transport transport = null;
         try {
-
             msg.setFrom(new InternetAddress(environment.getProperty("mail.smtp.from"), environment.getProperty("mail.smtp.fromname")));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmailId));
             msg.setSubject("VFOX Verify Email");
@@ -53,10 +49,8 @@ public class EmailServicesImpl implements EmailServices {
             LOGGER.info("Mail has been sent for verify ");
         } catch (UnsupportedEncodingException | MessagingException ex) {
             LOGGER.error("Error in sending mail " + ex.getMessage());
-
         } finally {
-             transport.close();
+            transport.close();
         }
-
     }
 }

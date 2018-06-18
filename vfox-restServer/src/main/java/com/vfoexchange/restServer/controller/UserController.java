@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -44,7 +43,6 @@ public class UserController {
             return responseEntity;
         }
         try {
-
             emailServices.sendMail(userDto.getUsername());
             userService.addUser(userDto);
             resp.setCode(HttpStatus.OK.toString());
@@ -57,7 +55,6 @@ public class UserController {
             resp.setMsg("Error occurred while sending mail.");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         }
-
         return responseEntity;
     }
 
