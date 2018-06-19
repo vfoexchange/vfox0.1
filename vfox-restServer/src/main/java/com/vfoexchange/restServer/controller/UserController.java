@@ -1,9 +1,11 @@
 package com.vfoexchange.restServer.controller;
 
+import com.vfoexchange.restServer.Constants.AppConstants;
 import com.vfoexchange.restServer.dto.*;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
+import com.vfoexchange.restServer.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 
 @RestController
@@ -179,6 +189,53 @@ public class UserController {
             LOGGER.error("Error occurred while updating user verification "+e.getMessage());
         }
         return resp;
+    }
+    /*
+       Add Method for captcha
+       */
+    @RequestMapping(value = "/captcha.jpg", method = RequestMethod.POST)
+    public void getCaptcha(HttpServletRequest request, HttpServletResponse response){
+        response.setHeader("Cache-Control", "no-cache");
+        response.setDateHeader("Expires", 0);
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Max-Age", 0);
+        response.setContentType("image/jpeg");
+
+        String captchaStr="";
+
+        System.out.println("------------------In captcha---------------");
+
+        captchaStr = AppUtil.generateCaptchaTextMethod2(6);
+
+        try{
+            int width=100;
+            int height=40;
+
+            Color bg = new Color(0,255,255);
+            Color fg = new Color(0,100,0);
+
+            Font font = new Font("Arial", Font.BOLD, 20);
+            BufferedImage cpimg =new BufferedImage(width,height,BufferedImage.OPAQUE);
+            Graphics g = cpimg.createGraphics();
+
+            g.setFont(font);
+            g.setColor(bg);
+            g.fillRect(0, 0, width, height);
+            g.setColor(fg);
+            g.drawString(captchaStr,10,25);
+
+            HttpSession session = request.getSession(true);
+            session.setAttribute("CAPTCHA", captchaStr);
+
+            OutputStream outputStream = response.getOutputStream();
+
+            ImageIO.write(cpimg, AppConstants.FILE_TYPE, outputStream);
+            outputStream.close();
+
+        } catch (IOException ex) {
+            LOGGER.error("Error occurred while geting captcha for verification "+ex.getMessage());
+
+        }
     }
 
 }
