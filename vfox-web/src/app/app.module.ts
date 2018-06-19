@@ -26,17 +26,8 @@ const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
 
-import {
-  AppAsideModule,
-  AppBreadcrumbModule,
-  AppHeaderModule,
-  AppFooterModule,
-  AppSidebarModule,
-  } from '@coreui/angular'
-
 // Import routing module
 import { AppRoutingModule } from './app.routing';
-
 
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -63,6 +54,7 @@ import { SuccessComponent } from "./views/success/success.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLangService } from "./services/translate.service";
+import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent } from './views/static-page/staticpage.component';
 
 
 @NgModule({
@@ -72,13 +64,8 @@ import { TranslateLangService } from "./services/translate.service";
         ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    AppAsideModule,
     HttpClientModule,
     HttpModule,
-    AppBreadcrumbModule.forRoot(),
-    AppFooterModule,
-    AppHeaderModule,
-    AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -101,6 +88,10 @@ import { TranslateLangService } from "./services/translate.service";
     P500Component,
     LoginComponent,
     HeaderComponent,
+    AboutComponent,
+    ContactComponent,
+    WhatweComponent,
+    HomepageComponent,
    // RegisterComponent,
     HomeComponent,
     VerifyEmailPageComponent,
