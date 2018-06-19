@@ -169,6 +169,51 @@ CREATE TABLE IF NOT EXISTS `vfox`.`Token` (
     ON UPDATE RESTRICT)
 ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+DROP TABLE IF EXISTS `vfox`.`AdvisorServiceProvider`;
+CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorServiceProvider` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `UserId` INT NOT NULL,
+  `ServiceProviderId` INT NOT NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `FK_ADVISORSERVICEPROVIDER_USER_idx` (`UserId` ASC),
+  INDEX `FK_ADVISORSERVICEPROVIDER_SERVICEPROVIDER_idx` (`ServiceProviderId` ASC),
+  CONSTRAINT `FK_ADVISORSERVICEPROVIDER_USER`
+    FOREIGN KEY (`UserId`)
+    REFERENCES `vfox`.`User` (`Id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT,
+  CONSTRAINT `FK_ADVISORSERVICEPROVIDER_SERVICEPROVIDER`
+    FOREIGN KEY (`ServiceProviderId`)
+    REFERENCES `vfox`.`ServiceProvider` (`Id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+DROP TABLE IF EXISTS `vfox`.`AdvisorWebsite`;
+CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorWebsite` (
+  `Id` INT NOT NULL AUTO_INCREMENT,
+  `AdvisorId` INT NOT NULL,
+  `DomainName` VARCHAR(150) NULL,
+  `Header` VARCHAR(250) NULL,
+  `Description` VARCHAR(450) NULL,
+  `Logo` longblob NULL,
+  `CreatedBy` INT NOT NULL,
+  `CreatedAt` DATETIME NOT NULL,
+  `UpdatedBy` INT NOT NULL,
+  `UpdatedAt` DATETIME NOT NULL,
+  PRIMARY KEY (`Id`),
+  INDEX `FK_ADVISORWEBSITE_USER_idx` (`AdvisorId` ASC),
+  CONSTRAINT `FK_ADVISORWEBSITE_USER`
+    FOREIGN KEY (`AdvisorId`)
+    REFERENCES `vfox`.`User` (`Id`)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
+ENGINE = InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
 INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 1,'admin','A',1,now(),1,now());
 INSERT INTO vfox.UserRole (Id,`Role`,RoleState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
