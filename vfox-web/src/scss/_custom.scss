@@ -79,6 +79,7 @@ iframe{border:none; width:258px; height:173px;}
 .min_205{min-height:205px;}
 .min_150{min-height:145px;}
 .min_190{min-height:190px;}
+.top_nav .active{border-bottom:solid 4px rgba(255,255,255,0.5);}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}

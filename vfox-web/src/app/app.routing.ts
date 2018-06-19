@@ -71,10 +71,10 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'whatwecan',
+    path: 'whatwedo',
     component: WhatweComponent,
     data: {
-      title: 'What We Can Page'
+      title: 'What We Do Page'
     }
   },
   {

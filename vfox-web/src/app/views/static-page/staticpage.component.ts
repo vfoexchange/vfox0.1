@@ -35,7 +35,7 @@ export class ContactComponent {
 }
 //What we can page
 @Component({
-  templateUrl: 'whatwecan.component.html'
+  templateUrl: 'whatwedo.component.html'
 })
 export class WhatweComponent {
 
