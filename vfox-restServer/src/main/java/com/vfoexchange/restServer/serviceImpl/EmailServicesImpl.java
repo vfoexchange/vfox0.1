@@ -45,7 +45,7 @@ public class EmailServicesImpl implements EmailServices {
             msg.setFrom(new InternetAddress(environment.getProperty("mail.smtp.from"), environment.getProperty("mail.smtp.fromname")));
             msg.setRecipient(Message.RecipientType.TO, new InternetAddress(toEmailId));
             msg.setSubject("VFOX Verify Email");
-            msg.setContent(AppUtil.getMailBody(AppUtil.getURL(environment.getProperty("angular.host"), environment.getProperty("angular.port"), AppUtil.getEncodedString(toEmailId))), "text/html");
+            msg.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(toEmailId))), "text/html");
 
             transport = session.getTransport();
             transport.connect(environment.getProperty("mail.smtp.host"), environment.getProperty("mail.smtp.username"), environment.getProperty("mail.smtp.password"));
