@@ -2,6 +2,7 @@ package com.vfoexchange.restServer.daoImpl;
 
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
+import com.vfoexchange.restServer.model.AdvisorWebsite;
 import com.vfoexchange.restServer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -85,6 +86,14 @@ public class UserDaoImpl implements UserDao {
         if (user == null)
             throw new UserNotFoundException(username);
         return user;
+    }
+
+    /*
+    Method used to save advisor's website details
+    */
+    public void saveAdvisorWebsite(AdvisorWebsite advisorWebsite) {
+        jdbcTemplate.update("INSERT INTO vfox.AdvisorWebsite (AdvisorId, DomainName, Header, Description, Logo, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, ?, ?, 1, now(), 1, now())",
+                advisorWebsite.getAdvisorId(), advisorWebsite.getDomainName(), advisorWebsite.getHeader(), advisorWebsite.getDescription(), advisorWebsite.getLogo());
     }
 }
 

@@ -7,7 +7,7 @@ public class ServiceProviders {
     private String name;
     private String shortDesc;
     private String longDesc;
-    private String logo;
+    private byte[] logo;
     private String redirectUrl;
 
     public int getId() {
@@ -50,11 +50,11 @@ public class ServiceProviders {
         this.longDesc = longDesc;
     }
 
-    public String getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
-    public void setLogo(String logo) {
+    public void setLogo(byte[] logo) {
         this.logo = logo;
     }
 

@@ -3,10 +3,8 @@ package com.vfoexchange.restServer.serviceImpl;
 import com.vfoexchange.restServer.dao.ServicesDao;
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
-import com.vfoexchange.restServer.dto.ClientDetailsDTO;
-import com.vfoexchange.restServer.dto.LinkedServicesDTO;
-import com.vfoexchange.restServer.dto.UserDTO;
-import com.vfoexchange.restServer.dto.UserProfileDTO;
+import com.vfoexchange.restServer.dto.*;
+import com.vfoexchange.restServer.model.AdvisorWebsite;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.model.UserRole;
@@ -137,15 +135,36 @@ public class UserServiceImpl implements UserService {
         userDao.userVerification(AppUtil.getDecodedString(username));
     }
 
-    public boolean isAleadyExist(String username){
+    /*
+    Method to check if user already exists by username
+    */
+    public boolean isAleadyExist(String username) {
         boolean result = false;
         try {
             User user = userDao.findByUsername(username);
             if (user != null)
                 result = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             result = false;
         }
         return result;
     }
+
+    /*
+    Method to save advisor's website details
+    */
+    public void saveAdvisorWebsite(AdvisorWebsiteDTO advisorWebsiteDTO) {
+
+        AdvisorWebsite advisorWebsite = new AdvisorWebsite();
+        advisorWebsite.setAdvisorId(advisorWebsiteDTO.getAdvisorId());
+        advisorWebsite.setDescription(advisorWebsiteDTO.getDescription());
+        advisorWebsite.setHeader(advisorWebsiteDTO.getHeader());
+        advisorWebsite.setDomainName(advisorWebsiteDTO.getDomainName());
+        advisorWebsite.setLogo(advisorWebsiteDTO.getLogo());
+        if (advisorWebsiteDTO.getWebsiteLink() != null)
+            advisorWebsite.setWebsiteLink(advisorWebsiteDTO.getWebsiteLink());
+        userDao.saveAdvisorWebsite(advisorWebsite);
+    }
+
+
 }

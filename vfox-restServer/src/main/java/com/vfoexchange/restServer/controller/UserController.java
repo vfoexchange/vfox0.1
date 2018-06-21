@@ -39,7 +39,7 @@ public class UserController {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("This email already exists in our system. Please try another email for registration");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
-            LOGGER.info(userDto.getUsername()+" email already exists in our system.");
+            LOGGER.info(userDto.getUsername() + " email already exists in our system.");
             return responseEntity;
         }
         try {
@@ -70,8 +70,8 @@ public class UserController {
         if (userService.isAleadyExist(clientDetailsDTO.getUsername())) {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("Client already register");
-            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
-            LOGGER.info(clientDetailsDTO.getUsername()+" client already exists in our system.");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info(clientDetailsDTO.getUsername() + " client already exists in our system.");
             return responseEntity;
         }
         try {
@@ -81,7 +81,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("Client added successfully");
         } catch (Exception e) {
-            LOGGER.error("Client "+e.getMessage());
+            LOGGER.error("Client " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occured while adding new client");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -105,7 +105,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("User details fetched successfully");
         } catch (Exception e) {
-            LOGGER.error("User details "+e.getMessage());
+            LOGGER.error("User details " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching user details");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -130,7 +130,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("Advisor services fetched successfully");
         } catch (Exception e) {
-            LOGGER.error("Fetching advisor services "+e.getMessage());
+            LOGGER.error("Fetching advisor services " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching advisor services");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -153,7 +153,7 @@ public class UserController {
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating advisor services");
-            LOGGER.error("Error occurred while updating advisor services "+e.getMessage());
+            LOGGER.error("Error occurred while updating advisor services " + e.getMessage());
         }
         return resp;
     }
@@ -173,7 +173,27 @@ public class UserController {
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating user verification");
-            LOGGER.error("Error occurred while updating user verification "+e.getMessage());
+            LOGGER.error("Error occurred while updating user verification " + e.getMessage());
+        }
+        return resp;
+    }
+
+    /*
+    Method for saving Advisor's website details
+    */
+    @RequestMapping(value = "/save/advisor/website", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO userVerification(@RequestBody AdvisorWebsiteDTO advisorWebsiteDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            userService.saveAdvisorWebsite(advisorWebsiteDTO);
+            resp.setCode("200");
+            resp.setMsg("Advisor's website details saved successfully");
+            LOGGER.info("Advisor's website details saved successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while saving advisor's website details");
+            LOGGER.error("Error occurred while saving advisor's website details" + e.getMessage());
         }
         return resp;
     }

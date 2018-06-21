@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.dao;
 
+import com.vfoexchange.restServer.model.AdvisorWebsite;
 import com.vfoexchange.restServer.model.User;
 
 public interface UserDao {
@@ -17,5 +18,7 @@ public interface UserDao {
     public User findAdvisorByClient(int clientId);
 
     public void userVerification(String username);
+
+    public void saveAdvisorWebsite(AdvisorWebsite advisorWebsite);
 
 }
