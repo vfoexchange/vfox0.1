@@ -1,6 +1,5 @@
 package com.vfoexchange.restServer.controllerAdvice;
 
-
 import com.vfoexchange.restServer.Constants.AppConstants;
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
 import com.vfoexchange.restServer.exceptions.UserRoleNotFoundException;
@@ -28,7 +27,6 @@ public class CustomizedResponseEntityExceptionHandler {
                 request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
     }
-
 
     @ExceptionHandler(UserRoleNotFoundException.class)
     public final ResponseEntity<ErrorDetails> handleUserRoleNotFoundException(UserRoleNotFoundException ex, WebRequest request) {

@@ -1,14 +1,19 @@
-# VFOX 0.1 Deployment Guide
+# VFOX 0.1 Deployment Guide considering Linux server
 
 ### Purpose
  Contain information about the installation process of backend as JAVA and frontend as Angular.
 ### Prerequisites
 ```
 Java 1.8+
-Mysql 5.x
-docker 1.3x
 Nginx 1.10.3
 ```
+
+### Command to install java 8
+    sudo apt-get install openjdk-8*
+
+### Command to install nginx
+    sudo apt-get install nginx
+    
 ### Backend
 #### Go to /opt/app/staging/backend/ directory 
     cd /opt/app/staging/backend/

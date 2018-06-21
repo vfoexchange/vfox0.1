@@ -79,7 +79,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent } 
     }),
      ToastrModule.forRoot({closeButton: true, timeOut: 4000, preventDuplicates: true}),
      BrowserAnimationsModule
-     
+
   ],
   declarations: [
     AppComponent,

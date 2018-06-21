@@ -26,15 +26,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 @WebMvcTest(value = UserController.class, secure = false)
 public class VfoxRestSeverTests {
 
+    @MockBean
+    UserRoleDao userRoleDao;
     private MockMvc mockMvc;
     @Autowired
     private UserController userController;
-
     @MockBean
     private UserDao userDao;
 
-    @MockBean
-    UserRoleDao userRoleDao;
     /*
     Commented for now because fetch user API is changes and unit test needs to be updated
      */
@@ -42,45 +41,45 @@ public class VfoxRestSeverTests {
     public void setup() {
         mockMvc = MockMvcBuilders.standaloneSetup(userController).build();
     }
-   @Test
-    public void getUserDetailTest() throws Exception{
-       ObjectMapper objectMapper = new ObjectMapper();
-       UserDTO userDTORequest = new UserDTO();
-       userDTORequest.setUsername("admin");
-       userDTORequest.setPassword("pwd");
-       userDTORequest.setRole("role");
 
-       String userDTOJson = objectMapper.writeValueAsString(userDTORequest);
+    @Test
+    public void getUserDetailTest() throws Exception {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserDTO userDTORequest = new UserDTO();
+        userDTORequest.setUsername("admin");
+        userDTORequest.setPassword("pwd");
+        userDTORequest.setRole("role");
 
-       User user = new User();
-       user.setId(13);
-       user.setUsername("admin");
-       user.setFirstLogin(false);
-       user.setRoleId(1);
-       UserRole userRole = new UserRole();
-       userRole.setRole("advisor");
+        String userDTOJson = objectMapper.writeValueAsString(userDTORequest);
 
-          Mockito.when(userDao.findByUsernameWithState(Mockito.anyString())).thenReturn(user);
-          Mockito.when(userRoleDao.findByRoleId(Mockito.anyInt())).thenReturn(userRole);
+        User user = new User();
+        user.setId(13);
+        user.setUsername("admin");
+        user.setFirstLogin(false);
+        user.setRoleId(1);
+        UserRole userRole = new UserRole();
+        userRole.setRole("advisor");
 
-              RequestBuilder requestBuilder = MockMvcRequestBuilders
-               .post("/fetch/user")
-               .accept(MediaType.APPLICATION_JSON).content(userDTOJson)
-               .contentType(MediaType.APPLICATION_JSON);
+        Mockito.when(userDao.findByUsernameWithState(Mockito.anyString())).thenReturn(user);
+        Mockito.when(userRoleDao.findByRoleId(Mockito.anyInt())).thenReturn(userRole);
 
-       mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk()).
-               andExpect(MockMvcResultMatchers.jsonPath("$.msg").value("User details fetched successfully"))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.userId").value(13))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.username").value("admin"))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.roleId").value(1))
-              .andExpect(MockMvcResultMatchers.jsonPath("$.result.firstLogin").value(false))
-               .andExpect(MockMvcResultMatchers.jsonPath("$.result.role").value("advisor"))
-              .andReturn();
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .post("/fetch/user")
+                .accept(MediaType.APPLICATION_JSON).content(userDTOJson)
+                .contentType(MediaType.APPLICATION_JSON);
 
-   }
+        mockMvc.perform(requestBuilder).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.jsonPath("$.msg").value("User details fetched successfully"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result.userId").value(13))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result.username").value("admin"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result.roleId").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result.firstLogin").value(false))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.result.role").value("advisor"))
+                .andReturn();
+    }
+
     @Test
     public void contextLoads() {
-
     }
 
 }

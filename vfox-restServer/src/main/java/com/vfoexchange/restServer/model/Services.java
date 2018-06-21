@@ -1,6 +1,5 @@
 package com.vfoexchange.restServer.model;
 
-
 public class Services {
 
     private int id;
