@@ -11,9 +11,11 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: 'header.component.html'
 })
 export class HeaderComponent {
+  currentUser: any;
 
-
-  constructor() {
+  constructor(private utilService: UtilService) {
+    //Get current user
+    this.currentUser = this.utilService.getData('loginDataDetail');
 
   }
 

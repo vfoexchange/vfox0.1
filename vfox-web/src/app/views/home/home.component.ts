@@ -17,6 +17,8 @@ export class HomeComponent {
   //res: any;
   error: boolean = false;
   errorMsg: string = '';
+  captchaImage: string;
+  captchaValue: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService
@@ -31,13 +33,17 @@ export class HomeComponent {
       username: new FormControl(null, [Validators.required, ValidationService.emailValidator]),
       password: new FormControl(null, [Validators.required, ValidationService.passwordValidator, Validators.minLength(8)]),
       confirmPassword: new FormControl(null, [Validators.required]),
+      captcha: new FormControl(null, [Validators.required]),
     }, { validator: ValidationService.confirmPasswords('password', 'confirmPassword') });
+
+    this.getCaptcha();
 
   }
 
-//After submit advisor registration form post data to API server
-  onSubmit() {    
+  //After submit advisor registration form post data to API server
+  onSubmit() {
     let obj = this.registerForm.value;
+    if(obj.captcha == this.captchaValue){
     if (obj.username !== '' || obj.password !== '') {
       this.homeService.register(obj.username, obj.password).subscribe(
         (response) => {
@@ -52,6 +58,8 @@ export class HomeComponent {
             this.registerForm.reset();
 
           }
+          this.captchaImage = '';
+          this.captchaValue = '';
         },
 
         (error) => {
@@ -65,6 +73,37 @@ export class HomeComponent {
       this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
 
     }
+  }else{
+    this._toastrService.error("Invalid captcha !", 'Oops!');
+  }
+
+  }
+
+  reloadCaptcha() {
+    this.getCaptcha();
+  }
+
+  getCaptcha() {
+
+    this.homeService.getCaptcha().subscribe(
+      (response) => {
+        debugger
+        this.captchaImage = response.captcha;
+        this.captchaValue = response.captchCode;
+        if (response.code == 200) {
+          this.captchaImage = response.captcha;
+        } else {
+         // this.captchaImage = '';
+        }
+      },
+
+      (error) => {
+        this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      },
+      () => { }
+
+    );
 
   }
 
@@ -104,18 +143,18 @@ export class VerifyEmailPageComponent {
    //last working
        //
    */
-//Get token id from URL
+    //Get token id from URL
     this.verifyKey = this.route.snapshot.paramMap.get('id');
     this.verifyEmailCode();
 
   }
 
-//Call email verification API to validate user token
+  //Call email verification API to validate user token
   verifyEmailCode() {
 
     this.homeService.verifyEmail(this.verifyKey).subscribe(
       (response) => {
-      
+
         if (response.code == 200) {
           //  this.router.navigate(['home']);
           this.verify = true;

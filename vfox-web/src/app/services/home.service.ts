@@ -22,6 +22,11 @@ constructor(private httpService: HttpService, private configuration: Configurati
        });
      }
 
+     getCaptcha(){
+      return this.httpService.post(this.configuration.API_GET_CAPTCHA, {
+      });
+     }
+
 
   
 }

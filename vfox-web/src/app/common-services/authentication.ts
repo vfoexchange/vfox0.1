@@ -16,8 +16,9 @@ export class Authentication {
 
 
   logout() {
-        localStorage.clear();
-        //this.signOut();
+    localStorage.removeItem('token');
+    localStorage.removeItem('loginDataDetail');
+    localStorage.removeItem('isSplashShow');
     return Observable.of(true);
 
   }

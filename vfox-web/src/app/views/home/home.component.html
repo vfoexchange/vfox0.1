@@ -1,24 +1,25 @@
 <div class="container">
     <!--Home Header Starts here-->
     <nav class="my-2 my-md-0 top_nav">
-        <a class="p-0 m-2"  [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
-        <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
+        <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
+        <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
+        <a class="p-0 m-2" [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
         <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
     </nav>
     <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
+        <h5 class="my-0 mr-md-auto">
+            <img src="assets/img/vfox_logo.png" alt="VFOX" />
+        </h5>
         <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN' | translate}}</a>
     </div>
     <!--Home Header Ends here-->
-    <div class="row pbtm_100">
+    <div class="row">
         <!--Home Left Container Starts here-->
         <div class="col-lg-8 col-md-7">
-            <div class="home_heading">Welcome to VFOX<br/> (Virtual Family Office Exchange)</div>
+            <div class="home_heading">Welcome to VFOX
+                <br/> (Virtual Family Office Exchange)</div>
             <div class="clearfix"></div>
             <p class="home_txt">Preservation and Enhancement of Wealth</p>
-            <p class="home_txt">The Disruptive Wealth Management Platform for Private Wealth<br/>(Individuals, Families & Corporations)</p>
-            <p class="home_txt">VFOX allows private wealth managers enhance their services by partnering with other service providers. Check out the extensive list of services offered through partnerships in the ‘Services’ section.</p>
             <div class="clearfix"></div>
             <p class="home_video">
                 <iframe src="https://www.youtube.com/embed/gn9tXExs20Q" border="0">
@@ -35,50 +36,47 @@
                         <div *ngIf="error" style="color:#ff9800">{{errorMsg}}</div>
                         <div class="form-group">
                             <label for="inputEmail">{{'EMAIL' | translate}}</label>
-                            <input type="email" formControlName="username" maxlength="100" id="inputEmail"
-                                   class="form-control"
-                                   placeholder=""
-                                   required autofocus>
-                            <p class="erros-msg"
-                               *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">
+                            <input type="email" formControlName="username" maxlength="100" id="inputEmail" class="form-control" placeholder="" required
+                                autofocus>
+                            <p class="erros-msg" *ngIf="registerForm.get('username').hasError('required') && registerForm.get('username').touched">
                                 {{'EMAIL_Validate' | translate}}</p>
 
-                            <p class="erros-msg"
-                               *ngIf="registerForm.get('username').hasError('invalidEmailAddress')">{{'EMAIL_Invalid' |
-                                translate}}</p>
+                            <p class="erros-msg" *ngIf="registerForm.get('username').hasError('invalidEmailAddress')">{{'EMAIL_Invalid' | translate}}
+                            </p>
                         </div>
 
                         <div class="form-group">
                             <label for="inputPassword">{{'PASSWORD' | translate}}</label>
-                            <input type="password" formControlName="password" maxlength="20" id="inputPassword"
-                                   class="form-control"
-                                   placeholder=""
-                                   required>
-                            <p class="erros-msg"
-                               *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
+                            <input type="password" formControlName="password" maxlength="20" id="inputPassword" class="form-control" placeholder="" required>
+                            <p class="erros-msg" *ngIf="registerForm.get('password').hasError('required') && registerForm.get('password').touched">
                                 {{'PASS_Req' | translate}}</p>
-                            <p class="erros-msg"
-                               *ngIf="registerForm.get('password').hasError('invalidPassword')">{{'PASS_Policy' |
-                                translate}}</p>
+                            <p class="erros-msg" *ngIf="registerForm.get('password').hasError('invalidPassword')">{{'PASS_Policy' | translate}}
+                            </p>
 
                         </div>
 
                         <div class="form-group">
                             <label for="inputPassword2">{{'CONFIRM_PASS' | translate}}</label>
-                            <input type="password" formControlName="confirmPassword" id="inputPassword2"
-                                   class="form-control" placeholder=""
-                                   required>
-                            <p class="erros-msg"
-                               *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
+                            <input type="password" formControlName="confirmPassword" id="inputPassword2" class="form-control" placeholder="" required>
+                            <p class="erros-msg" *ngIf="registerForm.get('confirmPassword').hasError('required') && registerForm.get('confirmPassword').touched">
                                 {{'PASS_Confirm' | translate}}</p>
-                            <p class="erros-msg"
-                               *ngIf="registerForm.hasError('mismatchedPasswords')">{{'PASS_Match' | translate}}</p>
+                            <p class="erros-msg" *ngIf="registerForm.hasError('mismatchedPasswords')">{{'PASS_Match' | translate}}</p>
                         </div>
-                        <button class="btn btn-lg btn-outline-primary btn-outline-purple btn-block mtop_34"
-                                type="submit" [disabled]="registerForm.invalid">{{'REGISTER' | translate}}
+
+                        <div class="form-group">
+                            <img src="data:image/JPEG;base64,{{captchaImage}}" />
+                            <br>
+                            <a (click)="reloadCaptcha()"> refresh</a>
+                            <input type="text" formControlName="captcha" id="captcha" class="form-control" placeholder="" required>
+                            <p class="erros-msg" *ngIf="registerForm.get('captcha').hasError('required') && registerForm.get('captcha').touched">
+                                Captcha is required</p>
+                        </div>
+
+                        <button class="btn btn-lg btn-outline-primary btn-outline-purple btn-block mtop_34" type="submit" [disabled]="registerForm.invalid">{{'REGISTER' | translate}}
                         </button>
                         <div class="clearfix"></div>
-                        <p class="alrdy_txt mtop_34">{{'ALREADY_Reg' | translate}}<br/>
+                        <p class="alrdy_txt mtop_34">{{'ALREADY_Reg' | translate}}
+                            <br/>
                             <a [routerLink]="['/login']">{{'SIGNIN' | translate}}</a>
                         </p>
                     </form>

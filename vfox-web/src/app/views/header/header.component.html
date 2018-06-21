@@ -1,12 +1,20 @@
 <!--Home Header Starts here-->
 <nav class="my-2 my-md-0 top_nav">
-    <a class="p-0 m-2"  [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
+    <!-- Dashboard route -->
+    <a class="p-0 m-2" *ngIf="currentUser" [routerLink]="['/dashboard']" [routerLinkActive]="['active']">Dashboard</a>
+   <!-- Home route -->
+    <a class="p-0 m-2" *ngIf="!currentUser" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
     <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
     <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-    <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
+    <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
+    <a *ngIf="currentUser" class="p-0 m-r-0" (click)="logout()">Sign Out</a>
 </nav>
 <div class="d-flex flex-column flex-md-row align-items-center home_header">
     <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-    <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
+    <div *ngIf="currentUser" class="user_profile">
+            <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
+            <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
+        </div>
+    <a *ngIf="!currentUser" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
 </div>
 <!--Home Header Ends here-->
