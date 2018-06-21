@@ -25,10 +25,10 @@ body{background:#c03aa5 url(../assets/img/home_bg.jpg) no-repeat; background-siz
 .reg_card{width:265px; float:right;}
 .erros-msg{color:#ff0000; font-size:14px;}
 .reg_form button[disabled]{background:#fff!important; border:solid 1px #ce37a8!important; color:#ce37a8!important; opacity:0.3!important; cursor:auto!important;}
-.welcome_top{font-size:14px; font-weight:500; padding:0 8px 0 12px; margin-top:24px;}
+.welcome_top{font-size:14px; font-weight:500; padding:0 0 0 12px; margin-top:24px;}
 .top_nav{text-align:right; top:44px!important; position:relative;}
 .top_nav a{font-size:18px!important; color:#fff; font-weight:bold; text-decoration:none; outline:none;}
-.user_profile{position:relative; margin-top:5px; margin-right:15px;}
+.user_profile{position:relative; margin-top:5px;}
 .home_footer a{position:relative; bottom:29px; text-decoration:none; padding:0 20px 0 20px; text-align:center; line-height:12px; outline:none;}
 .ser_name{font-size:12px; color:#fff; font-weight:500; padding:10px 0 0 0;}
 .home_footer a img{height:60px; position:absolute; top:-39px; left:50%; right:0; text-align:center; margin-left:0px; transition: all .2s ease-in-out; }
@@ -82,6 +82,7 @@ iframe{border:none; width:258px; height:173px;}
 .top_nav .active{border-bottom:solid 4px rgba(255,255,255,0.5);}
 .static_text{font-size:17px;}
 .founder_img{border: solid 8px rgba(255,255,255,0.2);}
+.refresh_ico i{color:#555;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}
