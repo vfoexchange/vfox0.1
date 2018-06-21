@@ -25,14 +25,6 @@ const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
 
-import {
-  AppAsideModule,
-  AppBreadcrumbModule,
-  AppHeaderModule,
-  AppFooterModule,
-  AppSidebarModule,
-  } from '@coreui/angular'
-
 // Import routing module
 import { AppRoutingModule } from './app.routing';
 
@@ -71,13 +63,8 @@ import { TranslateLangService } from "./services/translate.service";
         ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-    AppAsideModule,
     HttpClientModule,
     HttpModule,
-    AppBreadcrumbModule.forRoot(),
-    AppFooterModule,
-    AppHeaderModule,
-    AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -91,7 +78,7 @@ import { TranslateLangService } from "./services/translate.service";
     }),
      ToastrModule.forRoot({closeButton: true, timeOut: 4000, preventDuplicates: true}),
      BrowserAnimationsModule
-     
+
   ],
   declarations: [
     AppComponent,
