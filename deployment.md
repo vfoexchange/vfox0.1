@@ -4,6 +4,7 @@
  Contain information about the installation process of backend as JAVA and frontend as Angular.
 ### Prerequisites
 ```
+ec2-instance AMI: ami-8d948ced
 Java 1.8+
 Nginx 1.10.3
 ```
@@ -15,7 +16,7 @@ Nginx 1.10.3
     sudo apt-get install nginx
     
 ### Backend
-#### Go to /opt/app/staging/backend/ directory 
+#### Go to /opt/app/staging/backend/ directory (Create this directory strucutre)
     cd /opt/app/staging/backend/
     nohup java -jar vfox-restServer-0.0.1-SNAPSHOT.jar >> vfox.log &
 ### Frontend
@@ -24,7 +25,7 @@ Nginx 1.10.3
 
     Build  webapp  for compiled code
     ng build --prod --aot=true
-    command run in the vfox_web directory. After successfully building, it will create a dist folder in your directory which contains all necessary files built from  webapp.
+    command run in the vfox-web directory. After successfully building, it will create a dist folder in your directory which contains all necessary files built from  webapp.
 
     Now upload all the files in the /dist folder to AWS server in below path
     /opt/app/staging/frontend/
