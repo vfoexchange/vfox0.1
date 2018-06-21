@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `vfox`.`User` (
   `CreatedAt` DATETIME NOT NULL,
   `UpdatedBy` INT NOT NULL,
   `UpdatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`),
+  PRIMARY KEY (`Id`,`UserName`),
   INDEX `FK_USER_ROLE_idx` (`RoleId` ASC),
   CONSTRAINT `FK_USER_ROLE`
     FOREIGN KEY (`RoleId`)
