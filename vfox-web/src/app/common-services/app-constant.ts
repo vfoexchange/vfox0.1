@@ -3,8 +3,8 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    //public ApiUrl:string = 'http://localhost:8080/';
-    public ApiUrl:string = 'http://192.168.10.212:8081/';
+    public ApiUrl:string = 'http://localhost:8080/';
+    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/login';
     public AppMode: string = 'PROD'; //For PROD set 'PROD' mode;
 
