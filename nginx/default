@@ -26,8 +26,8 @@ server {
 server {
         listen 443;
         ssl on;
-        ssl_certificate /home/ubuntu/ssl/e845e04d425fedd9.crt;
-        ssl_certificate_key /home/ubuntu/ssl/vfoexchange.key;
+        ssl_certificate /etc/nginx/ssl/vfoexchange.com.chained.crt;
+        ssl_certificate_key /etc/nginx/ssl/vfoexchange.key;
         server_name www.vfoexchange.com;
         server_tokens off;
 
