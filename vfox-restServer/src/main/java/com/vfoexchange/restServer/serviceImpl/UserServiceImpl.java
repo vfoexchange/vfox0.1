@@ -166,5 +166,11 @@ public class UserServiceImpl implements UserService {
         userDao.saveAdvisorWebsite(advisorWebsite);
     }
 
+    /*
+    Method to fetch advisor's website details
+    */
+    public AdvisorWebsiteDTO fetchAdvisorWebsite(String username) {
+        return userDao.fetchAdvisorWebsite(username);
+    }
 
 }

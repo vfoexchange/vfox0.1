@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.dao;
 
+import com.vfoexchange.restServer.dto.AdvisorWebsiteDTO;
 import com.vfoexchange.restServer.model.AdvisorWebsite;
 import com.vfoexchange.restServer.model.User;
 
@@ -20,5 +21,7 @@ public interface UserDao {
     public void userVerification(String username);
 
     public void saveAdvisorWebsite(AdvisorWebsite advisorWebsite);
+
+    public AdvisorWebsiteDTO fetchAdvisorWebsite(String advisorUsername);
 
 }

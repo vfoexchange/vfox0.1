@@ -7,7 +7,6 @@ import com.vfoexchange.restServer.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +16,13 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
     @Autowired
     private UserService userService;
     @Autowired
     private EmailServices emailServices;
 
-    @Autowired
-    Environment environment;
-
-    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     /*
     Method for adding new user(user can be advisor or admin)
      */
@@ -183,7 +180,7 @@ public class UserController {
     */
     @RequestMapping(value = "/save/advisor/website", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO userVerification(@RequestBody AdvisorWebsiteDTO advisorWebsiteDTO) {
+    public ResponseDTO saveAdvisorWebsite(@RequestBody AdvisorWebsiteDTO advisorWebsiteDTO) {
         ResponseDTO resp = new ResponseDTO();
         try {
             userService.saveAdvisorWebsite(advisorWebsiteDTO);
@@ -194,6 +191,29 @@ public class UserController {
             resp.setCode("400");
             resp.setMsg("Error occurred while saving advisor's website details");
             LOGGER.error("Error occurred while saving advisor's website details" + e.getMessage());
+        }
+        return resp;
+    }
+
+
+    /*
+    Method for fetching Advisor's website details
+    */
+    @RequestMapping(value = "/fetch/advisor/website", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO fetchAdvisorWebsite(@RequestBody UserDTO userDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            AdvisorWebsiteDTO advisorWebsiteDTO = new AdvisorWebsiteDTO();
+            advisorWebsiteDTO = userService.fetchAdvisorWebsite(userDTO.getUsername());
+            resp.setCode("200");
+            resp.setMsg("Advisor's website details fetched successfully");
+            resp.setResult(advisorWebsiteDTO);
+            LOGGER.info("Advisor's website details fetched successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while fetching advisor's website details");
+            LOGGER.error("Error occurred while fetching advisor's website details" + e.getMessage());
         }
         return resp;
     }

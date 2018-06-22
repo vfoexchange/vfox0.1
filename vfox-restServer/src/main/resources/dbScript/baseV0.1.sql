@@ -207,6 +207,7 @@ CREATE TABLE IF NOT EXISTS `vfox`.`AdvisorWebsite` (
   `UpdatedBy` INT NOT NULL,
   `UpdatedAt` DATETIME NOT NULL,
   PRIMARY KEY (`Id`),
+  PRIMARY KEY (`AdvisorId`),
   INDEX `FK_ADVISORWEBSITE_USER_idx` (`AdvisorId` ASC),
   CONSTRAINT `FK_ADVISORWEBSITE_USER`
     FOREIGN KEY (`AdvisorId`)

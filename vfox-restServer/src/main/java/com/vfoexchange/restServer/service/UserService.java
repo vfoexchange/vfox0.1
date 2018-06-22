@@ -23,4 +23,6 @@ public interface UserService extends UserDetailsService {
 
     public void saveAdvisorWebsite(AdvisorWebsiteDTO advisorWebsiteDTO);
 
+    public AdvisorWebsiteDTO fetchAdvisorWebsite(String username);
+
 }

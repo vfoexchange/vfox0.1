@@ -1,6 +1,7 @@
 package com.vfoexchange.restServer.daoImpl;
 
 import com.vfoexchange.restServer.dao.UserDao;
+import com.vfoexchange.restServer.dto.AdvisorWebsiteDTO;
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
 import com.vfoexchange.restServer.model.AdvisorWebsite;
 import com.vfoexchange.restServer.model.User;
@@ -95,5 +96,17 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update("INSERT INTO vfox.AdvisorWebsite (AdvisorId, DomainName, Header, Description, Logo, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, ?, ?, 1, now(), 1, now())",
                 advisorWebsite.getAdvisorId(), advisorWebsite.getDomainName(), advisorWebsite.getHeader(), advisorWebsite.getDescription(), advisorWebsite.getLogo());
     }
+
+    /*
+    Method used to fetch advisor's website details
+    */
+    public AdvisorWebsiteDTO fetchAdvisorWebsite(String advisorUsername) {
+        AdvisorWebsiteDTO advisorWebsiteDTO = (AdvisorWebsiteDTO) jdbcTemplate.queryForObject("SELECT * FROM AdvisorWebsite where AdvisorId IN (Select id from User where UserName= ?)",
+                new Object[]{advisorUsername}, new BeanPropertyRowMapper<>(AdvisorWebsiteDTO.class));
+        if (advisorWebsiteDTO == null)
+            throw new UserNotFoundException(advisorUsername);
+        return advisorWebsiteDTO;
+    }
+
 }
 
