@@ -82,7 +82,9 @@ iframe{border:none; width:258px; height:173px;}
 .top_nav .active{border-bottom:solid 4px rgba(255,255,255,0.5);}
 .static_text{font-size:17px;}
 .founder_img{border: solid 8px rgba(255,255,255,0.2);}
-.refresh_ico i{color:#555;}
+.refresh_ico i{color:#555; margin-left:5px;}
+.captcha_con{width:180px; height:40px; background:#eeeeee; text-align:center; line-height:40px; color:#000; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; font-family: 'Fredericka the Great', cursive!important; font-size:30px;}
+iframe.gmap{width:100%!important; height:400px!important;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}

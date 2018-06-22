@@ -11,7 +11,12 @@
             <div class="card-body ins_body justify-content-center align-items-center">
                 <div class="row">
                     <div class="col-lg-4 ins_img">
-                        <img src="data:image/png;base64,{{provider.logo}}" class="img-fluid"/></div>
+                            <img *ngIf="provider.name=='Cool Springs Financial'" src="assets/img/service_provider/coolsprings.png" class="img-fluid"/>
+                            <img *ngIf="provider.name=='Restricted Property Trust'" src="assets/img/service_provider/restricted.jpg" class="img-fluid"/>
+                            <img *ngIf="provider.name=='Ornstein-Schuler Investments'" src="assets/img/service_provider/ornstein.jpg" class="img-fluid"/>
+                            <img *ngIf="provider.name=='Stryde'" src="assets/img/service_provider/stryde.png" class="img-fluid"/>
+                        <!-- <img src="data:image/png;base64,{{provider.logo}}" class="img-fluid"/>-->
+                    </div> 
                     <div class="col-lg-8"><p class="ins_desc min_150">{{provider.longDesc}}</p>
                         <p class="lrn_more"><a href="{{provider.redirectUrl}}" target="_blank" (click)="addBilling(provider.name)" >Learn more &gt;</a></p></div>
                 </div>

@@ -4,6 +4,7 @@ import { TranslateLangService } from '../../services/translate.service';
 import { UtilService } from "../../common-services/util-services";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Configuration } from "../../common-services/app-constant";
+import { Authentication } from "../../common-services/authentication";
 import { ProvidersService } from '../../services/providers.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -18,7 +19,7 @@ export class DefaultLayoutComponent {
   ServiceName: any;
   currentUser: any;
   isCreatingAccount: boolean ;
-  constructor(private utilService: UtilService, private router: Router, private providersService: ProvidersService, private _toastrService: ToastrService,
+  constructor(private utilService: UtilService, private router: Router, private auth: Authentication, private providersService: ProvidersService, private _toastrService: ToastrService,
     private configuration: Configuration, private translate: TranslateService, private translateService: TranslateLangService) {
 
       
@@ -68,7 +69,7 @@ export class DefaultLayoutComponent {
   }
 
   //Logout current user
-  logout() {
+ /* logout() {
     //this.token = undefined;
     localStorage.removeItem('token');
     localStorage.removeItem('loginDataDetail');
@@ -77,5 +78,12 @@ export class DefaultLayoutComponent {
     localStorage.clear();
     this.router.navigate(['/']);
 
+  } */
+  logout() {
+    this.auth.logout().subscribe(
+      () => {
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

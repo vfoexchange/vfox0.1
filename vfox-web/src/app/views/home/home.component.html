@@ -1,3 +1,4 @@
+<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great" rel="stylesheet">
 <div class="container">
     <!--Home Header Starts here-->
     <nav class="my-2 my-md-0 top_nav">
@@ -13,7 +14,7 @@
         <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN' | translate}}</a>
     </div>
     <!--Home Header Ends here-->
-    <div class="row">
+    <div class="row pbtm_100">
         <!--Home Left Container Starts here-->
         <div class="col-lg-8 col-md-7">
             <div class="home_heading">Welcome to VFOX
@@ -64,9 +65,8 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="data:image/JPEG;base64,{{captchaImage}}" />
-                            <br>
-                            <a (click)="reloadCaptcha()"> refresh</a>
+                            <div class="float-left"><div class="captcha_con">{{captchaValue}}</div><!--<img src="data:image/JPEG;base64,{{captchaImage}}" />--></div>
+                            <div class="float-left"><a (click)="reloadCaptcha()" class="refresh_ico"><i class="fa fa-refresh"></i></a></div>
                             <input type="text" formControlName="captcha" id="captcha" class="form-control" placeholder="" required>
                             <p class="erros-msg" *ngIf="registerForm.get('captcha').hasError('required') && registerForm.get('captcha').touched">
                                 Captcha is required</p>
