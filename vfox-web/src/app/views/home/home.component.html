@@ -70,6 +70,7 @@
                             <input type="text" formControlName="captcha" id="captcha" class="form-control" placeholder="" required>
                             <p class="erros-msg" *ngIf="registerForm.get('captcha').hasError('required') && registerForm.get('captcha').touched">
                                 Captcha is required</p>
+                                <p class="erros-msg" *ngIf="captchaError">Invalid captcha !</p>
                         </div>
 
                         <button class="btn btn-lg btn-outline-primary btn-outline-purple btn-block mtop_34" type="submit" [disabled]="registerForm.invalid">{{'REGISTER' | translate}}

@@ -17,8 +17,8 @@ export class HomeComponent {
   //res: any;
   error: boolean = false;
   errorMsg: string = '';
-  captchaImage: string;
   captchaValue: string;
+  captchaError: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService
@@ -58,7 +58,6 @@ export class HomeComponent {
             this.registerForm.reset();
 
           }
-          this.captchaImage = '';
           this.captchaValue = '';
           this.getCaptcha();
         },
@@ -75,7 +74,8 @@ export class HomeComponent {
 
     }
   }else{
-    this._toastrService.error("Invalid captcha !", 'Oops!');
+    //captcha error
+    this.captchaError = true;
   }
 
   }
@@ -85,15 +85,15 @@ export class HomeComponent {
   }
 
   getCaptcha() {
-
+    this.captchaError = false;
     this.homeService.getCaptcha().subscribe(
       (response) => {
-        this.captchaImage = response.captcha;
+
         this.captchaValue = response.captchCode;
         if (response.code == 200) {
-          this.captchaImage = response.captcha;
+
         } else {
-         // this.captchaImage = '';
+         
         }
       },
 
@@ -124,25 +124,7 @@ export class VerifyEmailPageComponent {
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService) {
-    //translate.setDefaultLang('en');
-    /* 
-                 this.sub = this.route.params.subscribe(
-               (param: any) => {
-                  // this.verifyKey = param['token'];
-   
-               });
-           this.route.queryParams.subscribe(params => {
-           this.verifyKey = params['startdate'];
-   
-               });
-   
-           this.route.params.subscribe(params => {
-               this.verifyKey = params['id'];   //<----- + sign converts string value to number
-           });
-   
-   //last working
-       //
-   */
+
     //Get token id from URL
     this.verifyKey = this.route.snapshot.paramMap.get('id');
     this.verifyEmailCode();
