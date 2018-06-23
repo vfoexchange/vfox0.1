@@ -60,6 +60,7 @@ export class HomeComponent {
           }
           this.captchaImage = '';
           this.captchaValue = '';
+          this.getCaptcha();
         },
 
         (error) => {
@@ -87,7 +88,6 @@ export class HomeComponent {
 
     this.homeService.getCaptcha().subscribe(
       (response) => {
-        debugger
         this.captchaImage = response.captcha;
         this.captchaValue = response.captchCode;
         if (response.code == 200) {
