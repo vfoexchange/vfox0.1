@@ -2,6 +2,7 @@ package com.vfoexchange.restServer.controller;
 
 import com.vfoexchange.restServer.dto.*;
 import com.vfoexchange.restServer.model.Captcha;
+import com.vfoexchange.restServer.model.Mail;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
@@ -9,6 +10,7 @@ import com.vfoexchange.restServer.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +26,8 @@ import java.util.List;
 @RestController
 public class UserController {
 
+    @Autowired
+    private Environment environment;
     @Autowired
     private UserService userService;
     @Autowired
@@ -48,8 +52,13 @@ public class UserController {
             return responseEntity;
         }
         try {
+            Mail mail = new Mail();
+            mail.setFrom(environment.getProperty("spring.mail.username"));
+            mail.setTo(userDto.getUsername());
+            mail.setSubject("Verify Your Email Address");
+            mail.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(userDto.getUsername()))));
 
-            emailServices.sendMail(userDto.getUsername());
+            emailServices.sendMail(mail);
             userService.addUser(userDto);
             resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Your account has been created,  please verify it by clicking the activation link that has been send to your email.");
