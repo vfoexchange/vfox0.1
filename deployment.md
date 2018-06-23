@@ -44,12 +44,13 @@ Docker (Temporary)
     ng build --prod --aot=true
     command run in the vfox-web directory. After successfully building, it will create a dist folder in your directory which contains all necessary files built from  webapp.
 
-    Now upload all the files in the /dist folder to AWS server in below path
+    Now upload all the files AND directories in the /dist folder to AWS server in below path.
+    Note: You must use scp -r to recurse thru all directories.
+    scp -r -i <pem file> dist/* ubuntu@machine:/tmp/dist
+    
     /opt/app/staging/frontend/
     
     cd /etc/nginx/sites-available/  
-    Change port and webapp path in default file as -
-    root /opt/app/staging/frontend;
     
     sudo /etc/init.d/nginx restart
 
