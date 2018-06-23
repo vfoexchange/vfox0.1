@@ -30,7 +30,7 @@ To download the MySQL Community Edition image, run this command:
 
     docker pull mysql/mysql-server:tag
                 
-Thetag is the label for the image version you want to pull (for example,5.5,5.6,5.7,8.0,
+The tag is the label for the image version you want to pull (for example,5.5,5.6,5.7,8.0,
 orlatest). If:tag is omitted, thelatest label is used, and the image for the latest GA version of
 MySQL Community Server is downloaded. Refer to the list of tags for available versions on
 themysql/mysql-server page in the Docker Hub.
@@ -47,8 +47,7 @@ You can list downloaded Docker images with this command:
 
 Start a new Docker container for the MySQL Community Server with this command:
 
-    shell>  docker run -p 3306:3306 --name=vfox-mysql -e MYSQL_ROOT_PASSWORD=vfox -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:latest
-            --default-authentication-plugin=mysql_native_password --character-set-server=latin1 --collation-server=latin1_swedish_ci
+    shell>  docker run -p 3306:3306 --name=vfox-mysql -e MYSQL_ROOT_PASSWORD=vfox -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:latest --default-authentication-plugin=mysql_native_password --character-set-server=latin1 --collation-server=latin1_swedish_ci
 
 The--name option, for supplying a custom name for your server container (mysql1 in the example),
 is optional; if no container name is supplied, a random one is generated. If the Docker image of the
@@ -67,7 +66,7 @@ The container initialization might take some time. When the server is ready for 
 the container in the output of thedocker ps command changes from(health:
 starting) to(healthy).
 
-The-d option used in thedocker run command above makes the container run in the background.
+The -d option used in thedocker run command above makes the container run in the background.
 Use this command to monitor the output from the container:
 
       docker logs mysql1
@@ -125,8 +124,11 @@ open rest client and request send to http://localhost:8080/ url with required pa
 ### Frontend
 #### Go to the vfox-web directory.
     Install updated Node.js 
+        brew install nodejs
     Install the Angular CLI globally.
+        brew install angular-cli
     npm install
+    npm audit fix
     npm start
 open your browser on
 http://localhost:4200/
