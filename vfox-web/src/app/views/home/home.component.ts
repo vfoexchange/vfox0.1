@@ -43,6 +43,7 @@ export class HomeComponent {
   //After submit advisor registration form post data to API server
   onSubmit() {
     let obj = this.registerForm.value;
+    //validate captcha
     if(obj.captcha == this.captchaValue){
     if (obj.username !== '' || obj.password !== '') {
       this.homeService.register(obj.username, obj.password).subscribe(
@@ -80,15 +81,17 @@ export class HomeComponent {
 
   }
 
+  //Refresh captcha
   reloadCaptcha() {
     this.getCaptcha();
   }
 
+  //Get captcha from server
   getCaptcha() {
     this.captchaError = false;
     this.homeService.getCaptcha().subscribe(
       (response) => {
-
+        //Assign captcah value
         this.captchaValue = response.captchCode;
         if (response.code == 200) {
 
