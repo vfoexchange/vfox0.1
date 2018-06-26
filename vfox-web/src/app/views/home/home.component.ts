@@ -24,6 +24,7 @@ export class HomeComponent {
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService
   ) {
     translate.setDefaultLang('en');
+
   }
 
   ngOnInit() {
@@ -43,39 +44,39 @@ export class HomeComponent {
   //After submit advisor registration form post data to API server
   onSubmit() {
     let obj = this.registerForm.value;
-    if(obj.captcha == this.captchaValue){
-    if (obj.username !== '' || obj.password !== '') {
-      this.homeService.register(obj.username, obj.password).subscribe(
-        (response) => {
-          if (this.utilService.isEmpty(response)) {
+    if (obj.captcha == this.captchaValue) {
+      if (obj.username !== '' || obj.password !== '') {
+        this.homeService.register(obj.username, obj.password).subscribe(
+          (response) => {
+            if (this.utilService.isEmpty(response)) {
+              this._toastrService.error("Something went wrong please try again", 'Oops!');
+            }
+            if (response.code == 200) {
+              this._toastrService.success(response.msg);
+              this.registerForm.reset();
+            } else {
+              this._toastrService.error(response.msg, 'Oops!');
+              this.registerForm.reset();
+
+            }
+            this.captchaImage = '';
+            this.captchaValue = '';
+          },
+
+          (error) => {
             this._toastrService.error("Something went wrong please try again", 'Oops!');
-          }
-          if (response.code == 200) {
-            this._toastrService.success(response.msg);
-            this.registerForm.reset();
-          } else {
-            this._toastrService.error(response.msg, 'Oops!');
-            this.registerForm.reset();
+            this.utilService.logError(error);
+          },
+          () => { }
 
-          }
-          this.captchaImage = '';
-          this.captchaValue = '';
-        },
+        );
+      } else {
+        this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
 
-        (error) => {
-          this._toastrService.error("Something went wrong please try again", 'Oops!');
-          this.utilService.logError(error);
-        },
-        () => { }
-
-      );
+      }
     } else {
-      this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
-
+      this._toastrService.error("Invalid captcha !", 'Oops!');
     }
-  }else{
-    this._toastrService.error("Invalid captcha !", 'Oops!');
-  }
 
   }
 
@@ -87,13 +88,12 @@ export class HomeComponent {
 
     this.homeService.getCaptcha().subscribe(
       (response) => {
-        debugger
         this.captchaImage = response.captcha;
         this.captchaValue = response.captchCode;
         if (response.code == 200) {
           this.captchaImage = response.captcha;
         } else {
-         // this.captchaImage = '';
+          // this.captchaImage = '';
         }
       },
 

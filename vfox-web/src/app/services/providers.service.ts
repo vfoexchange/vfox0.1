@@ -123,7 +123,6 @@ export class ProvidersService {
 
   //Set Get Update services page buttons
   bindUserServices(response) {
-    debugger
     this.ServiceName = this.configuration.ServiceName;
     this.serviceStatus = this.configuration.ServiceStatus;
 

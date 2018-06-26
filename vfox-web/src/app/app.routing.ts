@@ -9,7 +9,7 @@ import { P500Component } from './views/error/500.component';
 import { AuthGuard } from './common-services/auth-guard-service';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent, VerifyEmailPageComponent } from './views/home/home.component';
-import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
 
 
 
@@ -77,14 +77,28 @@ export const routes: Routes = [
       title: 'What We Do Page'
     }
   },
+  //Static service pages
   {
-    path: 'homepage',
-    component: HomepageComponent,
+    path: 'service/tax_mitigation',
+    component: ServiceTaxMitiComponent,
     data: {
-      title: 'Home Page'
+      title: 'Tax Mitigation'
     }
   },
-
+  {
+    path: 'service/investment',
+    component: ServiceInvestmentComponent,
+    data: {
+      title: 'Tax Investment'
+    }
+  },
+  {
+    path: 'service/insurance',
+    component: ServiceInsuranceComponent,
+    data: {
+      title: 'Tax Insurance'
+    }
+  },
 
   {
     path: 'dashboard',

@@ -7,32 +7,8 @@
 <!--Splash page Ends here-->
 <div class="container" *ngIf="!isCreatingAccount">
     <!--Home Header Starts here-->
-    <nav class="my-2 my-md-0 top_nav">
-        <a class="p-0 m-2"  [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
-        <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <span dropdown [autoClose]="true" container="body">
-                <a id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
-            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
-                role="menu" aria-labelledby="button-nested">
-                <li role="menuitem"><a class="dropdown-item" href="#">Tax Mitigation</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Insurance</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Alternate Investment</a></li>
-            </ul>
-                </span>
-        <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-        <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-        <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
-    </nav>
-    <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto">
-            <img src="assets/img/vfox_logo.png" alt="VFOX" />
-        </h5>
-        <div class="user_profile">
-            <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
-            <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
-        </div>
-    </div>
-    <!--Home Header Ends here-->
+    <header-nav></header-nav>
+     <!--Home Header Ends here-->
     <div class="row">
         <!--Home Left Container Starts here-->
         <div class="col-lg-12">

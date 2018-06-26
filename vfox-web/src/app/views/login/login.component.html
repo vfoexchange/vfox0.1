@@ -1,24 +1,6 @@
 <div class="container">
     <!--Home Header Starts here-->
-    <nav class="my-2 my-md-0 top_nav">
-        <a class="p-0 m-2"  [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
-        <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <span dropdown [autoClose]="true" container="body">
-                <a id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
-            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
-                role="menu" aria-labelledby="button-nested">
-                <li role="menuitem"><a class="dropdown-item" href="#">Tax Mitigation</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Insurance</a></li>
-                <li role="menuitem"><a class="dropdown-item" href="#">Alternate Investment</a></li>
-            </ul>
-                </span>
-        <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-        <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-    </nav>
-    <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-        <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
-    </div>
+    <header-nav></header-nav>
     <!--Home Header Ends here-->
     <div class="row pbtm_100">
         <!--Home Left Container Starts here-->

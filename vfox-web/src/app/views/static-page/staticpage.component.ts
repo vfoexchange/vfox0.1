@@ -44,5 +44,38 @@ export class WhatweComponent {
 
 }
 
+//Services static page
+//Tax Mitigation page
+@Component({
+  templateUrl: 'service-pages/tax-mitigation.component.html'
+})
+export class ServiceTaxMitiComponent {
+
+  constructor() {
+  }
+
+}
+
+//Insurance page
+@Component({
+  templateUrl: 'service-pages/insurance.component.html'
+})
+export class ServiceInsuranceComponent {
+
+  constructor() {
+  }
+
+}
+
+//Alternate Investment page
+@Component({
+  templateUrl: 'service-pages/investment.component.html'
+})
+export class ServiceInvestmentComponent {
+
+  constructor() {
+  }
+
+}
 
 
