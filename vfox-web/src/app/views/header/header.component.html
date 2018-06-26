@@ -4,6 +4,7 @@
     <!-- Dashboard route -->
     <a class="p-0 m-2"  [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
   <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
+    <a class="p-0 m-2">Services <span class="fa fa-caret-down"></span></a>
     <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
     <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
     <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
@@ -24,6 +25,7 @@
 
                 <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
                 <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
+                <a class="p-0 m-2">Services <span class="fa fa-caret-down"></span></a>
                 <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
                 <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
                  </nav>
