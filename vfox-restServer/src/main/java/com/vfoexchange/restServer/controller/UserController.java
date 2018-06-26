@@ -25,16 +25,13 @@ import java.util.List;
 
 @RestController
 public class UserController {
-
+    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private Environment environment;
     @Autowired
     private UserService userService;
     @Autowired
     private EmailServices emailServices;
-
-
-    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     /*
     Method for adding new user(user can be advisor or admin)
      */
@@ -72,7 +69,6 @@ public class UserController {
         }
         return responseEntity;
     }
-
 
     /*
     Method for adding new client
