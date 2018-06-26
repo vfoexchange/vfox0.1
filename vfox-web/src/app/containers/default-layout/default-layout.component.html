@@ -10,7 +10,15 @@
     <nav class="my-2 my-md-0 top_nav">
         <a class="p-0 m-2"  [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
         <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <a class="p-0 m-2">Services <span class="fa fa-caret-down"></span></a>
+        <span dropdown [autoClose]="true" container="body">
+                <a id="button-nested" dropdownToggle type="button" class="dropdown-toggle p-0 m-2">Services</a>
+            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-nested">
+                <li role="menuitem"><a class="dropdown-item" href="#">Tax Mitigation</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Insurance</a></li>
+                <li role="menuitem"><a class="dropdown-item" href="#">Alternate Investment</a></li>
+            </ul>
+                </span>
         <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
         <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
         <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
