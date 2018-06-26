@@ -82,13 +82,12 @@ export class HttpService {
 
   }
 
-
   private extractData(response: Response) {
     return response;
   }
 
   private handleError = (error: any) => {
-     return Observable.of([]);
+    return Observable.of([]);
   }
 
 }

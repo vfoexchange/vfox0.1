@@ -6,30 +6,41 @@
     <div class="clearfix">&nbsp;</div>
     <div class="row pbtm_100 con_form">
         <div class="col-lg-5">
-            <form>
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
                 <label>First Name</label>
-                <input type="text" class="form-control form-control-new">
+                <input type="text" formControlName="firstName" class="form-control form-control-new">
             </div>
                 <div class="form-group">
                     <label>Last Name</label>
-                    <input type="text" class="form-control form-control-new">
+                    <input type="text" formControlName="lastName" class="form-control form-control-new">
                 </div>
                 <div class="form-group">
                     <label>Phone <sup>*</sup></label>
-                    <input type="text" class="form-control form-control-new">
+                    <input type="text" formControlName="mobile" class="form-control form-control-new" required>
+                    <p class="erros-msg" *ngIf="contactForm.get('mobile').hasError('required') && contactForm.get('mobile').touched">
+                      Phone is required</p>
+                    <p class="erros-msg" *ngIf="contactForm.get('mobile').hasError('invalidMobileNumber')">
+                     Please enter valid phone
+                    </p>
                 </div>
                 <div class="form-group">
                     <label>Email <sup>*</sup></label>
-                    <input type="email" class="form-control form-control-new">
+                    <input type="email" formControlName="email" class="form-control form-control-new" required>
+                    <p class="erros-msg" *ngIf="contactForm.get('email').hasError('required') && contactForm.get('email').touched">
+                     Email is required</p>
+
+                    <p class="erros-msg" *ngIf="contactForm.get('email').hasError('invalidEmailAddress')">Please enter valid email
+                    </p>
                 </div>
                 <div class="form-group">
                     <label>Comments/Questions/Best time to call</label>
-                    <textarea class="form-control form-control-new"></textarea>
+                    <textarea formControlName="comment" class="form-control form-control-new"></textarea>
                 </div>
                 <div class="float-right">
-                    <a class="btn btn-outline-primary btn-outline-white" [routerLink]="">Submit</a>
-                </div>
+                        <button class="btn btn-outline-primary btn-outline-white" type="submit" [disabled]="contactForm.invalid">Submit
+                            </button>
+                    </div>
             </form>
         </div>
         <div class="col-lg-1"></div>

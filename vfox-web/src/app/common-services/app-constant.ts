@@ -34,6 +34,7 @@ export class Configuration {
     public API_UPDATE_SERVICE: string = 'update/advisor/services';
     public API_SERVICE_BILLING: string = 'update/provider/billing';
     public API_GET_CAPTCHA: string = 'user/captcha';
+    public API_POST_CONTACT: string = 'enquiring/contact/details';
 
 
       //*****************************Api URLs Ends *****************************/
