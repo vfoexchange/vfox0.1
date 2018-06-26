@@ -50,8 +50,6 @@ public class DbConfig {
         mailProperties.put("mail.smtp.auth", env.getProperty("spring.mail.properties.mail.smtp.auth"));
         mailProperties.put("mail.smtp.starttls.enable",  env.getProperty("spring.mail.properties.mail.smtp.starttls.enable"));
         mailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-
-
         mailSender.setJavaMailProperties(mailProperties);
         mailSender.setHost(env.getProperty("spring.mail.host"));
         mailSender.setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
