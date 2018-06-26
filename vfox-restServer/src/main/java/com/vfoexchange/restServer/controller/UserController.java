@@ -59,7 +59,6 @@ public class UserController {
             mail.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(userDto.getUsername()))));
 
             emailServices.sendMail(mail);
-            emailServices.sendMail(userDto.getUsername());
             userService.addUser(userDto);
             resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Your account has been created,  please verify it by clicking the activation link that has been send to your email.");
