@@ -92,6 +92,8 @@ iframe.gmap{width:100%!important; height:360px!important;}
 .con_form textarea{height:75px;}
 .sec_txt a{color:#fff; text-decoration:underline;}
 .sec_txt li{margin:0 0 0 30px;}
+.dropdown-item{font-weight:500!important;}
+.dropdown-item.active, .dropdown-item:active{background:#ce37a8!important;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}
