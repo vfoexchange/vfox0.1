@@ -18,7 +18,7 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
-import { HeaderComponent } from './views/header/header.component';
+import { HeaderComponent, FooterComponent } from './views/header/header.component';
 //import { RegisterComponent } from './views/register/register.component';
 import { HomeComponent, VerifyEmailPageComponent } from './views/home/home.component';
 
@@ -88,6 +88,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     P500Component,
     LoginComponent,
     HeaderComponent,
+    FooterComponent,
     AboutComponent,
     ContactComponent,
     WhatweComponent,

@@ -57,7 +57,7 @@ export class ContactComponent {
       let obj = this.contactForm.value;
       this.homeService.postContact(obj).subscribe(
         (response) => {
-          debugger
+          //debugger
           if (response.code == 200) {
             this._toastrService.success(response.msg);
             this.contactForm.reset();
