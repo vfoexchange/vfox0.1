@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS `vfox`.`User` (
   `CreatedAt` DATETIME NOT NULL,
   `UpdatedBy` INT NOT NULL,
   `UpdatedAt` DATETIME NOT NULL,
-  PRIMARY KEY (`Id`,`UserName`),
+  PRIMARY KEY (`Id`),
+   CONSTRAINT UC_UserName UNIQUE (`UserName`),
   INDEX `FK_USER_ROLE_idx` (`RoleId` ASC),
   CONSTRAINT `FK_USER_ROLE`
     FOREIGN KEY (`RoleId`)
@@ -180,6 +181,10 @@ INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,C
 1,'admin@vfox.com','$10$ZHNiei36NQLDou3DUrxoN.ODhnTzmnCRh2zkbM755QyFyLSilZPTi',1,now(),'A',1,now(),1,now(),1);
 INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
 2,'james@vfoexchange.com','$2a$10$2hOjoc19YcZoi2ZyNLJemuUczsiqMwKQVsiONkZhKD8xDdw97Xpou',2,now(),'A',1,now(),1,now(),1);
+INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
+3,'ajay@vfoexchange.com','$2a$10$2hOjoc19YcZoi2ZyNLJemuUczsiqMwKQVsiONkZhKD8xDdw97Xpou',2,now(),'A',1,now(),1,now(),1);
+INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt,IsFirstLogin) VALUES (
+4,'harshad@vfoexchange.com','$2a$10$2hOjoc19YcZoi2ZyNLJemuUczsiqMwKQVsiONkZhKD8xDdw97Xpou',2,now(),'A',1,now(),1,now(),1);
 
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 1,'Bill Pay','Bill Pay','Bill Pay','A',1,now(),1,now());
