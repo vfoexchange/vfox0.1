@@ -1,9 +1,12 @@
 package com.vfoexchange.restServer.controller;
 
 import com.vfoexchange.restServer.dto.*;
+import com.vfoexchange.restServer.model.Captcha;
+import com.vfoexchange.restServer.model.Mail;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
+import com.vfoexchange.restServer.util.AppUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,20 +15,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 @RestController
 public class UserController {
-
+    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    @Autowired
+    private Environment environment;
     @Autowired
     private UserService userService;
     @Autowired
     private EmailServices emailServices;
-
-    @Autowired
-    Environment environment;
-
-    private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     /*
     Method for adding new user(user can be advisor or admin)
      */
@@ -43,7 +49,13 @@ public class UserController {
             return responseEntity;
         }
         try {
-            emailServices.sendMail(userDto.getUsername());
+            Mail mail = new Mail();
+            mail.setFrom(environment.getProperty("spring.mail.username"));
+            mail.setTo(userDto.getUsername());
+            mail.setSubject("Verify Your Email Address");
+            mail.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(userDto.getUsername()))));
+
+            emailServices.sendMail(mail);
             userService.addUser(userDto);
             resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("Your account has been created,  please verify it by clicking the activation link that has been send to your email.");
@@ -57,7 +69,6 @@ public class UserController {
         }
         return responseEntity;
     }
-
 
     /*
     Method for adding new client
@@ -176,6 +187,52 @@ public class UserController {
             LOGGER.error("Error occurred while updating user verification "+e.getMessage());
         }
         return resp;
+    }
+    /*
+       Add Method for captcha
+       */
+    @RequestMapping(value = "/user/captcha", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseEntity<Captcha> getUserCaptcha() {
+        Captcha captcha = new Captcha();
+        String captchaStr = "";
+        ResponseEntity<Captcha> responseEntity = null;
+        LOGGER.info("------------------In captcha---------------");
+
+        captchaStr = AppUtil.generateCaptchaTextMethod2(6);
+
+        try {
+            int width = 100;
+            int height = 40;
+
+            Color bg = new Color(0, 255, 255);
+            Color fg = new Color(0, 100, 0);
+
+            Font font = new Font("Arial", Font.BOLD, 20);
+            BufferedImage cpimg = new BufferedImage(width, height, BufferedImage.OPAQUE);
+            Graphics g = cpimg.createGraphics();
+
+            g.setFont(font);
+            g.setColor(bg);
+            g.fillRect(0, 0, width, height);
+            g.setColor(fg);
+            g.drawString(captchaStr, 10, 25);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(cpimg, "jpg", baos);
+            baos.flush();
+            baos.close();
+            captcha.setStatusCode(HttpStatus.OK.toString());
+            captcha.setCaptchCode(captchaStr);
+            captcha.setCaptcha(baos.toByteArray());
+            responseEntity = new ResponseEntity<Captcha>(captcha, HttpStatus.OK);
+
+        } catch (IOException ex) {
+            LOGGER.error("Error occurred while geting captcha for verification " + ex.getMessage());
+
+        }
+
+        return responseEntity;
     }
 
 }
