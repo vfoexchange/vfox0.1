@@ -40,21 +40,21 @@
                     </a>
                 </div>
 
-                <div *ngIf="currentUser.role === 'client'" class="col">
-                    <a [routerLink]="['/dashboard']" class="disable_link">
+                <div *ngIf="currentUser.role !== 'client'" class="col">
+                    <a class="disable_link">
                         <img src="assets/img/maintain_users_disable.png" />
                         <div class="ser_name">Maintain
                             <br/>Website</div>
                     </a>
                 </div>
 
-                <div *ngIf="currentUser.role !== 'client'" class="col">
+                <!--<div *ngIf="currentUser.role !== 'client'" class="col">
                     <a [routerLink]="['/dashboard/addclient']" [routerLinkActive]="['active']">
                         <img src="assets/img/maintain_users.png" />
                         <div class="ser_name">Maintain
                             <br/>Website</div>
                     </a>
-                </div>
+                </div> -->
 
                 <div class="col">
                     <a  class="disable_link">
