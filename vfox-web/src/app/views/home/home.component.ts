@@ -17,6 +17,8 @@ export class HomeComponent {
   //res: any;
   error: boolean = false;
   errorMsg: string = '';
+  captchaValue: string;
+  captchaError: boolean = false;
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService
@@ -31,13 +33,18 @@ export class HomeComponent {
       username: new FormControl(null, [Validators.required, ValidationService.emailValidator]),
       password: new FormControl(null, [Validators.required, ValidationService.passwordValidator, Validators.minLength(8)]),
       confirmPassword: new FormControl(null, [Validators.required]),
+      captcha: new FormControl(null, [Validators.required]),
     }, { validator: ValidationService.confirmPasswords('password', 'confirmPassword') });
+
+    this.getCaptcha();
 
   }
 
-//After submit advisor registration form post data to API server
-  onSubmit() {    
+  //After submit advisor registration form post data to API server
+  onSubmit() {
     let obj = this.registerForm.value;
+    //validate captcha
+    if(obj.captcha == this.captchaValue){
     if (obj.username !== '' || obj.password !== '') {
       this.homeService.register(obj.username, obj.password).subscribe(
         (response) => {
@@ -52,6 +59,8 @@ export class HomeComponent {
             this.registerForm.reset();
 
           }
+          this.captchaValue = '';
+          this.getCaptcha();
         },
 
         (error) => {
@@ -65,6 +74,39 @@ export class HomeComponent {
       this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
 
     }
+  }else{
+    //captcha error
+    this.captchaError = true;
+  }
+
+  }
+
+  //Refresh captcha
+  reloadCaptcha() {
+    this.getCaptcha();
+  }
+
+  //Get captcha from server
+  getCaptcha() {
+    this.captchaError = false;
+    this.homeService.getCaptcha().subscribe(
+      (response) => {
+        //Assign captcah value
+        this.captchaValue = response.captchCode;
+        if (response.code == 200) {
+
+        } else {
+         
+        }
+      },
+
+      (error) => {
+        this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      },
+      () => { }
+
+    );
 
   }
 
@@ -85,37 +127,19 @@ export class VerifyEmailPageComponent {
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService) {
-    //translate.setDefaultLang('en');
-    /* 
-                 this.sub = this.route.params.subscribe(
-               (param: any) => {
-                  // this.verifyKey = param['token'];
-   
-               });
-           this.route.queryParams.subscribe(params => {
-           this.verifyKey = params['startdate'];
-   
-               });
-   
-           this.route.params.subscribe(params => {
-               this.verifyKey = params['id'];   //<----- + sign converts string value to number
-           });
-   
-   //last working
-       //
-   */
-//Get token id from URL
+
+    //Get token id from URL
     this.verifyKey = this.route.snapshot.paramMap.get('id');
     this.verifyEmailCode();
 
   }
 
-//Call email verification API to validate user token
+  //Call email verification API to validate user token
   verifyEmailCode() {
 
     this.homeService.verifyEmail(this.verifyKey).subscribe(
       (response) => {
-      
+
         if (response.code == 200) {
           //  this.router.navigate(['home']);
           this.verify = true;

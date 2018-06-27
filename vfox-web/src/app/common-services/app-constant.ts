@@ -4,7 +4,7 @@ export class Configuration {
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
     public ApiUrl:string = 'http://localhost:8080/';
-    //public ApiUrl:string = 'http://192.0.0.20:7070/vfox/';
+    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/login';
     public AppMode: string = 'PROD'; //For PROD set 'PROD' mode;
 
@@ -33,6 +33,7 @@ export class Configuration {
     public API_USER_SERVICE: string = 'get/advisor/services';
     public API_UPDATE_SERVICE: string = 'update/advisor/services';
     public API_SERVICE_BILLING: string = 'update/provider/billing';
+    public API_GET_CAPTCHA: string = 'user/captcha';
 
 
       //*****************************Api URLs Ends *****************************/

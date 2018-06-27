@@ -4,6 +4,7 @@ import { TranslateLangService } from '../../services/translate.service';
 import { UtilService } from "../../common-services/util-services";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Configuration } from "../../common-services/app-constant";
+import { Authentication } from "../../common-services/authentication";
 import { ProvidersService } from '../../services/providers.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -17,22 +18,26 @@ export class DefaultLayoutComponent {
   userServiceStatus: any;
   ServiceName: any;
   currentUser: any;
-  constructor(private utilService: UtilService, private router: Router, private providersService: ProvidersService, private _toastrService: ToastrService,
+  isCreatingAccount: boolean ;
+  constructor(private utilService: UtilService, private router: Router, private auth: Authentication, private providersService: ProvidersService, private _toastrService: ToastrService,
     private configuration: Configuration, private translate: TranslateService, private translateService: TranslateLangService) {
 
-
+      
 
   }
-  isCreatingAccount: boolean = true;
+  
   ngOnInit() {
     //Set service name and status
     this.ServiceName = this.configuration.ServiceName;
     this.userServiceStatus = this.configuration.footerMenu;
 
     this.currentUser = this.utilService.getData('loginDataDetail');
+    this.isCreatingAccount = this.utilService.getData('isSplashShow');
 
-
-    setTimeout(() => { this.isCreatingAccount = false; }, 4000);
+    setTimeout(() => { this.isCreatingAccount = false;
+    //Set Splash false
+    this.utilService.setData(false, 'isSplashShow');
+    }, 4000);
     this.translate.setDefaultLang('en');
     this.getUserService();
   }
@@ -64,13 +69,21 @@ export class DefaultLayoutComponent {
   }
 
   //Logout current user
-  logout() {
+ /* logout() {
     //this.token = undefined;
     localStorage.removeItem('token');
     localStorage.removeItem('loginDataDetail');
+    localStorage.removeItem('isSplashShow');
 
     localStorage.clear();
     this.router.navigate(['/']);
 
+  } */
+  logout() {
+    this.auth.logout().subscribe(
+      () => {
+        this.router.navigate(['/']);
+      }
+    );
   }
 }

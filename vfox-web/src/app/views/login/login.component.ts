@@ -70,6 +70,8 @@ export class LoginComponent {
               }
               
               this.utilService.setData(loginData, 'loginDataDetail');
+              //Set for splash screen 
+              this.utilService.setData(true, 'isSplashShow');
               if(response.result.role == this.configuration.ADVISOR){
                 //Advisor redirect to service page
                 this.router.navigate(['dashboard/selectservices']);
