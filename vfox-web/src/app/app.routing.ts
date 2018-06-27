@@ -9,7 +9,7 @@ import { P500Component } from './views/error/500.component';
 import { AuthGuard } from './common-services/auth-guard-service';
 import { LoginComponent } from './views/login/login.component';
 import { HomeComponent, VerifyEmailPageComponent } from './views/home/home.component';
-import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
 
 
 

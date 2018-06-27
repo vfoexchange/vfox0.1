@@ -6,8 +6,8 @@ import { Response, Http, Headers } from '@angular/http';
 import { UtilService } from "../../common-services/util-services";
 import { ValidationService } from '../../common-services/validation-services';
 import { ToastrService } from 'ngx-toastr';
-//Home  page
-@Component({
+//Home  page ...Not in use
+/*@Component({
   templateUrl: 'home.component.html'
 })
 export class HomepageComponent {
@@ -15,7 +15,7 @@ export class HomepageComponent {
   constructor() {
   }
 
-}
+} */
 //About us page
 @Component({
   templateUrl: 'about.component.html'
