@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -32,6 +31,7 @@ public class UserController {
     private UserService userService;
     @Autowired
     private EmailServices emailServices;
+
     /*
     Method for adding new user(user can be advisor or admin)
      */
@@ -45,7 +45,7 @@ public class UserController {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("This email already exists in our system. Please try another email for registration");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
-            LOGGER.info(userDto.getUsername()+" email already exists in our system.");
+            LOGGER.info(userDto.getUsername() + " email already exists in our system.");
             return responseEntity;
         }
         try {
@@ -81,8 +81,8 @@ public class UserController {
         if (userService.isAleadyExist(clientDetailsDTO.getUsername())) {
             resp.setCode(HttpStatus.ALREADY_REPORTED.toString());
             resp.setMsg("Client already register");
-            responseEntity =  new ResponseEntity<ResponseDTO>(resp,HttpStatus.OK);
-            LOGGER.info(clientDetailsDTO.getUsername()+" client already exists in our system.");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
+            LOGGER.info(clientDetailsDTO.getUsername() + " client already exists in our system.");
             return responseEntity;
         }
         try {
@@ -92,7 +92,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("Client added successfully");
         } catch (Exception e) {
-            LOGGER.error("Client "+e.getMessage());
+            LOGGER.error("Client " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occured while adding new client");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -116,7 +116,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("User details fetched successfully");
         } catch (Exception e) {
-            LOGGER.error("User details "+e.getMessage());
+            LOGGER.error("User details " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching user details");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -141,7 +141,7 @@ public class UserController {
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.info("Advisor services fetched successfully");
         } catch (Exception e) {
-            LOGGER.error("Fetching advisor services "+e.getMessage());
+            LOGGER.error("Fetching advisor services " + e.getMessage());
             resp.setCode(HttpStatus.BAD_REQUEST.toString());
             resp.setMsg("Error occurred while fetching advisor services");
             responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
@@ -164,7 +164,7 @@ public class UserController {
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating advisor services");
-            LOGGER.error("Error occurred while updating advisor services "+e.getMessage());
+            LOGGER.error("Error occurred while updating advisor services " + e.getMessage());
         }
         return resp;
     }
@@ -184,13 +184,14 @@ public class UserController {
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while updating user verification");
-            LOGGER.error("Error occurred while updating user verification "+e.getMessage());
+            LOGGER.error("Error occurred while updating user verification " + e.getMessage());
         }
         return resp;
     }
+
     /*
-       Add Method for captcha
-       */
+    Add Method for captcha
+    */
     @RequestMapping(value = "/user/captcha", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public ResponseEntity<Captcha> getUserCaptcha() {
@@ -233,6 +234,26 @@ public class UserController {
         }
 
         return responseEntity;
+    }
+
+    /*
+    Method for capturing enquiring user contact details
+    */
+    @RequestMapping(value = "/enquiring/contact/details", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ResponseDTO captureContactDetails(@RequestBody EnquiringUserDTO enquiringUserDTO) {
+        ResponseDTO resp = new ResponseDTO();
+        try {
+            userService.captureContactDetails(enquiringUserDTO);
+            resp.setCode("200");
+            resp.setMsg("Enquiring user's contact details captured successfully");
+            LOGGER.info("Enquiring user's contact details captured successfully");
+        } catch (Exception e) {
+            resp.setCode("400");
+            resp.setMsg("Error occurred while capturing enquiring user's contact details");
+            LOGGER.error("Error occurred while capturing enquiring user's contact details " + e.getMessage());
+        }
+        return resp;
     }
 
 }

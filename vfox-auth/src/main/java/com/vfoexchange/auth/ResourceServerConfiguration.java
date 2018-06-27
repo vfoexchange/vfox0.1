@@ -30,6 +30,8 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
                 .authorizeRequests()
                 .antMatchers("/user/verification").permitAll()
                 .antMatchers("/add/*").permitAll()
+                .antMatchers("/user/captcha").permitAll()
+                .antMatchers("/enquiring/contact/details").permitAll()
                 .anyRequest().authenticated();
     }
 

@@ -3,16 +3,18 @@ package com.vfoexchange.restServer.serviceImpl;
 import com.vfoexchange.restServer.dao.ServicesDao;
 import com.vfoexchange.restServer.dao.UserDao;
 import com.vfoexchange.restServer.dao.UserRoleDao;
-import com.vfoexchange.restServer.dto.ClientDetailsDTO;
-import com.vfoexchange.restServer.dto.LinkedServicesDTO;
-import com.vfoexchange.restServer.dto.UserDTO;
-import com.vfoexchange.restServer.dto.UserProfileDTO;
+import com.vfoexchange.restServer.dto.*;
+import com.vfoexchange.restServer.model.Mail;
 import com.vfoexchange.restServer.model.Services;
 import com.vfoexchange.restServer.model.User;
 import com.vfoexchange.restServer.model.UserRole;
+import com.vfoexchange.restServer.service.EmailServices;
 import com.vfoexchange.restServer.service.UserService;
 import com.vfoexchange.restServer.util.AppUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,14 +25,25 @@ import java.util.Map;
 @Service("userService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    UserDao userDao;
+    private static Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
+
+    @Value("${mail.contactus.subject}")
+    private String subject;
+
+    @Value("${mail.contactus.recipients}")
+    private String recipients;
 
     @Autowired
-    UserRoleDao userRoleDao;
+    private UserDao userDao;
 
     @Autowired
-    ServicesDao servicesDao;
+    private UserRoleDao userRoleDao;
+
+    @Autowired
+    private ServicesDao servicesDao;
+
+    @Autowired
+    private EmailServices emailServices;
 
     /*
     Method for advisor registration, encoding password before inserting in db and adding user
@@ -137,15 +150,32 @@ public class UserServiceImpl implements UserService {
         userDao.userVerification(AppUtil.getDecodedString(username));
     }
 
-    public boolean isAleadyExist(String username){
+    /*
+    Method to check id user already exists
+    */
+    public boolean isAleadyExist(String username) {
         boolean result = false;
         try {
             User user = userDao.findByUsername(username);
             if (user != null)
                 result = true;
-        }catch (Exception e){
+        } catch (Exception e) {
             result = false;
         }
         return result;
+    }
+
+    public void captureContactDetails(EnquiringUserDTO enquiringUserDTO) {
+        LOGGER.info("Enquiring user's details are " + enquiringUserDTO.toString());
+        try {
+        Mail mail = new Mail();
+        mail.setTo(recipients);
+        mail.setSubject(subject);
+        mail.setContent(AppUtil.getContactUsMailBody(enquiringUserDTO));
+        emailServices.sendMail(mail);
+        LOGGER.info("Email sent successfully for enquiring user's details");
+        } catch (Exception e) {
+            LOGGER.error("Error occured while sending email" + e);
+        }
     }
 }
