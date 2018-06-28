@@ -59,8 +59,8 @@ export class HomeComponent {
               this.registerForm.reset();
 
             }
-            this.captchaImage = '';
             this.captchaValue = '';
+            this.getCaptcha();
           },
 
           (error) => {
@@ -72,61 +72,26 @@ export class HomeComponent {
         );
       } else {
         this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
-    //validate captcha
-    if(obj.captcha == this.captchaValue){
-    if (obj.username !== '' || obj.password !== '') {
-      this.homeService.register(obj.username, obj.password).subscribe(
-        (response) => {
-          if (this.utilService.isEmpty(response)) {
-            this._toastrService.error("Something went wrong please try again", 'Oops!');
-          }
-          if (response.code == 200) {
-            this._toastrService.success(response.msg);
-            this.registerForm.reset();
-          } else {
-            this._toastrService.error(response.msg, 'Oops!');
-            this.registerForm.reset();
 
-          }
-          this.captchaValue = '';
-          this.getCaptcha();
-        },
-
-        (error) => {
-          this._toastrService.error("Something went wrong please try again", 'Oops!');
-          this.utilService.logError(error);
-        },
-        () => { }
-
-      );
-    } else {
-      this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
       }
     } else {
-      this._toastrService.error("Invalid captcha !", 'Oops!');
+      //captcha error
+      this.captchaError = true;
     }
-  }else{
-    //captcha error
-    this.captchaError = true;
-  }
 
   }
 
-  //Refresh captcha
   reloadCaptcha() {
     this.getCaptcha();
   }
 
-  //Get captcha from server
   getCaptcha() {
     this.captchaError = false;
     this.homeService.getCaptcha().subscribe(
       (response) => {
-        this.captchaImage = response.captcha;
         //Assign captcah value
         this.captchaValue = response.captchCode;
         if (response.code == 200) {
-
         } else {
           // this.captchaImage = '';
         }
@@ -159,7 +124,25 @@ export class VerifyEmailPageComponent {
 
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, private homeService: HomeService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService) {
-
+    //translate.setDefaultLang('en');
+    /* 
+                 this.sub = this.route.params.subscribe(
+               (param: any) => {
+                  // this.verifyKey = param['token'];
+   
+               });
+           this.route.queryParams.subscribe(params => {
+           this.verifyKey = params['startdate'];
+   
+               });
+   
+           this.route.params.subscribe(params => {
+               this.verifyKey = params['id'];   //<----- + sign converts string value to number
+           });
+   
+   //last working
+       //
+   */
     //Get token id from URL
     this.verifyKey = this.route.snapshot.paramMap.get('id');
     this.verifyEmailCode();
