@@ -227,7 +227,7 @@ export class ValidationService {
         if (control.value === undefined || control.value === '' || control.value === null) {
             return null;
         } else {
-            if (control.value.match(/^[1-9][0-9]{8,11}$/)) {
+            if (control.value.match(/^[1-9][0-9]{9,11}$/)) {
                 return null;
             } else {
                 return { 'invalidMobileNumber': true };

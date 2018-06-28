@@ -21,12 +21,21 @@ export class HomeService {
       username: emailKey
     });
   }
+
   //Get captcha API
   getCaptcha() {
     return this.httpService.post(this.configuration.API_GET_CAPTCHA, {
     });
   }
+  postContact(contact: any) {
+    return this.httpService.post(this.configuration.API_POST_CONTACT, {
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      phone: contact.mobile,
+      email: contact.email,
+      comments: contact.comment
+    });
 
-
+  }
 
 }

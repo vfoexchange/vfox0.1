@@ -5,7 +5,7 @@ import { Response, Http, Headers } from '@angular/http';
 import { UtilService } from "../../common-services/util-services";
 import { Authentication } from "../../common-services/authentication";
 import { ToastrService } from 'ngx-toastr';
-
+//Header
 @Component({
   moduleId: module.id,
   selector: 'header-nav',
@@ -14,7 +14,7 @@ import { ToastrService } from 'ngx-toastr';
 export class HeaderComponent {
   currentUser: any;
 
-  constructor(private utilService: UtilService,private router: Router, private auth: Authentication,) {
+  constructor(private utilService: UtilService, private router: Router, private auth: Authentication, ) {
     //Get current user
     this.currentUser = this.utilService.getData('loginDataDetail');
 
@@ -27,6 +27,16 @@ export class HeaderComponent {
       }
     );
   }
+}
 
+//Footer
+@Component({
+  moduleId: module.id,
+  selector: 'footer-nav',
+  templateUrl: 'footer.component.html'
+})
+export class FooterComponent {
 
+  constructor() {
+  }
 }

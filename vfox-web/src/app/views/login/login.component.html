@@ -1,15 +1,6 @@
 <div class="container">
     <!--Home Header Starts here-->
-    <nav class="my-2 my-md-0 top_nav">
-        <a class="p-0 m-2"  [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
-        <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-        <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-    </nav>
-    <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-        <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
-    </div>
+    <header-nav></header-nav>
     <!--Home Header Ends here-->
     <div class="row pbtm_100">
         <!--Home Left Container Starts here-->
@@ -17,8 +8,8 @@
             <div class="home_heading">Welcome to VFOX<br/> (Virtual Family Office Exchange)</div>
             <div class="clearfix"></div>
             <p class="home_txt">Preservation and Enhancement of Wealth</p>
-            <p class="home_txt">The Disruptive Wealth Management Platform for Private Wealth<br/>(Individuals, Families & Corporations)</p>
-            <p class="home_txt">VFOX allows private wealth managers enhance their services by partnering with other service providers. Check out the extensive list of services offered through partnerships in the ‘Services’ section.</p>
+            <p class="sec_txt">The Disruptive Wealth Management Platform for Private Wealth<br/>(Individuals, Families & Corporations)</p>
+            <p class="sec_txt">VFOX allows private wealth managers enhance their services by partnering with other service providers. Check out the extensive list of services offered through partnerships in the ‘Services’ section.</p>
             <div class="clearfix"></div>
             <p class="home_video">
                 <iframe src="https://www.youtube.com/embed/gn9tXExs20Q" border="0">
@@ -77,7 +68,7 @@
     </div>
 </div>
 <!--Home Footer Starts here-->
-<div class="home_footer m_home_footer"></div>
+<footer-nav></footer-nav>
 <!--Home Footer Ends here-->
 
 

@@ -1,37 +1,54 @@
 <!--Home Header Starts here-->
 <div *ngIf="currentUser">
-<nav class="my-2 my-md-0 top_nav">
-    <!-- Dashboard route -->
-    <a class="p-0 m-2"  [routerLink]="['/dashboard']" [routerLinkActive]="['active']">Dashboard</a>
-  <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-    <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-    <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-    <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
-</nav>
-<div class="d-flex flex-column flex-md-row align-items-center home_header">
-    <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-    <div class="user_profile">
-            <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
+    <nav class="my-2 my-md-0 top_nav">
+        <!-- Dashboard route -->
+        <a class="p-0 m-2" [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
+        <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
+        <span dropdown [autoClose]="true" container="body">
+            <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+        <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
+            role="menu" aria-labelledby="button-nested">
+            <li [routerLink]="['/service/tax_mitigation']" role="menuitem"><a class="dropdown-item" >Tax Mitigation</a></li>
+            <li [routerLink]="['/service/insurance']" role="menuitem"><a class="dropdown-item" >Insurance</a></li>
+            <li [routerLink]="['/service/investment']" role="menuitem"><a class="dropdown-item" >Alternate Investment</a></li>
+        </ul>
+            </span>
+        <a class="p-0 m-2" [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
+        <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
+        <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
+    </nav>
+    <div class="d-flex flex-column flex-md-row align-items-center home_header">
+        <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
+        <div class="user_profile">
+            <img src="assets/img/default_profile.png" alt="Profile" class="float-left"/>
             <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
         </div>
-   
-</div>
+
+    </div>
 </div>
 
 
 <div *ngIf="!currentUser">
-        <nav class="my-2 my-md-0 top_nav">
-
-                <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
-                <a class="p-0 m-2"  [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-                <a class="p-0 m-2"  [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-                <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-                 </nav>
-            <div class="d-flex flex-column flex-md-row align-items-center home_header">
-                    <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
-                   
-                    <a class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
-                </div>
+    <nav class="my-2 my-md-0 top_nav">
+        <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
+        <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
+        <span dropdown [autoClose]="true" container="body">
+                <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu"
+                role="menu" aria-labelledby="button-nested">
+                <li [routerLink]="['/service/tax_mitigation']" role="menuitem"><a class="dropdown-item" >Tax Mitigation</a></li>
+                <li [routerLink]="['/service/insurance']" role="menuitem"><a class="dropdown-item" >Insurance</a></li>
+                <li [routerLink]="['/service/investment']" role="menuitem"><a class="dropdown-item" >Alternate Investment</a></li>
+            </ul>
+                </span>
+        <a class="p-0 m-2" [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
+        <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
+    </nav>
+    <div class="d-flex flex-column flex-md-row align-items-center home_header">
+        <h5 class="my-0 mr-md-auto"><img src="assets/img/vfox_logo.png" alt="VFOX"/></h5>
+        <a *ngIf="router.url == '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN' | translate}}</a>
+        <a *ngIf="router.url != '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
+    </div>
 
 </div>
 <!--Home Header Ends here-->

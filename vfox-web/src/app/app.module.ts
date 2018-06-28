@@ -18,7 +18,7 @@ import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
-import { HeaderComponent } from './views/header/header.component';
+import { HeaderComponent, FooterComponent } from './views/header/header.component';
 //import { RegisterComponent } from './views/register/register.component';
 import { HomeComponent, VerifyEmailPageComponent } from './views/home/home.component';
 
@@ -54,7 +54,7 @@ import { SuccessComponent } from "./views/success/success.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLangService } from "./services/translate.service";
-import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
 
 
 @NgModule({
@@ -88,11 +88,14 @@ import { AboutComponent, ContactComponent, WhatweComponent, HomepageComponent } 
     P500Component,
     LoginComponent,
     HeaderComponent,
+    FooterComponent,
     AboutComponent,
     ContactComponent,
     WhatweComponent,
-    HomepageComponent,
-   // RegisterComponent,
+    ServiceTaxMitiComponent, //Static services page
+    ServiceInvestmentComponent,
+    ServiceInsuranceComponent,
+    // RegisterComponent,
     HomeComponent,
     VerifyEmailPageComponent,
     SuccessComponent
