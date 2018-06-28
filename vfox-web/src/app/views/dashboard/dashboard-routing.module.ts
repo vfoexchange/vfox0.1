@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../../common-services/auth-guard-service';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent, ComingsoonPageComponent } from './dashboard.component';
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { AddClientComponent } from './manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
@@ -37,8 +37,15 @@ const routes: Routes = [
     data: {
     title: 'addclient'
    }
-}
+},
 
+{
+  path: 'comingsoon',
+  component: ComingsoonPageComponent,
+  data: {
+  title: 'comingsoonpage'
+ }
+}
 ];
 
 @NgModule({

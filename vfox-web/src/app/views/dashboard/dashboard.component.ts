@@ -8,3 +8,11 @@ export class DashboardComponent {
     constructor() { }
 
 }
+
+@Component({
+  templateUrl: 'comingsoon-page.component.html'
+})
+export class ComingsoonPageComponent {
+    constructor() { }
+
+}

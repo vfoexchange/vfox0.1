@@ -11,8 +11,8 @@ body{background:#c03aa5 url(../assets/img/home_bg.jpg) no-repeat; background-siz
 .home_txt{font-size:20px; font-weight:400; letter-spacing:2px;}
 .home_video{margin-top:33px;}
 .card{border-color:#fff; border-radius:0.50rem;}
-.form-control{padding:0.375rem 0.1rem; height:23px; line-height:23px; border-bottom:solid 1px #979797; border-radius:0px; border-left:solid 1px #fff; border-right:solid 1px #fff; border-top:solid 1px #fff; font-size:14px!important; color:#535353!important; font-weight:500!important;}
-.form-control:focus{box-shadow:none!important; border-bottom:solid 1px rgba(206, 55, 168, 1)!important; border-top:solid 1px #fff!important; border-right:solid 1px #fff!important; border-left:solid 1px #fff!important;}
+.form-control{padding:0.375rem 0.1rem; height:23px; line-height:23px; border-bottom:solid 1px #979797; border-radius:0px; border-left:none!important; border-right:none!important; border-top:none!important; font-size:14px!important; color:#535353!important; font-weight:500!important; background:transparent!important;}
+.form-control:focus{box-shadow:none!important; border-bottom:solid 1px rgba(206, 55, 168, 1)!important; border-top:none!important; border-right:none!important; border-left:none!important; background:transparent!important;}
 .reg_form{padding:32px 32px 17px 32px;}
 .btn-outline-purple{border:solid 1px #ce37a8; color:#ce37a8; font-size:14px!important; font-weight:500!important; border-radius:0px;}
 .btn-outline-purple:hover, .btn-outline-purple:not(:disabled):not(.disabled):active, .btn-outline-purple:not(:disabled):not(.disabled).active, .show > .btn-outline-purple.dropdown-toggle{background:#ce37a8; border-color:#fff;}
@@ -98,15 +98,32 @@ iframe.gmap{width:100%!important; height:360px!important;}
 .con_form .btn-outline-primary{color:#fff!important;}
 .con_form .btn-outline-primary:hover{background-color:#fff!important; color:#ce37a8!important;}
 .m_home_footer small{text-align:center; display:block; line-height:25px;}
+.astric{color:ff0000;}
+.custom-select{background-color:transparent; border-bottom:solid 1px #979797; border-radius:0px; border-left:none!important; border-right:none!important; border-top:none!important; box-shadow:none!important; font-size:14px!important; color:#535353!important; font-weight:500!important;}
+.maintain_web .form-group{margin-bottom:20px!important;}
+.custom-file-label::after{content:"\f093"!important; font:21px/1 FontAwesome!important; background-color:transparent!important; border-radius:0px!important; border-left:none!important; border-right:none!important; border-top:none!important; box-shadow:none!important;}
+.custom-file-label{background-color:transparent!important; border-bottom:solid 1px #979797!important; border-radius:0px!important; border-left:none!important; border-right:none!important; border-top:none!important; box-shadow:none!important;}
+.maintain_web .form-control{height:34px; line-height:normal;}
+.popover_style .popover{background:none!important; border:none!important; top:-78px!important; left:-55px!important;}
+.popover_style .popover-arrow{display:none!important;}
+.popover_style .popover-content a img{height:auto!important;}
+.popover_style .popover-content a{padding:0 27px!important;}
+.popover_style .popover-body{padding:0 0!important;}
 
 @media screen and (max-width: 1024px){
 .home_footer .row{flex-wrap:inherit!important;}
 .home_footer a img{height:30px!important; z-index:1111111!important; bottom:inherit!important; top:32px!important;}
-.home_footer{overflow-x:scroll; overflow-y:hidden; height:75px!important;}
-.home_footer a{bottom:25px!important; line-height:11px;}
+.home_footer{overflow-x:scroll; overflow-y:hidden; height:auto!important;}
+.home_footer a{bottom:0px!important; line-height:11px;}
 .ser_name{padding:48px 0 0 0; font-size:11px;}
 .m_home_footer{height:29px!important;}
 .ver_em_foot{display:none;}
+.popover_style .popover{top:-27px!important; left:-10px!important;}
+.popover_style .popover-content a img{height:20px!important;}
+.popover_style .popover-content a{padding:0 13px!important;}
+.home_footer a.disable_link:hover img{top:32px!important;}
+.dropdown-item{font-size:11px; padding:5px;}
+.top_nav a{font-size:12px!important;}
 }
 @media screen and (max-width: 768px){
 .card{height:auto!important;}

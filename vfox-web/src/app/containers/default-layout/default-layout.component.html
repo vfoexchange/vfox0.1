@@ -1,14 +1,14 @@
 <!--Splash page Starts here-->
 <div class="loading" *ngIf="isCreatingAccount">
     <h1>
-        <img src="assets/img/loading.png" class="img-fluid" />
+        <img src="assets/img/loading.png" class="img-fluid"/>
     </h1>
 </div>
 <!--Splash page Ends here-->
 <div class="container" *ngIf="!isCreatingAccount">
     <!--Home Header Starts here-->
     <header-nav></header-nav>
-     <!--Home Header Ends here-->
+    <!--Home Header Ends here-->
     <div class="row">
         <!--Home Left Container Starts here-->
         <div class="col-lg-12">
@@ -24,55 +24,66 @@
     <div class="home_footer">
         <div class="container-fluid">
             <div class="row">
-                <div *ngIf="currentUser.role === 'client'" class="col">                    
+                <div *ngIf="currentUser.role === 'client'" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/select_services_disable.png" />
+                        <img src="assets/img/select_services_disable.png"/>
                         <div class="ser_name">Select
-                            <br/>Services</div>
-                    </a>
-                </div>
-
-                <div *ngIf="currentUser.role !== 'client'" class="col">                    
-                    <a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">
-                        <img src="assets/img/select_services.png" />
-                        <div class="ser_name">Select
-                            <br/>Services</div>
+                            <br/>Services
+                        </div>
                     </a>
                 </div>
 
                 <div *ngIf="currentUser.role !== 'client'" class="col">
+                    <a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">
+                        <img src="assets/img/select_services.png"/>
+                        <div class="ser_name">Select
+                            <br/>Services
+                        </div>
+                    </a>
+                </div>
+
+                <!--<div *ngIf="currentUser.role !== 'client'" class="col">
                     <a class="disable_link">
                         <img src="assets/img/maintain_users_disable.png" />
                         <div class="ser_name">Maintain
                             <br/>Website</div>
                     </a>
+                </div> -->
+                <!--<div><img src="assets/img/per_web.png" /> <img src="assets/img/add_clients.png" /> <img src="assets/img/ser_pro.png" /></div>-->
+                <div *ngIf="currentUser.role !== 'client'" class="col popover_style">
+                    <ng-template #popTemplate><a [routerLink]="['/dashboard/comingsoon']"
+                                                 title="Personalize Website"><img src="assets/img/per_web.png"/></a> <a
+                            [routerLink]="['/dashboard/comingsoon']" title="Add Clients"><img
+                            src="assets/img/add_clients.png"/></a> <a [routerLink]="['/dashboard/comingsoon']"
+                                                                      title="Select Service Providers"><img
+                            src="assets/img/ser_pro.png"/></a></ng-template>
+                    <a [outsideClick]="true" [popover]="popTemplate" popoverTitle="" href="javascript:void(0)"
+                       [routerLinkActive]="['active']">
+                        <img src="assets/img/maintain_users.png"/>
+                        <div class="ser_name">Maintain
+                            <br/>Website
+                        </div>
+                    </a>
                 </div>
 
-                <!--<div *ngIf="currentUser.role !== 'client'" class="col">
-                    <a [routerLink]="['/dashboard/addclient']" [routerLinkActive]="['active']">
-                        <img src="assets/img/maintain_users.png" />
-                        <div class="ser_name">Maintain
-                            <br/>Website</div>
-                    </a>
-                </div> -->
-
                 <div class="col">
-                    <a  class="disable_link">
-                        <img src="assets/img/manage_profile_disable.png" />
+                    <a class="disable_link">
+                        <img src="assets/img/manage_profile_disable.png"/>
                         <div class="ser_name">Manage
-                            <br/>Profile</div>
+                            <br/>Profile
+                        </div>
                     </a>
                 </div>
                 <div *ngIf="userServiceStatus.insurance_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.insurance" [routerLinkActive]="['active']">
-                        <img src="assets/img/insurance.png" />
+                        <img src="assets/img/insurance.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.insurance_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/insurance_disable.png" />
+                        <img src="assets/img/insurance_disable.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
                     </a>
                 </div>
@@ -80,42 +91,42 @@
 
                 <div *ngIf="userServiceStatus.bill_pay_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.bill_pay" [routerLinkActive]="['active']">
-                        <img src="assets/img/bill_pay.png" />
+                        <img src="assets/img/bill_pay.png"/>
                         <div class="ser_name">{{ServiceName.bill_pay}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.bill_pay_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/bill_pay_disable.png" />
+                        <img src="assets/img/bill_pay_disable.png"/>
                         <div class="ser_name">{{ServiceName.bill_pay}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="userServiceStatus.investment_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.investment" [routerLinkActive]="['active']">
-                        <img src="assets/img/alt_invest.png" />
-                       <div class="ser_name">{{ServiceName.investment}}</div>
+                        <img src="assets/img/alt_invest.png"/>
+                        <div class="ser_name">{{ServiceName.investment}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.investment_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/alt_invest_disable.png" />
-                       <div class="ser_name">{{ServiceName.investment}}</div>
+                        <img src="assets/img/alt_invest_disable.png"/>
+                        <div class="ser_name">{{ServiceName.investment}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="userServiceStatus.welth_manage_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.welth_manage" [routerLinkActive]="['active']">
-                        <img src="assets/img/wealth_mgmt.png" />
+                        <img src="assets/img/wealth_mgmt.png"/>
                         <div class="ser_name">{{ServiceName.welth_manage}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.welth_manage_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/wealth_mgmt_disable.png" />
+                        <img src="assets/img/wealth_mgmt_disable.png"/>
                         <div class="ser_name">{{ServiceName.welth_manage}}</div>
                     </a>
                 </div>
@@ -123,91 +134,95 @@
 
                 <div *ngIf="userServiceStatus.tax_mitigation_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.tax_mitigation" [routerLinkActive]="['active']">
-                        <img src="assets/img/tax_migi.png" />
+                        <img src="assets/img/tax_migi.png"/>
                         <div class="ser_name">{{ServiceName.tax_mitigation}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.tax_mitigation_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/tax_migi_disable.png" />
+                        <img src="assets/img/tax_migi_disable.png"/>
                         <div class="ser_name">{{ServiceName.tax_mitigation}}</div>
                     </a>
                 </div>
 
 
                 <div *ngIf="userServiceStatus.asset_protection_menu" class="col">
-                    <a [routerLink]="'/dashboard/service/'+ServiceName.asset_protection" [routerLinkActive]="['active']">
-                        <img src="assets/img/asset_protect.png" />
+                    <a [routerLink]="'/dashboard/service/'+ServiceName.asset_protection"
+                       [routerLinkActive]="['active']">
+                        <img src="assets/img/asset_protect.png"/>
                         <div class="ser_name">{{ServiceName.asset_protection}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.asset_protection_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/asset_protect_disable.png" />
+                        <img src="assets/img/asset_protect_disable.png"/>
                         <div class="ser_name">{{ServiceName.asset_protection}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="userServiceStatus.trust_services_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.trust_services" [routerLinkActive]="['active']">
-                        <img src="assets/img/trust_services.png" />
+                        <img src="assets/img/trust_services.png"/>
                         <div class="ser_name">{{ServiceName.trust_services}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.trust_services_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/trust_services_disable.png" />
+                        <img src="assets/img/trust_services_disable.png"/>
                         <div class="ser_name">{{ServiceName.trust_services}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="userServiceStatus.business_valuation_menu" class="col">
-                    <a [routerLink]="'/dashboard/service/'+ServiceName.business_valuation" [routerLinkActive]="['active']">
-                        <img src="assets/img/business_value.png" />
+                    <a [routerLink]="'/dashboard/service/'+ServiceName.business_valuation"
+                       [routerLinkActive]="['active']">
+                        <img src="assets/img/business_value.png"/>
                         <div class="ser_name">{{ServiceName.business_valuation}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.business_valuation_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/business_value_disable.png" />
+                        <img src="assets/img/business_value_disable.png"/>
                         <div class="ser_name">{{ServiceName.business_valuation}}</div>
                     </a>
                 </div>
 
 
                 <div *ngIf="userServiceStatus.cost_remediation_menu" class="col">
-                     <a [routerLink]="'/dashboard/service/'+ServiceName.cost_remediation" [routerLinkActive]="['active']">
-                        <img src="assets/img/cost_remed.png" />
+                    <a [routerLink]="'/dashboard/service/'+ServiceName.cost_remediation"
+                       [routerLinkActive]="['active']">
+                        <img src="assets/img/cost_remed.png"/>
                         <div class="ser_name">{{ServiceName.cost_remediation}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.cost_remediation_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/cost_remed_disable.png" />
+                        <img src="assets/img/cost_remed_disable.png"/>
                         <div class="ser_name">{{ServiceName.cost_remediation}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="userServiceStatus.business_transition_menu" class="col">
-                    <a [routerLink]="'/dashboard/service/'+ServiceName.business_transition" [routerLinkActive]="['active']">
-                        <img src="assets/img/business_trans.png" />
+                    <a [routerLink]="'/dashboard/service/'+ServiceName.business_transition"
+                       [routerLinkActive]="['active']">
+                        <img src="assets/img/business_trans.png"/>
                         <div class="ser_name">{{ServiceName.business_transition}}</div>
                     </a>
                 </div>
 
                 <div *ngIf="!userServiceStatus.business_transition_menu" class="col">
                     <a class="disable_link">
-                        <img src="assets/img/business_trans_disable.png" />
+                        <img src="assets/img/business_trans_disable.png"/>
                         <div class="ser_name">{{ServiceName.business_transition}}</div>
                     </a>
                 </div>
-                
-                
+
+
             </div>
         </div>
     </div>
