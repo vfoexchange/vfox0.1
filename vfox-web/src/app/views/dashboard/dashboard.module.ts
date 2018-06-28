@@ -3,7 +3,7 @@ import { ChartsModule } from 'ng2-charts/ng2-charts';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { DashboardComponent } from './dashboard.component';
+import { DashboardComponent, ComingsoonPageComponent } from './dashboard.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,7 @@ import { ServiceProviderComponent } from './service-providers/serviceprovider.co
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent]
 })
 export class DashboardModule {
 
