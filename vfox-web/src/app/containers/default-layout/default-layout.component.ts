@@ -16,6 +16,7 @@ export class DefaultLayoutComponent {
 
   userType: string = '';
   userServiceStatus: any;
+  html: string = '';
   ServiceName: any;
   currentUser: any;
   isCreatingAccount: boolean ;
