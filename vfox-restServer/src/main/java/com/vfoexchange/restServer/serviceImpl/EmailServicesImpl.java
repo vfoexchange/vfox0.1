@@ -25,6 +25,8 @@ public class EmailServicesImpl implements EmailServices {
         try {
             msg.setSubject(mail.getSubject());
             msg.setRecipients(MimeMessage.RecipientType.TO, mail.getTo());
+            if (mail.getbCC() !=null && !mail.getbCC().isEmpty())
+            msg.setRecipients(MimeMessage.RecipientType.BCC, mail.getbCC());
             msg.setContent(mail.getContent(), "text/html; charset=utf-8");
             msg.setSentDate(new Date());
             emailSender.send(msg);
