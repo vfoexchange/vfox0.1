@@ -168,12 +168,12 @@ public class UserServiceImpl implements UserService {
     public void captureContactDetails(EnquiringUserDTO enquiringUserDTO) {
         LOGGER.info("Enquiring user's details are " + enquiringUserDTO.toString());
         try {
-        Mail mail = new Mail();
-        mail.setTo(recipients);
-        mail.setSubject(subject);
-        mail.setContent(AppUtil.getContactUsMailBody(enquiringUserDTO));
-        emailServices.sendMail(mail);
-        LOGGER.info("Email sent successfully for enquiring user's details");
+            Mail mail = new Mail();
+            mail.setTo(recipients);
+            mail.setSubject(subject);
+            mail.setContent(AppUtil.getContactUsMailBody(enquiringUserDTO));
+            emailServices.sendMail(mail);
+            LOGGER.info("Email sent successfully for enquiring user's details");
         } catch (Exception e) {
             LOGGER.error("Error occured while sending email" + e);
         }
