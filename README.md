@@ -47,8 +47,7 @@ You can list downloaded Docker images with this command:
 
 Start a new Docker container for the MySQL Community Server with this command:
 
-    shell>  docker run -p 3306:3306 --name=vfox-mysql -e MYSQL_ROOT_PASSWORD=vfox -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:latest
-            --default-authentication-plugin=mysql_native_password --character-set-server=latin1 --collation-server=latin1_swedish_ci
+    shell>  docker run -p 3306:3306 --name=vfox-mysql -e MYSQL_ROOT_PASSWORD=vfox -e MYSQL_ROOT_HOST=% -d mysql/mysql-server:latest --default-authentication-plugin=mysql_native_password --character-set-server=latin1 --collation-server=latin1_swedish_ci
 
 The--name option, for supplying a custom name for your server container (mysql1 in the example),
 is optional; if no container name is supplied, a random one is generated. If the Docker image of the
@@ -125,8 +124,11 @@ open rest client and request send to http://localhost:8080/ url with required pa
 ### Frontend
 #### Go to the vfox-web directory.
     Install updated Node.js 
+        brew install nodejs
     Install the Angular CLI globally.
+        brew install angular-cli
     npm install
+    npm audit fix
     npm start
 open your browser on
 http://localhost:4200/

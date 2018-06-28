@@ -22,11 +22,11 @@ export class HomeService {
     });
   }
 
+  //Get captcha API
   getCaptcha() {
     return this.httpService.post(this.configuration.API_GET_CAPTCHA, {
     });
   }
-
   postContact(contact: any) {
     return this.httpService.post(this.configuration.API_POST_CONTACT, {
       firstName: contact.firstName,
@@ -37,7 +37,5 @@ export class HomeService {
     });
 
   }
-
-
 
 }
