@@ -5,15 +5,17 @@ public class Mail {
     private String to;
     private String subject;
     private String content;
+    private String bCC;
 
     public Mail() {
     }
 
-    public Mail(String from, String to, String subject, String content) {
+    public Mail(String from, String to, String subject, String content, String bCC) {
         this.from = from;
         this.to = to;
         this.subject = subject;
         this.content = content;
+        this.bCC = bCC;
     }
 
     public String getFrom() {
@@ -48,12 +50,21 @@ public class Mail {
         this.content = content;
     }
 
+    public String getbCC() {
+        return bCC;
+    }
+
+    public void setbCC(String bCC) {
+        this.bCC = bCC;
+    }
+
     @Override
     public String toString() {
         return "Mail{" +
                 "from='" + from + '\'' +
                 ", to='" + to + '\'' +
                 ", subject='" + subject + '\'' +
+                ", bCC='" + bCC + '\'' +
                 '}';
     }
 }

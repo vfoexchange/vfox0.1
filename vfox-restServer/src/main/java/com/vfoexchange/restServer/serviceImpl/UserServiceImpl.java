@@ -45,12 +45,12 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EmailServices emailServices;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
     /*
     Method for advisor registration, encoding password before inserting in db and adding user
      */
     public void addUser(UserDTO userDTO) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-
         UserRole userRole = userRoleDao.findByRole(userDTO.getRole());
         User user = new User();
         user.setUsername(userDTO.getUsername());
@@ -63,7 +63,6 @@ public class UserServiceImpl implements UserService {
     Method for Client registration, encoding password before inserting in db and adding user
     */
     public void addClient(ClientDetailsDTO clientDetailsDTO) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         UserRole userRole = userRoleDao.findByRole(clientDetailsDTO.getRole());
         User user = new User();
