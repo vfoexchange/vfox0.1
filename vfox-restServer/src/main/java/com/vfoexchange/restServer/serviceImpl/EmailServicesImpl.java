@@ -20,7 +20,7 @@ public class EmailServicesImpl implements EmailServices {
 
     @Override
     public void sendMail(final Mail mail) {
-        LOGGER.info("Sending  Email");
+        LOGGER.info("Sending  Email with details "+ mail.toString());
         MimeMessage msg = emailSender.createMimeMessage();
         try {
             msg.setSubject(mail.getSubject());

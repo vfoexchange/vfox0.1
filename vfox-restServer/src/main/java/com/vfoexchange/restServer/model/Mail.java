@@ -54,7 +54,6 @@ public class Mail {
                 "from='" + from + '\'' +
                 ", to='" + to + '\'' +
                 ", subject='" + subject + '\'' +
-                ", content='" + content + '\'' +
                 '}';
     }
 }

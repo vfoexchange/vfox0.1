@@ -48,11 +48,15 @@ public class EnquiringUserDTO {
         this.comments = comments;
     }
 
+    @Override
     public String toString() {
-        return new StringBuilder().append("firstName: ").append(firstName).append(", lastName: ")
-                .append(lastName).append(", phone: ").append(phone).append(", email: ")
-                .append(email).append(", comments/questions/bestTimeToCall: ").append(comments)
-                .toString();
+        return "EnquiringUserDTO{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", comments/questions/bestTimeToCall='" + comments + '\'' +
+                '}';
     }
 }
 

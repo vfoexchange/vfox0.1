@@ -247,7 +247,7 @@ public class UserController {
             userService.captureContactDetails(enquiringUserDTO);
             resp.setCode("200");
             resp.setMsg("Enquiring user's contact details captured successfully");
-            LOGGER.info("Enquiring user's contact details captured successfully");
+            LOGGER.info("Enquiring user's contact details captured successfully for " + enquiringUserDTO.toString());
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while capturing enquiring user's contact details");
