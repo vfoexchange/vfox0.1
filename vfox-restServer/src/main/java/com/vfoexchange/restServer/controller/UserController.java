@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.controller;
 
+import com.vfoexchange.restServer.component.MailComponent;
 import com.vfoexchange.restServer.dto.*;
 import com.vfoexchange.restServer.model.Captcha;
 import com.vfoexchange.restServer.model.Mail;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,15 +28,15 @@ import java.util.List;
 @RestController
 public class UserController {
     private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private Environment environment;
+
     @Autowired
     private UserService userService;
     @Autowired
     private EmailServices emailServices;
+    @Autowired
+    private MailComponent mailComponent;
     @Value("${mail.contactus.recipients}")
     private String recipients;
-
 
     /*
     Method for adding new user(user can be advisor or admin)
@@ -54,7 +56,7 @@ public class UserController {
         }
         try {
             Mail mail = new Mail();
-            mail.setFrom(environment.getProperty("spring.mail.username"));
+            mail.setFrom(mailComponent.getUsername());
             mail.setTo(userDto.getUsername());
             mail.setSubject("Verify Your Email Address");
             mail.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(userDto.getUsername()))));

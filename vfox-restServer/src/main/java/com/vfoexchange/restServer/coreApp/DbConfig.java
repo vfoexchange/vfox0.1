@@ -1,6 +1,9 @@
 package com.vfoexchange.restServer.coreApp;
 
 import javax.sql.DataSource;
+
+import com.vfoexchange.restServer.component.DatabaseComponent;
+import com.vfoexchange.restServer.component.MailComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -24,15 +27,17 @@ with configurable database properties
 public class DbConfig {
 
     @Autowired
-    private Environment env;
+    private DatabaseComponent database;
+    @Autowired
+    MailComponent mailComponent;
 
     @Bean
     public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(env.getRequiredProperty("jdbc.driverClassName"));
-        dataSource.setUrl(env.getRequiredProperty("jdbc.url"));
-        dataSource.setUsername(env.getRequiredProperty("jdbc.username"));
-        dataSource.setPassword(env.getRequiredProperty("jdbc.password"));
+        dataSource.setDriverClassName(database.getDriverClassName());
+        dataSource.setUrl(database.getUrl());
+        dataSource.setUsername(database.getUsername());
+        dataSource.setPassword(database.getPassword());
         return dataSource;
     }
 
@@ -53,15 +58,17 @@ public class DbConfig {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
         Properties mailProperties = new Properties();
-        mailProperties.put("mail.smtp.auth", env.getProperty("spring.mail.properties.mail.smtp.auth"));
-        mailProperties.put("mail.smtp.starttls.enable",  env.getProperty("spring.mail.properties.mail.smtp.starttls.enable"));
-        mailProperties.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+        mailProperties.put("mail.smtp.auth", mailComponent.getAuth());
+        mailProperties.put("mail.smtp.starttls.enable", mailComponent.getStarttlsEnable());
+        mailProperties.put("mail.smtp.socketFactory.class", mailComponent.getSocketFactoryClass());
+
         mailSender.setJavaMailProperties(mailProperties);
-        mailSender.setHost(env.getProperty("spring.mail.host"));
-        mailSender.setPort(Integer.parseInt(env.getProperty("spring.mail.port")));
-        mailSender.setProtocol(env.getProperty("spring.mail.protocol"));
-        mailSender.setUsername(env.getProperty("spring.mail.username"));
-        mailSender.setPassword(env.getProperty("spring.mail.password"));
+        mailSender.setHost(mailComponent.getHostName());
+        mailSender.setPort(Integer.parseInt(mailComponent.getPortNumber()));
+        mailSender.setProtocol(mailComponent.getProtocolName());
+        mailSender.setUsername(mailComponent.getUsername());
+        mailSender.setPassword(mailComponent.getPassword());
+
         return mailSender;
     }
 
