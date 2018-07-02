@@ -17,7 +17,7 @@ export class Configuration {
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
     public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/addclient'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/addclient','/dashboard/comingsoon'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/maintainwebsite/addclient','/dashboard/comingsoon', '/dashboard/maintainwebsite/addpersonalize'];
     public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/service'];
 
 
@@ -35,6 +35,7 @@ export class Configuration {
     public API_SERVICE_BILLING: string = 'update/provider/billing';
     public API_GET_CAPTCHA: string = 'user/captcha';
     public API_POST_CONTACT: string = 'enquiring/contact/details';
+    public API_ADD_PERSONALIZE_WEBSITE_URL: string = 'save/advisor/website';
 
 
       //*****************************Api URLs Ends *****************************/
@@ -94,5 +95,20 @@ export class Configuration {
         'cost_remediation_menu': true,
         'business_transition_menu': true
         };
+
+    public ColorSchemeList = [
+        {
+          key: 'default',
+          value: 'Defualt'
+        },
+        {
+          key: 'blue',
+          value: 'Blue'
+        },
+        {
+          key: 'red',
+          value: 'Red'
+        }         
+    ];        
 
 }

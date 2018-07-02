@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Response, Http, Headers } from '@angular/http';
-import { UtilService } from "../../../common-services/util-services";
-import { ValidationService } from '../../../common-services/validation-services';
-import { ClientService } from '../../../services/client.service';
+import { UtilService } from "../../../../common-services/util-services";
+import { ValidationService } from '../../../../common-services/validation-services';
+import { ClientService } from '../../../../services/client.service';
 import { ToastrService } from 'ngx-toastr';
 
 

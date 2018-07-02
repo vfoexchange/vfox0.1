@@ -46,6 +46,7 @@ import { AuthGuard } from "./common-services/auth-guard-service";
 //import { RegisterService } from "./services/register.service";
 import { HomeService } from "./services/home.service";
 import { ClientService } from "./services/client.service";
+import { MaintainWebsite } from "./services/maintain-website.service";
 import { ProvidersService } from "./services/providers.service";
 //import { PaymentService } from "./services/payment.service";
 //import { PrintService } from "./services/report.service";
@@ -115,6 +116,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     AuthGuard,
     HomeService,
     ClientService,
+    MaintainWebsite,
     ProvidersService,
     TranslateLangService],
   bootstrap: [ AppComponent ]

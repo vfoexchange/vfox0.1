@@ -12,8 +12,9 @@ import { FileUploadModule } from "angular-file-uploader";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { ServiceCenterComponent } from './select-service/select-service.component';
-import { AddClientComponent } from './manage-client/client.component';
+import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
+import { AddPersonalizeComponent } from './maintain-website/personalize/personalize.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { ServiceProviderComponent } from './service-providers/serviceprovider.co
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent]
 })
 export class DashboardModule {
 
