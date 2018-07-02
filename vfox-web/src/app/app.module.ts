@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { PopoverModule } from 'ngx-bootstrap';
+import { PopoverModule, ModalModule } from 'ngx-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,7 +56,7 @@ import { SuccessComponent } from "./views/success/success.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLangService } from "./services/translate.service";
-import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent, QualifiedLeverageComponent } from './views/static-page/staticpage.component';
 
 
 @NgModule({
@@ -73,6 +73,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     TabsModule.forRoot(),
     ChartsModule,
     PopoverModule.forRoot(),
+    ModalModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -98,6 +99,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     ServiceTaxMitiComponent, //Static services page
     ServiceInvestmentComponent,
     ServiceInsuranceComponent,
+    QualifiedLeverageComponent,
     // RegisterComponent,
     HomeComponent,
     VerifyEmailPageComponent,

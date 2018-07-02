@@ -6,7 +6,7 @@
     <div class="clearfix">&nbsp;</div>
     <div class="row pbtm_100 con_form">
         <div class="col-lg-5">
-            <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="contactForm" (ngSubmit)="onSubmit(contact_result)">
             <div class="form-group">
                 <label>First Name</label>
                 <input type="text" formControlName="firstName" class="form-control form-control-new">
@@ -52,6 +52,19 @@
         </div>
     </div>
 </div>
+<!-- Model Popup -->
+<ng-template #contact_result>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Modal</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{resultMsg}}
+    </div>
+  </ng-template>
+<!-- End model popup -->
 <!--Footer Starts here-->
 <footer-nav></footer-nav>
 <!-- Footer Ends here-->

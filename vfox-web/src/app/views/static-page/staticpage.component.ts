@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { HomeService } from '../../services/home.service';
@@ -6,6 +6,8 @@ import { Response, Http, Headers } from '@angular/http';
 import { UtilService } from "../../common-services/util-services";
 import { ValidationService } from '../../common-services/validation-services';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 //Home  page ...Not in use
 /*@Component({
   templateUrl: 'home.component.html'
@@ -32,8 +34,10 @@ export class AboutComponent {
 })
 export class ContactComponent {
   contactForm: FormGroup;
+  modalRef: BsModalRef;
+  resultMsg: any;
 
-  constructor(private router: Router, private homeService: HomeService,
+  constructor(private router: Router, private homeService: HomeService,private modalService: BsModalService,
     private utilService: UtilService, private http: Http, private _toastrService: ToastrService) {
   }
 
@@ -47,19 +51,24 @@ export class ContactComponent {
       email:  new FormControl(null, [Validators.required, ValidationService.emailValidator]),
       comment: new FormControl(null)
     });
-
   }
+  //Model popup
+  openModal(contact_result: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(contact_result);
+  } 
 
 
     //After submit contact form post data to API server
-    onSubmit() {
-      
+    onSubmit(contact_result) {
+                
       let obj = this.contactForm.value;
       this.homeService.postContact(obj).subscribe(
         (response) => {
           //debugger
           if (response.code == 200) {
-            this._toastrService.success(response.msg);
+            //Model popup show
+            this.openModal(contact_result);
+            this.resultMsg =response.msg;
             this.contactForm.reset();
           } else {
             this._toastrService.error(response.msg, 'Oops!');
@@ -118,6 +127,17 @@ export class ServiceInsuranceComponent {
   templateUrl: 'service-pages/investment.component.html'
 })
 export class ServiceInvestmentComponent {
+
+  constructor() {
+  }
+
+}
+
+//Qualified Leverage Strategy page
+@Component({
+  templateUrl: 'service-pages/qualified-leverage.component.html'
+})
+export class QualifiedLeverageComponent {
 
   constructor() {
   }
