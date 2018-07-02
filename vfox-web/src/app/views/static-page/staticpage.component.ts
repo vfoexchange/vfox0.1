@@ -60,7 +60,7 @@ export class ContactComponent {
 
     //After submit contact form post data to API server
     onSubmit(contact_result) {
-                
+      this.contactForm.reset();          
       let obj = this.contactForm.value;
       this.homeService.postContact(obj).subscribe(
         (response) => {
