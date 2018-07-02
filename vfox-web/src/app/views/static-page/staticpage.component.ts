@@ -124,4 +124,15 @@ export class ServiceInvestmentComponent {
 
 }
 
+//Qualified Leverage Strategy page
+@Component({
+  templateUrl: 'service-pages/qualified-leverage.component.html'
+})
+export class QualifiedLeverageComponent {
+
+  constructor() {
+  }
+
+}
+
 

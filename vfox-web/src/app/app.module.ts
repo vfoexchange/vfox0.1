@@ -55,7 +55,7 @@ import { SuccessComponent } from "./views/success/success.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLangService } from "./services/translate.service";
-import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent, QualifiedLeverageComponent } from './views/static-page/staticpage.component';
 
 
 @NgModule({
@@ -97,6 +97,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     ServiceTaxMitiComponent, //Static services page
     ServiceInvestmentComponent,
     ServiceInsuranceComponent,
+    QualifiedLeverageComponent,
     // RegisterComponent,
     HomeComponent,
     VerifyEmailPageComponent,
