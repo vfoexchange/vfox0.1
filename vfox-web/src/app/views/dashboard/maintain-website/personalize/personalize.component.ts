@@ -22,6 +22,7 @@ export class AddPersonalizeComponent {
   currentUser:any ;
   fileName:any = 'Choose File';
   filecheck: boolean = false;
+  fileTypeCheck : boolean = false;
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public maintainWebsite: MaintainWebsite,
     private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration
       ) { 
@@ -46,14 +47,22 @@ export class AddPersonalizeComponent {
 
 onFileChanged(event) { 
   this.filecheck = false;
+  this.fileTypeCheck = false;
   this.fileName = 'Choose File';
   let files = event.target.files[0];
-  if (files){
-    this.filecheck = true; // Checking file already selected by user,then no required message come to screen
-    this.fileName = files.name;
-    let reader = new FileReader(); 
-    reader.readAsBinaryString(files); 
-    reader.onload = this._handleReaderLoaded.bind(this); 
+  if (files){ 
+    // check file size max 5kb and file type ["image/jpeg", "image/png", "image/gif", "image/jpg"] is valid , select by user
+    if ( this.configuration.allowedImageType.indexOf(files.type) < 0  || files.size > 50200){
+      this.fileTypeCheck = true
+    }else{
+      this.filecheck = true; // Checking file already selected by user,then no required message come to screen
+      this.fileTypeCheck = false
+      this.fileName = files.name;
+      let reader = new FileReader(); 
+      reader.readAsBinaryString(files); 
+      reader.onload = this._handleReaderLoaded.bind(this); 
+    }
+    
   }
 
 }
@@ -74,6 +83,7 @@ onSubmit() {
         if (response.code == 200) {
          this._toastrService.success(response.msg);
          this.PersonalizeForm.reset();
+         this.fileName = 'Choose File';
         } else {
           this._toastrService.error(response.msg, 'Oops!');
         }

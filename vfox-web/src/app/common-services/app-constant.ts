@@ -109,6 +109,8 @@ export class Configuration {
           key: 'red',
           value: 'Red'
         }         
-    ];        
+    ];    
+
+    public allowedImageType = ["image/jpeg", "image/png", "image/gif", "image/jpg"];  
 
 }

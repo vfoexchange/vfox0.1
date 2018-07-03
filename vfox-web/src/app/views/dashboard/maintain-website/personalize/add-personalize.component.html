@@ -10,7 +10,7 @@
                             </div>
                             <div class="col-12 col-lg-4">
                                 <button class="btn btn-lg btn-outline-primary btn-purple float-right"
-                                        type="submit" [disabled]="PersonalizeForm.invalid">Save & Continue
+                                        type="submit" [disabled]="PersonalizeForm.invalid || fileTypeCheck">Save & Continue
                                 </button>
                             </div>
                         </div>
@@ -48,7 +48,9 @@
                                                     <input type="file" (change)="onFileChanged($event)" accept="image/x-png,image/gif,image/jpeg,image/jpg"  formControlName="uploadLogo" class="custom-file-input" id="customFile">
                                                     <label class="custom-file-label" for="customFile">{{fileName}}</label>
                                                     <p class="erros-msg" *ngIf="PersonalizeForm.get('uploadLogo').hasError('required') && PersonalizeForm.get('uploadLogo').touched && !filecheck">
-                                                        Please choose logo</p>
+                                                        Please choose Image</p>
+                                                    <p class="erros-msg" *ngIf="fileTypeCheck">
+                                                        Image size and Image type format invalid</p>
                                                 </div>
                                             </div>
                                         </div>
