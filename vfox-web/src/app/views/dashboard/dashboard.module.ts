@@ -14,7 +14,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
-import { AddPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
 
 @NgModule({
   imports: [
@@ -27,7 +27,7 @@ import { AddPersonalizeComponent } from './maintain-website/personalize/personal
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent]
 })
 export class DashboardModule {
 

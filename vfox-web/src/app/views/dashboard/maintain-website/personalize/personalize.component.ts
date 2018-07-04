@@ -96,3 +96,12 @@ onSubmit() {
 }
 
 }
+
+
+@Component({
+  selector: 'app-view-personalize',
+  templateUrl: './view-personalize.component.html'
+})
+export class ViewPersonalizeComponent {
+  constructor() { }
+}

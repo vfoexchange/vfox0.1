@@ -5,7 +5,7 @@ import { DashboardComponent, ComingsoonPageComponent } from './dashboard.compone
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
-import { AddPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
 
 //Dashboard route
 const routes: Routes = [
@@ -52,6 +52,13 @@ const routes: Routes = [
   component: AddPersonalizeComponent,
   data: {
   title: 'addpersonalizewebsite'
+ }
+},
+{
+  path: 'maintainwebsite/viewpersonalize',
+  component: ViewPersonalizeComponent,
+  data: {
+  title: 'viewpersonalizewebsite'
  }
 }
 ];
