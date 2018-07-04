@@ -36,6 +36,8 @@ export class Configuration {
     public API_GET_CAPTCHA: string = 'user/captcha';
     public API_POST_CONTACT: string = 'enquiring/contact/details';
     public API_ADD_PERSONALIZE_WEBSITE_URL: string = 'save/advisor/website';
+    public API_VIEW_PERSONALIZE_WEBSITE_URL: string = 'fetch/advisor/website';
+
 
 
       //*****************************Api URLs Ends *****************************/

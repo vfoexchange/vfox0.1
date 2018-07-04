@@ -21,7 +21,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-6 col-form-label">Header <span class="astric">*</span></label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        Advisor Header text
+                                        {{viewHeader}}
                                     </div>
                                 </div>
                             </div>
@@ -30,7 +30,7 @@
                                     <label class="col-sm-6 col-form-label">Description <span
                                             class="astric">*</span></label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        Description of Advisor will come here
+                                        {{viewDescription}}
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,8 @@
                                     <label class="col-sm-6 col-form-label">Upload Logo <span
                                             class="astric">*</span></label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        <a href="#">View Logo</a>
+                                        <ng-template #popTemplate><img src="data:image/png;base64,{{viewLogo}}" class="img-fluid"/><div [innerHtml]="html"></div></ng-template>
+                                        <a [popover]="popTemplate" triggers="mouseenter:mouseleave" [routerLink]="['/dashboard/maintainwebsite/viewpersonalize']">View Logo</a>
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +50,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-6 col-form-label">Advisor’s Website Link</label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        http://vfoexchange.com/advisorid/
+                                        {{viewWebsiteLink}}
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-6 col-form-label">Choose color scheme</label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        Purple
+                                        {{viewColourScheme}}
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +69,7 @@
                                     <label class="col-sm-6 col-form-label">Choose a Domain name <span
                                             class="astric">*</span></label>
                                     <div class="col-sm-6 form-control-plaintext">
-                                        http://vfoexchange.com/
+                                        {{viewDomainName}}
                                     </div>
                                 </div>
                             </div>

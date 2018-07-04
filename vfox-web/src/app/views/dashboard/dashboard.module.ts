@@ -15,6 +15,7 @@ import { ServiceCenterComponent } from './select-service/select-service.componen
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
 import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { PopoverModule } from 'ngx-bootstrap';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-we
     BsDropdownModule,
     ButtonsModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
+    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,PopoverModule,
     NgbModule.forRoot()
   ],
   declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent]
