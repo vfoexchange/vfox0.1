@@ -10,10 +10,13 @@ public class DatabaseComponent {
 
     @Value("${jdbc.url}")
     private String url;
+
     @Value("${jdbc.driverClassName}")
     private String driverClassName;
+
     @Value("${jdbc.username}")
     private String username;
+
     @Value("${jdbc.password}")
     private String password;
 
