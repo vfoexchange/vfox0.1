@@ -28,6 +28,7 @@ public class DbConfig {
 
     @Autowired
     private DatabaseComponent database;
+
     @Autowired
     MailComponent mailComponent;
 
