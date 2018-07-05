@@ -5,7 +5,7 @@
         <a class="p-0 m-2" [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
         <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
         <span dropdown [autoClose]="true" container="body">
-            <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+            <a  [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
                 <li [routerLink]="['/service/tax_mitigation']" role="menuitem">
                     <a class="dropdown-item">Tax Mitigation</a>
@@ -70,7 +70,7 @@
         <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
         <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
         <span dropdown [autoClose]="true" container="body">
-            <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+                <a  [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
                 <li [routerLink]="['/service/tax_mitigation']" role="menuitem">
                     <a class="dropdown-item">Tax Mitigation</a>
