@@ -62,8 +62,8 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
 @NgModule({
   imports: [
     CommonModule,
-      FormsModule,
-        ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -81,8 +81,8 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
         deps: [HttpClient]
       }
     }),
-     ToastrModule.forRoot({closeButton: true, timeOut: 4000, preventDuplicates: true}),
-     BrowserAnimationsModule
+    ToastrModule.forRoot({ closeButton: true, timeOut: 4000, preventDuplicates: true }),
+    BrowserAnimationsModule
 
   ],
   declarations: [
@@ -104,14 +104,14 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     HomeComponent,
     VerifyEmailPageComponent,
     SuccessComponent
-   
+
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: PathLocationStrategy
   },
     LoginService,
-     Configuration,
+    Configuration,
     HttpService,
     UtilService,
     Authentication,
@@ -121,7 +121,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     MaintainWebsite,
     ProvidersService,
     TranslateLangService],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

@@ -18,9 +18,19 @@ export class ProvidersService {
     return this.httpService.get(url);
   }
   //Insurance Providers Billing API
-  addBilling(providerName: string, userEmail: any) {
+ /* addBilling(providerName: string, userEmail: any) {
     var url = this.configuration.API_SERVICE_BILLING + '?userName=' + userEmail + '&providerName=' + providerName;
     return this.httpService.get(url);
+  } */
+
+  addBilling(provider: any, user: any) {
+    return this.httpService.postWithToken(this.configuration.API_SERVICE_BILLING, {
+      userId: user.userId,
+      serviceId: provider.serviceId,
+      providerId: provider.id,
+      userName: user.userEmail,
+      providerName: provider.name
+    });
   }
 
   //Get current logged in user services API

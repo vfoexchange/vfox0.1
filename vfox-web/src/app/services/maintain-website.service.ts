@@ -15,8 +15,15 @@ constructor(private httpService: HttpService, private configuration: Configurati
             domainName: obj.domainName,
             websiteLink: obj.websiteLink,
             logo: filestring,
+            colourScheme: obj.colourScheme,
             advisorId: userId
        });
      } 
+    //View Personalize API
+    viewPersonalize(username:any) {
+        return this.httpService.postWithToken(this.configuration.API_VIEW_PERSONALIZE_WEBSITE_URL, {
+            username: username
+       });
+     }
 }
  

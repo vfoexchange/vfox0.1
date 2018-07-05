@@ -103,5 +103,48 @@ onSubmit() {
   templateUrl: './view-personalize.component.html'
 })
 export class ViewPersonalizeComponent {
-  constructor() { }
+   currentUser:any ;
+   viewHeader:any ;
+   viewDomainName:any ;
+   viewDescription:any ;
+   viewLogo:any ;
+   viewWebsiteLink: any;
+   viewColourScheme: any;
+  constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public maintainWebsite: MaintainWebsite,
+    private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration
+      ) { 
+     }
+
+  ngOnInit() {
+    this.currentUser = this.utilService.getData('loginDataDetail');
+    this.getPersonalizeList(this.currentUser);
+}
+
+getPersonalizeList(currentUser:any) {
+  let username = currentUser.userEmail
+  if (username) {
+    this.maintainWebsite.viewPersonalize(username).subscribe(
+      (response) => {
+        if(this.utilService.isEmpty(response)){
+          this._toastrService.error("Something went wrong please try again", 'Oops!');
+        }
+        if (response.code == 200) {
+          let result = response.result 
+          this.viewHeader = result.header ;
+          this.viewDomainName = result.domainName ;
+          this.viewLogo = result.logo ;
+          this.viewDescription = result.description ;
+          this.viewWebsiteLink = result.websiteLink ;
+          this.viewColourScheme = result.colourScheme ;
+        } else {
+          this._toastrService.error(response.msg, 'Oops!');
+        }
+      },
+      (error) => {
+       this._toastrService.error("Something went wrong please try again", 'Oops!');
+        this.utilService.logError(error);
+      });
+  }
+}
+
 }
