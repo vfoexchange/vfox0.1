@@ -23,7 +23,10 @@
 <div class="foot_scroll" *ngIf="!isCreatingAccount">
     <div class="home_footer">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row pos_rel">
+                <a class="pre_ico"><img src="assets/img/pre_ico.png" class="img-fluid"/></a>
+                <a class="next_ico"><img src="assets/img/next_ico.png" class="img-fluid"/></a>
+                <div class="col foot_col">&nbsp;</div>
                 <div *ngIf="currentUser.role === 'client'" class="col">
                     <a class="disable_link">
                         <img src="assets/img/select_services_disable.png"/>
@@ -221,8 +224,7 @@
                         <div class="ser_name">{{ServiceName.business_transition}}</div>
                     </a>
                 </div>
-
-
+                <div class="col foot_col">&nbsp;</div>
             </div>
         </div>
     </div>
