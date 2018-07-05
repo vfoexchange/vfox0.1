@@ -31,10 +31,13 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
     @Autowired
     private EmailServices emailServices;
+
     @Autowired
     private MailComponent mailComponent;
+
     @Value("${mail.contactus.recipients}")
     private String recipients;
 
