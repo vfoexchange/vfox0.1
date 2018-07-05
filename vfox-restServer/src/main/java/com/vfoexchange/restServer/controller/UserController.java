@@ -184,19 +184,22 @@ public class UserController {
     */
     @RequestMapping(value = "/user/verification", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO userVerification(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<ResponseDTO> userVerification(@RequestBody UserDTO userDTO) {
         ResponseDTO resp = new ResponseDTO();
+        ResponseEntity<ResponseDTO> responseEntity;
         try {
             userService.userVerification(userDTO.getUsername());
-            resp.setCode("200");
+            resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("User verification done successfully");
-            LOGGER.info("User verification done successfully");
+            LOGGER.info("User "+userDTO.getUsername()+" verification done successfully ");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         } catch (Exception e) {
-            resp.setCode("400");
-            resp.setMsg("Error occurred while updating user verification");
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
+            resp.setMsg("Error occurred while updating user verification: "+e.getMessage());
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.error("Error occurred while updating user verification " + e.getMessage());
         }
-        return resp;
+        return responseEntity;
     }
 
     /*

@@ -1,6 +1,8 @@
 package com.vfoexchange.restServer.daoImpl;
 
+import com.vfoexchange.restServer.Constants.AppConstants;
 import com.vfoexchange.restServer.dao.UserDao;
+import com.vfoexchange.restServer.exceptions.UserAlreadyActiveException;
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
 import com.vfoexchange.restServer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,8 +73,10 @@ public class UserDaoImpl implements UserDao {
     Method for marking user as verified using username
      */
     public void userVerification(String username) {
-        jdbcTemplate.update("Update User set UserState = 'A' where UserName = ?",
-                username);
+        int status = jdbcTemplate.update("Update User set UserState = 'A' where and UserState = ? and  UserName = ?",
+                AppConstants.USER_INACTIVE_STATE, username);
+        if (status == 0)
+            throw new UserAlreadyActiveException(username);
     }
 
     /*

@@ -4,5 +4,5 @@ public class AppConstants {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    public static final String FILE_TYPE = "jpeg";
+    public static final String USER_INACTIVE_STATE = "I";
 }

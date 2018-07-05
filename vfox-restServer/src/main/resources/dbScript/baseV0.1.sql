@@ -189,7 +189,7 @@ INSERT INTO vfox.`User` (Id,UserName,Password,RoleId,PasswordSetDate,UserState,C
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 1,'Bill Pay','Bill Pay','Bill Pay','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
-2,'Alternate Investment','Alternate Investment','Alternate Investment','A',1,now(),1,now());
+2,'Alternative Investment','Alternative Investment','Alternative Investment','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 3,'Wealth Management','Wealth Management','Wealth Management','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
