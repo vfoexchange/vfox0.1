@@ -20,7 +20,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-6 col-form-label">Header <span class="astric">*</span></label>
                                     <div class="col-sm-6">
-                                    <input class="form-control" formControlName="pageHeader" placeholder="" maxlength="100">
+                                    <input class="form-control" formControlName="pageHeader" placeholder="" [(ngModel)]="viewHeader" maxlength="100">
                                         <p class="erros-msg"
                                         *ngIf="PersonalizeForm.get('pageHeader').hasError('required') && PersonalizeForm.get('pageHeader').touched">
                                         Header is required</p>
@@ -32,7 +32,7 @@
                                     <div class="form-group row">
                                         <label class="col-sm-6 col-form-label">Description <span class="astric">*</span></label>
                                         <div class="col-sm-6">
-                                            <textarea formControlName="description" class="form-control" maxlength="150"></textarea>
+                                            <textarea formControlName="description" class="form-control" [(ngModel)]="viewDescription" maxlength="150"></textarea>
                                             <p class="erros-msg" *ngIf="PersonalizeForm.get('description').hasError('required') && PersonalizeForm.get('description').touched">
                                             Description is required</p>
                                         </div>
@@ -47,6 +47,8 @@
                                                 <div class="custom-file">
                                                     <input type="file" (change)="onFileChanged($event)" accept="image/x-png,image/gif,image/jpeg,image/jpg"  formControlName="uploadLogo" class="custom-file-input" id="customFile">
                                                     <label class="custom-file-label" for="customFile">{{fileName}}</label>
+                                                    <ng-template #popTemplate><img src="data:image/png;base64,{{viewLogo}}" class="img-fluid"/><div [innerHtml]="html"></div></ng-template>
+                                                    <a *ngIf="formType == 'update' " [popover]="popTemplate" triggers="mouseenter:mouseleave" [routerLink]="['/dashboard/maintainwebsite/editpersonalize']">View Logo</a>
                                                     <p class="erros-msg" *ngIf="PersonalizeForm.get('uploadLogo').hasError('required') && PersonalizeForm.get('uploadLogo').touched && !filecheck">
                                                         Please choose Image</p>
                                                     <p class="erros-msg" *ngIf="fileTypeCheck">
@@ -60,7 +62,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-form-label">Advisor’s Website Link</label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" formControlName="websiteLink" placeholder="" maxlength="100">
+                                                <input class="form-control" formControlName="websiteLink" placeholder="" [(ngModel)]="viewWebsiteLink" maxlength="100">
                                             </div>
                                         </div>
                                     </div>
@@ -70,7 +72,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-form-label">Choose color scheme</label>
                                             <div class="col-sm-6">
-                                                <select class="custom-select" formControlName="colorScheme">
+                                                <select class="custom-select" formControlName="colorScheme" [(ngModel)]="viewColourScheme">
                                                     <option *ngFor="let value of colorSchemeType" value="{{value.key}}" >{{value.value}}</option>
                                                  </select>
                                             </div>
@@ -81,7 +83,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-6 col-form-label">Choose a Domain name <span class="astric">*</span></label>
                                             <div class="col-sm-6">
-                                                <input class="form-control" formControlName="domainName" placeholder="" maxlength="100">
+                                                <input class="form-control" formControlName="domainName" placeholder="" maxlength="100" [(ngModel)]="viewDomainName" id="domainId">
                                                 <p class="erros-msg" *ngIf="PersonalizeForm.get('domainName').hasError('required') && PersonalizeForm.get('domainName').touched">
                                                     Domain Name is required</p>
                                             </div>
@@ -93,4 +95,4 @@
                 </div>
             </div>
         </div>
-    </div></div>
+    </div>

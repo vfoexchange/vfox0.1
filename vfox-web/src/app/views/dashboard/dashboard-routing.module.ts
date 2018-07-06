@@ -5,7 +5,7 @@ import { DashboardComponent, ComingsoonPageComponent } from './dashboard.compone
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
-import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { AddPersonalizeComponent, ViewPersonalizeComponent, UpdatePersonalizeComponent } from './maintain-website/personalize/personalize.component';
 import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
 
 //Dashboard route
@@ -67,6 +67,13 @@ const routes: Routes = [
   component: SelectProviderComponent,
   data: {
   title: 'Select Provider'
+ }
+},
+{
+  path: 'maintainwebsite/editpersonalize',
+  component: UpdatePersonalizeComponent,
+  data: {
+  title: 'editpersonalizewebsite'
  }
 }
 ];

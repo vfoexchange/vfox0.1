@@ -26,7 +26,18 @@ constructor(private httpService: HttpService, private configuration: Configurati
             username: username
        });
      }
-
+     
+    //Update Personalize API
+    updatePersonalize(obj:any, filestring: string, userId:string) {
+        return this.httpService.postWithToken(this.configuration.API_ADD_PERSONALIZE_WEBSITE_URL, {
+            header: obj.pageHeader,
+            description: obj.description,
+            websiteLink: obj.websiteLink,
+            logo: filestring,
+            colourScheme: obj.colourScheme,
+            advisorId: userId
+       });
+     }  
 
   getBooks(): TreeviewItem[] {
     const childrenCategory = new TreeviewItem({

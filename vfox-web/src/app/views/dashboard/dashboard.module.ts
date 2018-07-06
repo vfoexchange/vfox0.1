@@ -15,7 +15,7 @@ import { TreeviewModule } from 'ngx-treeview';
 import { ServiceCenterComponent } from './select-service/select-service.component';
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
-import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { AddPersonalizeComponent, ViewPersonalizeComponent, UpdatePersonalizeComponent } from './maintain-website/personalize/personalize.component';
 import { PopoverModule } from 'ngx-bootstrap';
 import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
 
@@ -31,7 +31,7 @@ import { SelectProviderComponent } from './maintain-website/select-provider/sele
     ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,PopoverModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent, SelectProviderComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent, SelectProviderComponent, UpdatePersonalizeComponent]
 })
 export class DashboardModule {
 
