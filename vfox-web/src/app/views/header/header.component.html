@@ -10,7 +10,7 @@
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
                 <li role="menuitem" dropdown triggers="mouseover"
                     placement="right" container="body">
-                    <a [routerLink]="['/service/tax_mitigation']" class="dropdown-item" dropdownToggle class="dropdown-item dropdown-toggle"
+                    <a [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']" class="dropdown-item" dropdownToggle class="dropdown-item dropdown-toggle"
                        (click)="false">Tax Mitigation <span class="caret"></span></a>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
         <li role="menuitem"><a class="dropdown-item">Business Income</a></li>
@@ -25,7 +25,7 @@
                     <a class="dropdown-item" [routerLink]="['/service/insurance']" [routerLinkActive]="['active']">Insurance</a>
                 </li>
                 <li role="menuitem">
-                    <a [routerLink]="['/service/investment']" [routerLinkActive]="['active']" class="dropdown-item">Alternate Investment</a>
+                    <a [routerLink]="['/service/investment']" [routerLinkActive]="['active']" class="dropdown-item">Alternative Investment</a>
                 </li>
                 <li role="menuitem">
                     <a class="dropdown-item">Bill Pay</a>
@@ -81,17 +81,27 @@
         <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
         <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
         <span dropdown [autoClose]="true" container="body">
-                <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')"
-                   id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+            <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')"
+               id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
-                <li [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']" role="menuitem">
-                    <a class="dropdown-item">Tax Mitigation</a>
+                <li role="menuitem" dropdown triggers="mouseover"
+                    placement="right" container="body">
+                    <a [routerLink]="['/service/tax_mitigation']" class="dropdown-item" dropdownToggle class="dropdown-item dropdown-toggle"
+                       (click)="false">Tax Mitigation <span class="caret"></span></a>
+                    <ul *dropdownMenu class="dropdown-menu" role="menu">
+        <li role="menuitem"><a class="dropdown-item">Business Income</a></li>
+        <li role="menuitem"><a class="dropdown-item">Other Income</a></li>
+        <li role="menuitem"><a class="dropdown-item">Capital Gains</a></li>
+                        <li role="menuitem"><a class="dropdown-item">Estate</a></li>
+      </ul>
+
                 </li>
-                <li [routerLink]="['/service/insurance']" [routerLinkActive]="['active']" role="menuitem">
-                    <a class="dropdown-item">Insurance</a>
+
+                <li role="menuitem">
+                    <a class="dropdown-item" [routerLink]="['/service/insurance']" [routerLinkActive]="['active']">Insurance</a>
                 </li>
-                <li [routerLink]="['/service/investment']" [routerLinkActive]="['active']" role="menuitem">
-                    <a class="dropdown-item">Alternate Investment</a>
+                <li role="menuitem">
+                    <a [routerLink]="['/service/investment']" [routerLinkActive]="['active']" class="dropdown-item">Alternative Investment</a>
                 </li>
                 <li role="menuitem">
                     <a class="dropdown-item">Bill Pay</a>
@@ -114,14 +124,14 @@
                 <li role="menuitem">
                     <a class="dropdown-item">Business Transition</a>
                 </li>
-                 <li role="menuitem">
+                <li role="menuitem">
                     <a class="dropdown-item">Charitable Strategies</a>
                 </li>
                 <li role="menuitem">
                     <a class="dropdown-item">Concierge Services</a>
                 </li>
-                <li [routerLink]="['/service/qualified_leverage']" [routerLinkActive]="['active']" role="menuitem">
-                    <a class="dropdown-item">Qualified Leverage Strategy</a>
+                <li role="menuitem">
+                    <a [routerLink]="['/service/qualified_leverage']" [routerLinkActive]="['active']" class="dropdown-item">Qualified Leverage Strategy</a>
                 </li>
             </ul>
         </span>
