@@ -18,9 +18,9 @@ export class SelectProviderComponent {
   config = TreeviewConfig.create({
     hasAllCheckBox: false,
     hasFilter: false,
-    hasCollapseExpand: false,
+    hasCollapseExpand: true,
     decoupleChildFromParent: false,
-    maxHeight: 400
+    maxHeight: 250
   });
 
  
