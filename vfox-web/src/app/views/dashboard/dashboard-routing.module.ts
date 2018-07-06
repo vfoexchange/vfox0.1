@@ -6,6 +6,7 @@ import { ServiceCenterComponent } from './select-service/select-service.componen
 import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
 import { AddPersonalizeComponent, ViewPersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
 
 //Dashboard route
 const routes: Routes = [
@@ -59,6 +60,13 @@ const routes: Routes = [
   component: ViewPersonalizeComponent,
   data: {
   title: 'viewpersonalizewebsite'
+ }
+},
+{
+  path: 'maintainwebsite/selectprovider',
+  component: SelectProviderComponent,
+  data: {
+  title: 'Select Provider'
  }
 }
 ];
