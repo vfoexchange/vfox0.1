@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './default-layout.component.html'
 })
 export class DefaultLayoutComponent {
-
+  hideSelected: boolean = false;
   userType: string = '';
   userServiceStatus: any;
   html: string = '';
@@ -70,16 +70,6 @@ export class DefaultLayoutComponent {
   }
 
   //Logout current user
- /* logout() {
-    //this.token = undefined;
-    localStorage.removeItem('token');
-    localStorage.removeItem('loginDataDetail');
-    localStorage.removeItem('isSplashShow');
-
-    localStorage.clear();
-    this.router.navigate(['/']);
-
-  } */
   logout() {
     this.auth.logout().subscribe(
       () => {
@@ -87,4 +77,15 @@ export class DefaultLayoutComponent {
       }
     );
   }
+
+  preShow(){
+    this.hideSelected=false;
+
+  }
+  nextShow(){
+    this.hideSelected=true;
+
+  }
+
+
 }

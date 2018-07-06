@@ -3,8 +3,8 @@ export class Configuration {
     //*****************************API Auth *****************************/
     public ClientId: string = '123456';
     public Authorization: string = 'Basic MTIzNDU2OmRmdmJhZWZ2YWRlZnZhYw==';
-    public ApiUrl:string = 'http://localhost:8080/';
-    //public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
+    //public ApiUrl:string = 'http://localhost:8080/';
+    public ApiUrl:string = 'http://192.0.0.20:7080/vfox/';
     public HomeNavPageUrl: string = '/login';
     public AppMode: string = 'PROD'; //For PROD set 'PROD' mode;
 
@@ -67,7 +67,9 @@ export class Configuration {
     'trust_services': 'Trust Services',
     'business_valuation': 'Business Valuation',
     'cost_remediation': 'Cost Remediation',
-    'business_transition': 'Business Transition'
+    'business_transition': 'Business Transition',
+    'charitable_strategies': 'Charitable Strategies',
+    'concierge_services': 'Concierge Services'
     };
 
 
@@ -80,8 +82,10 @@ export class Configuration {
     'asset_protection': true,
     'trust_services': true,
     'business_valuation': true,
-    'cost_remediation': true,
-    'business_transition': true
+    'cost_remediation': true,    
+    'business_transition': true,
+    'charitable_strategies': true,
+    'concierge_services': true
     };
     
     //*****************************Footer Menu *****************************/
@@ -95,7 +99,9 @@ export class Configuration {
         'trust_services_menu': true,
         'business_valuation_menu': true,
         'cost_remediation_menu': true,
-        'business_transition_menu': true
+        'business_transition_menu': true,
+        'charitable_strategies_menu': true,
+        'concierge_services_menu': true
         };
 
     public ColorSchemeList = [

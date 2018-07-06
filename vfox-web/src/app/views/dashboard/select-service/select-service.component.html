@@ -62,9 +62,6 @@
                                         <p class="ser_title">{{ServiceName.tax_mitigation}}</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6">
-
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
@@ -74,6 +71,10 @@
                                         <p class="ser_title">{{ServiceName.asset_protection}}</p>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-6">
+
+                               
                                 <div class="form-group row">
                                     <label class="col-5 col-sm-3 col-form-label"><label
                                             class="switch switch-3d switch-primary">
@@ -112,6 +113,26 @@
                                         <p class="ser_title">{{ServiceName.business_transition}}</p>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.charitable_strategies" class="switch-input" formControlName="charitable_strategies" id="investment" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.charitable_strategies}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-5 col-sm-3 col-form-label"><label
+                                            class="switch switch-3d switch-primary">
+                                        <input [(ngModel)]="serviceStatus.concierge_services" class="switch-input" formControlName="concierge_services" id="investment" type="checkbox">
+                                        <span class="switch-slider"></span></label></label>
+                                    <div class="col-7 col-sm-9">
+                                        <p class="ser_title">{{ServiceName.concierge_services}}</p>
+                                    </div>
+                                </div>
+
                             </div>
 
 

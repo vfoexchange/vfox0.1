@@ -24,9 +24,10 @@
     <div class="home_footer">
         <div class="container-fluid">
             <div class="row pos_rel">
-                <a class="pre_ico"><img src="assets/img/pre_ico.png" class="img-fluid"/></a>
-                <a class="next_ico"><img src="assets/img/next_ico.png" class="img-fluid"/></a>
+                <a class="pre_ico" (click)="preShow()"><img src="assets/img/pre_ico.png" class="img-fluid"/></a>
+                <a class="next_ico" (click)="nextShow()"><img src="assets/img/next_ico.png" class="img-fluid"/></a>
                 <div class="col foot_col">&nbsp;</div>
+
                 <div *ngIf="currentUser.role === 'client'" class="col">
                     <a class="disable_link">
                         <img src="assets/img/select_services_disable.png"/>
@@ -77,14 +78,14 @@
                         </div>
                     </a>
                 </div>
-                <div *ngIf="userServiceStatus.insurance_menu" class="col">
+                <div *ngIf="userServiceStatus.insurance_menu" class="col" [hidden]="hideSelected">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.insurance" [routerLinkActive]="['active']">
                         <img src="assets/img/insurance.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
                     </a>
                 </div>
 
-                <div *ngIf="!userServiceStatus.insurance_menu" class="col">
+                <div *ngIf="!userServiceStatus.insurance_menu" class="col" [hidden]="hideSelected">
                     <a class="disable_link">
                         <img src="assets/img/insurance_disable.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
@@ -210,7 +211,7 @@
                     </a>
                 </div>
 
-                <div *ngIf="userServiceStatus.business_transition_menu" class="col">
+                <div *ngIf="userServiceStatus.business_transition_menu" class="col" [hidden]="!hideSelected">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.business_transition"
                        [routerLinkActive]="['active']">
                         <img src="assets/img/business_trans.png"/>
@@ -218,7 +219,7 @@
                     </a>
                 </div>
 
-                <div *ngIf="!userServiceStatus.business_transition_menu" class="col">
+                <div *ngIf="!userServiceStatus.business_transition_menu" class="col" [hidden]="!hideSelected">
                     <a class="disable_link">
                         <img src="assets/img/business_trans_disable.png"/>
                         <div class="ser_name">{{ServiceName.business_transition}}</div>

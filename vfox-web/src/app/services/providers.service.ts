@@ -54,7 +54,9 @@ export class ProvidersService {
         'Trust Services': value.trust_services,
         'Business Valuation': value.business_valuation,
         'Cost Remediation': value.cost_remediation,
-        'Business Transition': value.business_transition
+        'Business Transition': value.business_transition,
+        'Charitable Strategies': value.charitable_strategies,
+        'Concierge Services': value.concierge_services
       }
     });
   }
@@ -74,6 +76,8 @@ export class ProvidersService {
       serviceStatus.business_valuation_menu = false;
       serviceStatus.cost_remediation_menu = false;
       serviceStatus.business_transition_menu = false;
+      serviceStatus.charitable_strategies_menu = false;
+      serviceStatus.concierge_services_menu = false;
     } else {
       serviceStatus.bill_pay_menu = true;
       serviceStatus.investment_menu = true;
@@ -85,6 +89,8 @@ export class ProvidersService {
       serviceStatus.business_valuation_menu = true;
       serviceStatus.cost_remediation_menu = true;
       serviceStatus.business_transition_menu = true;
+      serviceStatus.charitable_strategies_menu = true;
+      serviceStatus.concierge_services_menu = true;
     }
 
     for (let child of response.result) {
@@ -120,6 +126,12 @@ export class ProvidersService {
         case this.ServiceName.business_transition:
           serviceStatus.business_transition_menu = true;
           break;
+        case this.ServiceName.charitable_strategies:
+          serviceStatus.charitable_strategies_menu = true;
+          break;
+        case this.ServiceName.concierge_services:
+          serviceStatus.concierge_services_menu = true;
+          break;
         default:
         //Nothing
       }
@@ -148,6 +160,8 @@ export class ProvidersService {
       this.serviceStatus.business_valuation = false;
       this.serviceStatus.cost_remediation = false;
       this.serviceStatus.business_transition = false;
+      this.serviceStatus.charitable_strategies = false;
+      this.serviceStatus.concierge_services = false;
     } else {
       this.serviceStatus.bill_pay = true;
       this.serviceStatus.investment = true;
@@ -159,6 +173,8 @@ export class ProvidersService {
       this.serviceStatus.business_valuation = true;
       this.serviceStatus.cost_remediation = true;
       this.serviceStatus.business_transition = true;
+      this.serviceStatus.charitable_strategies = true;
+      this.serviceStatus.concierge_services = true;
     }
 
 
@@ -195,6 +211,12 @@ export class ProvidersService {
           break;
         case this.ServiceName.business_transition:
           this.serviceStatus.business_transition = true;
+          break;
+          case this.ServiceName.charitable_strategies:
+          this.serviceStatus.charitable_strategies = true;
+          break;
+          case this.ServiceName.concierge_services:
+          this.serviceStatus.concierge_services = true;
           break;
 
         default:
