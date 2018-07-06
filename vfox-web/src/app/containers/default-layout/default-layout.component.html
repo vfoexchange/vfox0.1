@@ -57,7 +57,7 @@
                 <div *ngIf="currentUser.role !== 'client'" class="col popover_style" [hidden]="hideSelected">
                     <ng-template #popTemplate><a [routerLink]="['/dashboard/maintainwebsite/addpersonalize']"
                                                  title="Personalize Website"><img src="assets/img/per_web.png"/></a> <a
-                            [routerLink]="['/dashboard/comingsoon']" title="Add Clients"><img
+                            [routerLink]="['/dashboard/maintainwebsite/addclient']" title="Add Clients"><img
                             src="assets/img/add_clients.png"/></a> <a [routerLink]="['/dashboard/comingsoon']"
                                                                       title="Select Service Providers"><img
                             src="assets/img/ser_pro.png"/></a></ng-template>

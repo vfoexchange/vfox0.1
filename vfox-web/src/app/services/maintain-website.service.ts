@@ -16,7 +16,7 @@ constructor(private httpService: HttpService, private configuration: Configurati
             domainName: obj.domainName,
             websiteLink: obj.websiteLink,
             logo: filestring,
-            colourScheme: obj.colourScheme,
+            colourScheme: obj.colorScheme,
             advisorId: userId
        });
      } 
@@ -34,7 +34,7 @@ constructor(private httpService: HttpService, private configuration: Configurati
             description: obj.description,
             websiteLink: obj.websiteLink,
             logo: filestring,
-            colourScheme: obj.colourScheme,
+            colourScheme: obj.colorScheme,
             advisorId: userId
        });
      }  
