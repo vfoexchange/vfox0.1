@@ -28,7 +28,7 @@
                 <a class="next_ico" (click)="nextShow()"><img src="assets/img/next_ico.png" class="img-fluid"/></a>
                 <div class="col foot_col">&nbsp;</div>
 
-                <div *ngIf="currentUser.role === 'client'" class="col">
+                <div *ngIf="currentUser.role === 'client'" class="col" [hidden]="hideSelected">
                     <a class="disable_link">
                         <img src="assets/img/select_services_disable.png"/>
                         <div class="ser_name">Select
@@ -37,7 +37,7 @@
                     </a>
                 </div>
 
-                <div *ngIf="currentUser.role !== 'client'" class="col">
+                <div *ngIf="currentUser.role !== 'client'" class="col" [hidden]="hideSelected">
                     <a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">
                         <img src="assets/img/select_services.png"/>
                         <div class="ser_name">Select
@@ -54,8 +54,8 @@
                     </a>
                 </div> -->
                 <!--<div><img src="assets/img/per_web.png" /> <img src="assets/img/add_clients.png" /> <img src="assets/img/ser_pro.png" /></div>-->
-                <div *ngIf="currentUser.role !== 'client'" class="col popover_style">
-                    <ng-template #popTemplate><a [routerLink]="['/dashboard/comingsoon']"
+                <div *ngIf="currentUser.role !== 'client'" class="col popover_style" [hidden]="hideSelected">
+                    <ng-template #popTemplate><a [routerLink]="['/dashboard/maintainwebsite/addpersonalize']"
                                                  title="Personalize Website"><img src="assets/img/per_web.png"/></a> <a
                             [routerLink]="['/dashboard/comingsoon']" title="Add Clients"><img
                             src="assets/img/add_clients.png"/></a> <a [routerLink]="['/dashboard/comingsoon']"
@@ -78,14 +78,14 @@
                         </div>
                     </a>
                 </div>
-                <div *ngIf="userServiceStatus.insurance_menu" class="col" [hidden]="hideSelected">
+                <div *ngIf="userServiceStatus.insurance_menu" class="col">
                     <a [routerLink]="'/dashboard/service/'+ServiceName.insurance" [routerLinkActive]="['active']">
                         <img src="assets/img/insurance.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
                     </a>
                 </div>
 
-                <div *ngIf="!userServiceStatus.insurance_menu" class="col" [hidden]="hideSelected">
+                <div *ngIf="!userServiceStatus.insurance_menu" class="col">
                     <a class="disable_link">
                         <img src="assets/img/insurance_disable.png"/>
                         <div class="ser_name">{{ServiceName.insurance}}</div>
@@ -211,18 +211,48 @@
                     </a>
                 </div>
 
-                <div *ngIf="userServiceStatus.business_transition_menu" class="col" [hidden]="!hideSelected">
-                    <a [routerLink]="'/dashboard/service/'+ServiceName.business_transition"
+                <div *ngIf="userServiceStatus.business_transition_menu" class="col" >
+                        <a [routerLink]="'/dashboard/service/'+ServiceName.business_transition"
+                           [routerLinkActive]="['active']">
+                            <img src="assets/img/business_trans.png"/>
+                            <div class="ser_name">{{ServiceName.business_transition}}</div>
+                        </a>
+                    </div>
+    
+                    <div *ngIf="!userServiceStatus.business_transition_menu" class="col" >
+                        <a class="disable_link">
+                            <img src="assets/img/business_trans_disable.png"/>
+                            <div class="ser_name">{{ServiceName.business_transition}}</div>
+                        </a>
+                    </div>
+
+                    <div *ngIf="userServiceStatus.charitable_strategies_menu" class="col" [hidden]="!hideSelected">
+                            <a [routerLink]="'/dashboard/service/'+ServiceName.charitable_strategies"
+                               [routerLinkActive]="['active']">
+                                <img src="assets/img/charitable_stra.png"/>
+                                <div class="ser_name">{{ServiceName.charitable_strategies}}</div>
+                            </a>
+                        </div>
+        
+                        <div *ngIf="!userServiceStatus.charitable_strategies_menu" class="col" [hidden]="!hideSelected">
+                            <a class="disable_link">
+                                <img src="assets/img/charitable_stra_disable.png"/>
+                                <div class="ser_name">{{ServiceName.charitable_strategies}}</div>
+                            </a>
+                        </div>
+
+                <div *ngIf="userServiceStatus.concierge_services_menu" class="col" [hidden]="!hideSelected">
+                    <a [routerLink]="'/dashboard/service/'+ServiceName.concierge_services"
                        [routerLinkActive]="['active']">
-                        <img src="assets/img/business_trans.png"/>
-                        <div class="ser_name">{{ServiceName.business_transition}}</div>
+                        <img src="assets/img/concierge_ser.png"/>
+                        <div class="ser_name">{{ServiceName.concierge_services}}</div>
                     </a>
                 </div>
 
-                <div *ngIf="!userServiceStatus.business_transition_menu" class="col" [hidden]="!hideSelected">
+                <div *ngIf="!userServiceStatus.concierge_services_menu" class="col" [hidden]="!hideSelected">
                     <a class="disable_link">
-                        <img src="assets/img/business_trans_disable.png"/>
-                        <div class="ser_name">{{ServiceName.business_transition}}</div>
+                        <img src="assets/img/concierge_ser_disable.png"/>
+                        <div class="ser_name">{{ServiceName.concierge_services}}</div>
                     </a>
                 </div>
                 <div class="col foot_col">&nbsp;</div>
