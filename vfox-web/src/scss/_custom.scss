@@ -123,7 +123,7 @@ iframe.qls_video{width:99%!important; height:173px!important;}
 .foot_col{flex-grow:0!important;}
 .img_screenshot{border:solid 5px rgba(255,255,255,0.1);}
 ul.sec_txt{padding:0;}
-.treeview-item{float:left; width:50%;}
+/*.treeview-item{float:left; width:50%;}*/
 .treeview-item .form-check-label{color:#333!important;}
 .treeview-item{font-weight:bold; font-size:16px;}
 .treeview-item .fa, .fa-compress, .fa-expand{color:#333!important;}
@@ -145,6 +145,7 @@ ul.sec_txt{padding:0;}
 .dropdown-item{font-size:11px; padding:5px;}
 .top_nav a{font-size:12px!important;}
 .foot_col{display:none!important;}
+.home_footer [hidden]{display: block!important;}
 }
 @media screen and (max-width: 768px){
 .card{height:auto!important;}

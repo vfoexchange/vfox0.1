@@ -6,18 +6,27 @@
         <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
         <span dropdown [autoClose]="true" container="body">
             <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')"
-               id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+                id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
-                <li role="menuitem" dropdown triggers="mouseover"
-                    placement="right" container="body">
+                <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
                     <a [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']" class="dropdown-item" dropdownToggle class="dropdown-item dropdown-toggle"
-                       (click)="false">Tax Mitigation <span class="caret"></span></a>
+                        (click)="false">Tax Mitigation
+                        <span class="caret"></span>
+                    </a>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li role="menuitem"><a class="dropdown-item">Business Income</a></li>
-        <li role="menuitem"><a class="dropdown-item">Other Income</a></li>
-        <li role="menuitem"><a class="dropdown-item">Capital Gains</a></li>
-                        <li role="menuitem"><a class="dropdown-item">Estate</a></li>
-      </ul>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Business Income</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Other Income</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Capital Gains</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Estate</a>
+                        </li>
+                    </ul>
 
                 </li>
 
@@ -65,10 +74,10 @@
     </nav>
     <div class="d-flex flex-column flex-md-row align-items-center home_header">
         <h5 class="my-0 mr-md-auto">
-            <img src="assets/img/vfox_logo.png" alt="VFOX"/>
+            <img src="assets/img/vfox_logo.png" alt="VFOX" />
         </h5>
         <div class="user_profile">
-            <img src="assets/img/default_profile.png" alt="Profile" class="float-left"/>
+            <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
             <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
         </div>
 
@@ -82,18 +91,27 @@
         <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
         <span dropdown [autoClose]="true" container="body">
             <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')"
-               id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
+                id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
             <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
-                <li role="menuitem" dropdown triggers="mouseover"
-                    placement="right" container="body">
+                <li role="menuitem" dropdown triggers="mouseover" placement="right" container="body">
                     <a [routerLink]="['/service/tax_mitigation']" class="dropdown-item" dropdownToggle class="dropdown-item dropdown-toggle"
-                       (click)="false">Tax Mitigation <span class="caret"></span></a>
+                        (click)="false">Tax Mitigation
+                        <span class="caret"></span>
+                    </a>
                     <ul *dropdownMenu class="dropdown-menu" role="menu">
-        <li role="menuitem"><a class="dropdown-item">Business Income</a></li>
-        <li role="menuitem"><a class="dropdown-item">Other Income</a></li>
-        <li role="menuitem"><a class="dropdown-item">Capital Gains</a></li>
-                        <li role="menuitem"><a class="dropdown-item">Estate</a></li>
-      </ul>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Business Income</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Other Income</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Capital Gains</a>
+                        </li>
+                        <li role="menuitem">
+                            <a class="dropdown-item">Estate</a>
+                        </li>
+                    </ul>
 
                 </li>
 
@@ -140,12 +158,10 @@
     </nav>
     <div class="d-flex flex-column flex-md-row align-items-center home_header">
         <h5 class="my-0 mr-md-auto">
-            <img src="assets/img/vfox_logo.png" alt="VFOX"/>
+            <img src="assets/img/vfox_logo.png" alt="VFOX" />
         </h5>
-        <a *ngIf="router.url == '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN'
-            | translate}}</a>
-        <a *ngIf="router.url != '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER'
-            | translate}}</a>
+        <a *ngIf="router.url == '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN' | translate}}</a>
+        <a *ngIf="router.url != '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
     </div>
 
 </div>

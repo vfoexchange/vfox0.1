@@ -13,14 +13,15 @@ export class SelectProviderComponent {
 
  
   dropdownEnabled = true;
-  items: TreeviewItem[];
+  items1: TreeviewItem[];
+  items2: TreeviewItem[];
   values: number[];
   config = TreeviewConfig.create({
     hasAllCheckBox: false,
     hasFilter: false,
-    hasCollapseExpand: true,
+    hasCollapseExpand: false,
     decoupleChildFromParent: false,
-    maxHeight: 250
+    maxHeight: 1000
   });
 
  
@@ -29,7 +30,8 @@ export class SelectProviderComponent {
 
 
   ngOnInit() {
-    this.items = this.maintainWebsite.getBooks();
+    this.items1 = this.maintainWebsite.getBooks1();
+    this.items2 = this.maintainWebsite.getBooks2();
   }
 
   onFilterChange(value: string) {

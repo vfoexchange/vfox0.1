@@ -15,8 +15,13 @@
                             </div>
                         </div>
                         <!-- <form> -->
-                        <ngx-treeview [config]="config" [items]="items" (selectedChange)="values = $event">
-                        </ngx-treeview>
+                                <div class="row">
+                                        <div class="col-md-6"><ngx-treeview [config]="config" [items]="items1" (selectedChange)="values = $event">
+                                            </ngx-treeview></div>
+                                        <div class="col-md-6"><ngx-treeview [config]="config" [items]="items2" (selectedChange)="values = $event">
+                                            </ngx-treeview></div>
+                                            </div>
+                        
                         <!-- </form> -->
                     </form>
                 </div>

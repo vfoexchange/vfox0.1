@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Configuration } from "../../common-services/app-constant";
 import { Authentication } from "../../common-services/authentication";
 import { ProvidersService } from '../../services/providers.service';
+import { MaintainWebsite } from '../../services/maintain-website.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -20,8 +21,9 @@ export class DefaultLayoutComponent {
   ServiceName: any;
   currentUser: any;
   isCreatingAccount: boolean ;
+  personalizeLink:string = 'addpersonalize';
   constructor(private utilService: UtilService, private router: Router, private auth: Authentication, private providersService: ProvidersService, private _toastrService: ToastrService,
-    private configuration: Configuration, private translate: TranslateService, private translateService: TranslateLangService) {
+    private configuration: Configuration, private translate: TranslateService, public maintainWebsite: MaintainWebsite, private translateService: TranslateLangService) {
 
       
 
@@ -41,6 +43,7 @@ export class DefaultLayoutComponent {
     }, 4000);
     this.translate.setDefaultLang('en');
     this.getUserService();
+    this.getPersonalizeList(this.currentUser);
   }
 
   getUserService() {
@@ -67,6 +70,23 @@ export class DefaultLayoutComponent {
 
 
     );
+  }
+
+  getPersonalizeList(currentUser:any) {
+    let username = currentUser.userEmail
+    if (username) {
+      this.maintainWebsite.viewPersonalize(username).subscribe(
+        (response) => {
+          if(this.utilService.isEmpty(response)){
+            this._toastrService.error("Something went wrong please try again", 'Oops!');
+          }
+          if (response.code == 200) {
+            //let result = response.result 
+            this.personalizeLink = 'viewpersonalize';
+          
+          } 
+        });
+    }
   }
 
   //Logout current user
