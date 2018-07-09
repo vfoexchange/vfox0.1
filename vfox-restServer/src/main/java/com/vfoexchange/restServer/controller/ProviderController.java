@@ -1,14 +1,17 @@
 package com.vfoexchange.restServer.controller;
 
+import com.vfoexchange.restServer.dto.BillingDTO;
 import com.vfoexchange.restServer.dto.ResponseDTO;
 import com.vfoexchange.restServer.service.ProviderService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ProviderController {
-
+    private static Logger LOGGER = LoggerFactory.getLogger(ProviderController.class);
     @Autowired
     ProviderService providerService;
 
@@ -33,17 +36,19 @@ public class ProviderController {
     /*
     Method for updating provider billing with user
     */
-    @RequestMapping(value = "/update/provider/billing", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/update/provider/billing", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO updateProviderBilling(@RequestParam String userName, @RequestParam String providerName) {
+    public ResponseDTO updateProviderBilling(@RequestBody BillingDTO billingDTO) {
         ResponseDTO resp = new ResponseDTO();
         try {
-            providerService.updateProviderBilling(userName, providerName);
+            providerService.updateProviderBilling(billingDTO);
             resp.setCode("200");
             resp.setMsg("Service Providers billing updated successfully");
+            LOGGER.info("Service Providers billing updated successfully");
         } catch (Exception e) {
             resp.setCode("400");
             resp.setMsg("Error occurred while update service providers billing");
+            LOGGER.error("Error occurred while update service providers billing" + e.getMessage());
         }
         return resp;
     }

@@ -1,8 +1,10 @@
 package com.vfoexchange.restServer.dao;
 
+import com.vfoexchange.restServer.model.Billing;
 import com.vfoexchange.restServer.model.ServiceProviders;
 import com.vfoexchange.restServer.model.Services;
 import java.util.List;
+import java.util.Optional;
 
 public interface ServicesDao {
 
@@ -18,6 +20,8 @@ public interface ServicesDao {
 
     public ServiceProviders findProviderByName(String providerName);
 
-    public void updateProviderBilling(int userId, int serviceId, int serviseProviderId);
+    public void updateProviderBilling(int userId, int serviceId, int serviceProviderId);
+
+    public Optional<Billing> fetchProviderBilling(int userId, int serviceProviderId);
 
 }

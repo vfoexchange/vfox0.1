@@ -1,14 +1,17 @@
 package com.vfoexchange.restServer.daoImpl;
 
 import com.vfoexchange.restServer.dao.ServicesDao;
+import com.vfoexchange.restServer.model.Billing;
 import com.vfoexchange.restServer.model.ServiceProviders;
 import com.vfoexchange.restServer.model.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 @Qualifier("serviceDao")
@@ -80,8 +83,22 @@ public class ServicesDaoImpl implements ServicesDao {
      */
     @Override
     public void updateProviderBilling(int userId, int serviceId, int serviceProviderId) {
-        jdbcTemplate.update("INSERT INTO Billing (ServiceId, ServiceProviderId, UserId, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, 1, now(), 1, now()) ",
+        jdbcTemplate.update("INSERT INTO Billing (ServiceId, ServiceProviderId, UserId, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(?, ?, ?, 1, now(), 1, now())",
                 new Object[]{serviceId, serviceProviderId, userId});
+    }
+
+    /*
+    Method to fetching billing for a user with provider
+    */
+    @Override
+    public Optional<Billing> fetchProviderBilling(int userId, int serviceProviderId) {
+        try {
+            Billing billing = (Billing) jdbcTemplate.queryForObject("SELECT * from Billing where UserId = ? and ServiceProviderId = ?",
+                    new Object[]{userId, serviceProviderId}, new BeanPropertyRowMapper<>(Billing.class));
+            return Optional.of(billing);
+        } catch (EmptyResultDataAccessException ex) {
+            return Optional.empty();
+        }
     }
 }
 
