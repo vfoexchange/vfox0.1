@@ -24,6 +24,12 @@ export class AddPersonalizeComponent {
   fileName:any = 'Upload Logo';
   filecheck: boolean = false;
   fileTypeCheck : boolean = false;
+  viewHeader:any ;
+  viewDomainName:any ;
+  viewDescription:any ;
+  viewLogo:any ;
+  viewWebsiteLink: any;
+  viewColourScheme: any;
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public maintainWebsite: MaintainWebsite,
     private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration
       ) { 
