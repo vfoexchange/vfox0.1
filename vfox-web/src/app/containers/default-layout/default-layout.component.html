@@ -55,15 +55,20 @@
                 </div> -->
                 <!--<div><img src="assets/img/per_web.png" /> <img src="assets/img/add_clients.png" /> <img src="assets/img/ser_pro.png" /></div>-->
                 <div *ngIf="currentUser.role !== 'client'" class="col popover_style" [hidden]="hideSelected">
-                    <ng-template #popTemplate><a [routerLink]="['/dashboard/maintainwebsite/'+personalizeLink]"
-                                                 title="Personalize Website"><img src="assets/img/per_web.png"/></a> <a
-                            [routerLink]="['/dashboard/maintainwebsite/addclient']" title="Add Clients"><img
-                            src="assets/img/add_clients.png"/></a> <a [routerLink]="['/dashboard/comingsoon']"
-                                                                      title="Select Service Providers"><img
-                            src="assets/img/ser_pro.png"/></a></ng-template>
-                    <a [outsideClick]="true" [popover]="popTemplate" popoverTitle="" href="javascript:void(0)"
-                       [routerLinkActive]="['active']">
-                        <img src="assets/img/maintain_users.png"/>
+                    <ng-template #popTemplate>
+                        <a [routerLinkActive]="['active']" [routerLink]="['/dashboard/maintainwebsite/'+personalizeLink]" title="Personalize Website">
+                            <img src="assets/img/per_web.png" />
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLink]="['/dashboard/maintainwebsite/addclient']" title="Add Clients">
+                            <img src="assets/img/add_clients.png" />
+                        </a>
+                        <a [routerLinkActive]="['active']" [routerLink]="['/dashboard/maintainwebsite/selectprovider']" title="Select Service Providers">
+                            <img src="assets/img/ser_pro.png" />
+                        </a>
+                    </ng-template>
+                    <a [outsideClick]="true" [popover]="popTemplate" popoverTitle="" [routerLink]="['/dashboard/maintainwebsite/'+personalizeLink]" [class.active]="router.isActive('/dashboard/maintainwebsite/addpersonalize') || router.isActive('/dashboard/maintainwebsite/editpersonalize') || router.isActive('/dashboard/maintainwebsite/viewpersonalize') || router.isActive('/dashboard/maintainwebsite/addclient')
+                    || router.isActive('/dashboard/maintainwebsite/selectprovider')">
+                        <img src="assets/img/maintain_users.png" />
                         <div class="ser_name">Maintain
                             <br/>Website
                         </div>

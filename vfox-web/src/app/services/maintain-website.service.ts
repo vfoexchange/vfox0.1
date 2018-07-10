@@ -38,77 +38,75 @@ constructor(private httpService: HttpService, private configuration: Configurati
             advisorId: userId
        });
      }  
-     getBooks1(): TreeviewItem[] {
+         getBooks1(): TreeviewItem[] {
         const Category1 = new TreeviewItem({
-            text: 'Insurance', value: 1,  children: [
-                { text: 'Lorem ipsum dolor provider', value: 11 },
-                { text: 'Lorem ipsum provider', value: 12 },
-                { text: 'Lorem ipsum ', value: 13 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Insurance', value: 1, collapsed: true, children: [
+                { text: 'Cool Springs', value: 11, checked: false },
+                { text: 'Lorem ipsum', checked: false, value: 12 },
+                { text: 'Lorem ipsum ', checked: false, value: 13 }
             ]
         });
-    
+
         const Category2 = new TreeviewItem({
-            text: 'Bill Pay', value: 1,  children: [
-                { text: 'Lorem ipsum provider', value: 12 },
-                { text: 'Lorem ipsum ', value: 13 },
-                { text: 'Lorem ipsum ', value: 14 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Bill Pay', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum provider', checked: false, value: 12 },
+                { text: 'Lorem ipsum ', checked: false, value: 13 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 }
             ]
         });
-    
+
         const Category3 = new TreeviewItem({
-            text: 'Alternative Investment', value: 1,  children: [
-                { text: 'Lorem ipsum ', value: 14 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Alternative Investment', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum ', checked: false, value: 14 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 }
             ]
         });
-    
+
         const Category4 = new TreeviewItem({
-            text: 'Tax Mitigation', value: 1,  children: [
-                { text: 'Lorem ipsum dolor provider', value: 11 },
-                { text: 'Lorem ipsum provider', value: 12 },
-                { text: 'Lorem ipsum ', value: 13 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Tax Mitigation', value: 1, collapsed: true, children: [
+                { text: 'Restricted Property', checked: false, value: 11 },
+                { text: 'Ornstein-Schuler', checked: false, value: 12 },
+                { text: 'Lorem ipsum ', checked: false, value: 13 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 }
             ]
         });
-       
+
         return [Category1, Category2, Category3, Category4];
     }
 
     getBooks2(): TreeviewItem[] {
         const Category1 = new TreeviewItem({
-            text: 'Insurance', value: 1,  children: [
-                { text: 'Lorem ipsum dolor provider', value: 11 },
-                { text: 'Lorem ipsum provider', value: 12 },
+            text: 'Wealth Management', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum dolor provider', checked: false, value: 11 },
+                { text: 'Lorem ipsum provider', checked: false, value: 12 },
             ]
         });
-    
+
         const Category2 = new TreeviewItem({
-            text: 'Bill Pay', value: 1,  children: [
-                { text: 'Lorem ipsum provider', value: 12 },
-                { text: 'Lorem ipsum ', value: 13 },
-                { text: 'Lorem ipsum ', value: 14 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Asset Protection', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum provider', checked: false, value: 12 },
+                { text: 'Lorem ipsum ', checked: false, value: 13 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 }
             ]
         });
-    
+
         const Category3 = new TreeviewItem({
-            text: 'Alternative Investment', value: 1,  children: [
-                { text: 'Lorem ipsum ', value: 14 },
-                { text: 'Lorem ipsum ', value: 14 }
+            text: 'Trust Services', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum ', checked: false, value: 14 },
+                { text: 'Lorem ipsum ', checked: false, value: 14 }
             ]
         });
-    
+
         const Category4 = new TreeviewItem({
-            text: 'Tax Mitigation', value: 1,  children: [
-                { text: 'Lorem ipsum dolor provider', value: 11 },
-                { text: 'Lorem ipsum provider', value: 12 },
+            text: 'Cost Remadiation', value: 1, collapsed: true, children: [
+                { text: 'Lorem ipsum dolor provider', checked: false, value: 11 },
+                { text: 'Lorem ipsum provider', checked: false, value: 12 },
             ]
         });
-       
+
         return [Category1, Category2, Category3, Category4];
     }
-
 }
  
