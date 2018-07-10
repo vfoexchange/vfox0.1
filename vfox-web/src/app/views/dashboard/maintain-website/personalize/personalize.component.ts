@@ -42,12 +42,12 @@ export class AddPersonalizeComponent {
     this.currentUser = this.utilService.getData('loginDataDetail');
     this.PersonalizeForm = formBuilder.group({
    
-    pageHeader: new FormControl(null, [Validators.required]),
-    description: new FormControl(null, [Validators.required]),
-    uploadLogo: new FormControl(null, [Validators.required]),
+    pageHeader: new FormControl(null),
+    description: new FormControl(null),
+    uploadLogo: new FormControl(null),
     websiteLink: new FormControl(null),
     colorScheme: new FormControl(null),
-    domainName: new FormControl(null, [Validators.required]),
+    domainName: new FormControl(null),
   });
    
 } 
@@ -80,6 +80,7 @@ _handleReaderLoaded(readerEvt) {
 
 
 onSubmit() {
+  this.router.navigate(['/dashboard/maintainwebsite/viewpersonalize'],{});
   let obj = this.PersonalizeForm.value;
   if (this.PersonalizeForm.dirty && this.PersonalizeForm.valid) {
     this.maintainWebsite.addPersonalize(obj, this.filestring, this.currentUser.userId).subscribe(
@@ -110,12 +111,12 @@ onSubmit() {
 })
 export class ViewPersonalizeComponent {
    currentUser:any ;
-   viewHeader:any ;
-   viewDomainName:any ;
-   viewDescription:any ;
+   viewHeader:any ='VFOX Header' ;
+   viewDomainName:any = 'Advisor' ;
+   viewDescription:any = 'Advisor Personal Detail' ; 
    viewLogo:any ;
-   viewWebsiteLink: any;
-   viewColourScheme: any;
+   viewWebsiteLink: any = 'www.advisorlink.com';
+   viewColourScheme: any = 'Blue Theme';
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public maintainWebsite: MaintainWebsite,
     private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration
       ) { 
@@ -123,7 +124,7 @@ export class ViewPersonalizeComponent {
 
   ngOnInit() {
     this.currentUser = this.utilService.getData('loginDataDetail');
-    this.getPersonalizeList(this.currentUser);
+    //this.getPersonalizeList(this.currentUser);
 }
 
 getPersonalizeList(currentUser:any) {
@@ -169,12 +170,12 @@ export class UpdatePersonalizeComponent {
   fileName:any = 'Update Logo';
   filecheck: boolean = false;
   fileTypeCheck : boolean = false;
-  viewHeader:any ;
-  viewDomainName:any ;
-  viewDescription:any ;
+  viewHeader:any ='VFOX Header' ;
+  viewDomainName:any = 'Advisor' ;
+  viewDescription:any = 'Advisor Personal Detail' ; 
   viewLogo:any ;
-  viewWebsiteLink: any;
-  viewColourScheme: any;
+  viewWebsiteLink: any = 'www.advisorlink.com';
+  viewColourScheme: any = 'Blue Theme';
   constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public maintainWebsite: MaintainWebsite,
     private utilService : UtilService, private http: Http,private _toastrService: ToastrService, private configuration: Configuration
       ) { 
@@ -185,15 +186,15 @@ export class UpdatePersonalizeComponent {
     var formBuilder = new FormBuilder();
     this.currentUser = this.utilService.getData('loginDataDetail');
     this.PersonalizeForm = formBuilder.group({
-    pageHeader: new FormControl(null, [Validators.required]),
-    description: new FormControl(null, [Validators.required]),
+    pageHeader: new FormControl(null),
+    description: new FormControl(null),
     uploadLogo: new FormControl(null),
     websiteLink: new FormControl(null),
     colorScheme: new FormControl(null),
-    domainName: new FormControl(null, [Validators.required]),
+    domainName: new FormControl(null),
   });
   document.getElementById('domainId').setAttribute('readonly', 'readonly');
-  this.getPersonalizeData(this.currentUser);
+  //this.getPersonalizeData(this.currentUser);
 } 
 
 onFileChanged(event) { 
@@ -248,6 +249,7 @@ getPersonalizeData(currentUser:any) {
 
 
 onSubmit() {
+  this.router.navigate(['/dashboard/maintainwebsite/viewpersonalize'],{});
   let obj = this.PersonalizeForm.value;
   this.filestring = (obj.uploadLogo ? this.filestring : this.viewLogo)
   if (this.PersonalizeForm.dirty && this.PersonalizeForm.valid) {

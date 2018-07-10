@@ -41,12 +41,12 @@ export class ProvidersService {
   }
   //Advisor services update API
   updateService(value: any, userEmail: any) {
-    //debugger
+    
     return this.httpService.postWithToken(this.configuration.API_UPDATE_SERVICE, {
       username: userEmail,
       services: {
         'Insurance': value.insurance,
-        'Alternate Investment': value.investment,
+        'Alternative Investment': value.investment,
         'Bill Pay': value.bill_pay,
         'Wealth Management': value.welth_manage,
         'Tax Mitigation': value.tax_mitigation,

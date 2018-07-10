@@ -43,7 +43,7 @@ export class DefaultLayoutComponent {
     }, 4000);
     this.translate.setDefaultLang('en');
     this.getUserService();
-    this.getPersonalizeList(this.currentUser);
+    //this.getPersonalizeList(this.currentUser);
   }
 
   getUserService() {
