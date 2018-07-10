@@ -73,7 +73,7 @@ public class UserDaoImpl implements UserDao {
     Method for marking user as verified using username
      */
     public void userVerification(String username) {
-        int status = jdbcTemplate.update("Update User set UserState = 'A' where and UserState = ? and  UserName = ?",
+        int status = jdbcTemplate.update("Update User set UserState = 'A' where  UserState = ? and  UserName = ?",
                 AppConstants.USER_INACTIVE_STATE, username);
         if (status == 0)
             throw new UserAlreadyActiveException(username);

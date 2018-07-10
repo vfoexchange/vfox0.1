@@ -206,6 +206,10 @@ INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,Cre
 9,'Cost Remediation','Cost Remediation','Cost Remediation','A',1,now(),1,now());
 INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
 10,'Business Transition','Business Transition','Business Transition','A',1,now(),1,now());
+INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
+11,'Charitable Strategies','Charitable Strategies','Charitable Strategies','A',1,now(),1,now());
+INSERT INTO vfox.Services (Id,Name,ShortDesc,LongDesc,ServiceState,CreatedBy,CreatedAt,UpdatedBy,UpdatedAt) VALUES (
+12,'Concierge Services','Concierge Services','Concierge Services','A',1,now(),1,now());
 
 INSERT INTO vfox.ServiceProvider (ServiceId, Name, ShortDesc, LongDesc, Logo, RedirectUrl, CreatedBy, CreatedAt, UpdatedBy, UpdatedAt) VALUES(
 5, 'Restricted Property Trust', 'Vehicle for successful business owners to mitigate income taxes and appreciate assets.', 'The Restricted Property Trust was designed for business owners and key employees of a business. Its main objective is long-term, tax favored cash growth and cash flow utilizing a conservative asset class. A Restricted Property Trust offers investment earnings of 8-percent or more when compared to other fixed income vehicles.', null, 'https://restrictedproperty.com/', 1, now(), 1, now());
