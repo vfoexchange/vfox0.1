@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.util;
 
+import com.vfoexchange.restServer.dto.BillingDTO;
 import com.vfoexchange.restServer.dto.EnquiringUserDTO;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -135,6 +136,37 @@ Method for Decoding
                 "    <td colspan=\"2\" valign=\"top\" style=\"height:40px;\"></td>\n" +
                 "  </tr>\n" +
                 "</table>\n";
+        return body;
+    }
+
+    /*
+    Method for learn more mail body
+    */
+    public static String getLearnMoreMailBody(BillingDTO billingDTO) {
+        String body = "<table width=\"600\" border=\"0\" align=\"center\" cellpadding=\"0\" cellspacing=\"0\" style=\"font-family:Arial, Helvetica, sans-serif;\">\n" +
+                "  <tr>\n" +
+                "    <td width=\"600\" valign=\"top\" style=\"height:20px;\"></td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"font-family:Arial, Helvetica, sans-serif; font-size:20px; font-weight:bold; color:#292f33;\">Greetings!</td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"height:20px;\"></td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:bold; color:#292f33;\">User <strong style=\"color:#0f70b8;\">" + billingDTO.getUserName() + "</strong> wants to learn more about Service Provider <strong style=\"color:#0f70b8;\">" + billingDTO.getProviderName() + "</strong>.</td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"height:40px;\"></td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"font-family:Arial, Helvetica, sans-serif; font-size:15px; font-weight:bold; color:#292f33;\">Thanks,<br />\n" +
+                "      VfoExchange Team</td>\n" +
+                "  </tr>\n" +
+                "  <tr>\n" +
+                "    <td valign=\"top\" style=\"height:40px;\"></td>\n" +
+                "  </tr>\n" +
+                "</table>";
         return body;
     }
 
