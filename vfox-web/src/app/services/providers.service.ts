@@ -46,7 +46,7 @@ export class ProvidersService {
       username: userEmail,
       services: {
         'Insurance': value.insurance,
-        'Alternate Investment': value.investment,
+        'Alternative Investment': value.investment,
         'Bill Pay': value.bill_pay,
         'Wealth Management': value.welth_manage,
         'Tax Mitigation': value.tax_mitigation,
