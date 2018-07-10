@@ -53,7 +53,7 @@ export class AddClientComponent {
                 this._toastrService.success(response.msg);
                 this.clientForm.reset();
                } else {
-                 this._toastrService.error(response.msg, 'Oops!');
+                // this._toastrService.error(response.msg, 'Oops!');
                  this.clientForm.reset();
     
              }
