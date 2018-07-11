@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ScModalModule } from 'angular-5-popup';
 import { FileUploadModule } from "angular-file-uploader";
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TreeviewModule } from 'ngx-treeview';
 
 import { ServiceCenterComponent } from './select-service/select-service.component';
@@ -18,6 +18,7 @@ import { ServiceProviderComponent } from './service-providers/serviceprovider.co
 import { AddPersonalizeComponent, ViewPersonalizeComponent, UpdatePersonalizeComponent } from './maintain-website/personalize/personalize.component';
 import { PopoverModule } from 'ngx-bootstrap';
 import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
+import { ChangePasswordComponent } from './manage-profile/manage-profile.component';
 
 @NgModule({
   imports: [
@@ -28,12 +29,22 @@ import { SelectProviderComponent } from './maintain-website/select-provider/sele
     ButtonsModule.forRoot(),
     TreeviewModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,PopoverModule,
+    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule, PopoverModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent, SelectProviderComponent, UpdatePersonalizeComponent]
+  declarations: [DashboardComponent,
+    ServiceCenterComponent, 
+    ServiceProviderComponent, 
+    AddClientComponent, 
+    ComingsoonPageComponent, 
+    AddPersonalizeComponent, 
+    ViewPersonalizeComponent, 
+    SelectProviderComponent, 
+    UpdatePersonalizeComponent,
+    ChangePasswordComponent
+  ]
 })
 export class DashboardModule {
 
-  
- }
+
+}

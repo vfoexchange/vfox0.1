@@ -7,6 +7,7 @@ import { AddClientComponent } from './maintain-website/manage-client/client.comp
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
 import { AddPersonalizeComponent, ViewPersonalizeComponent, UpdatePersonalizeComponent } from './maintain-website/personalize/personalize.component';
 import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
+import { ChangePasswordComponent } from './manage-profile/manage-profile.component';
 
 //Dashboard route
 const routes: Routes = [
@@ -74,6 +75,13 @@ const routes: Routes = [
   component: UpdatePersonalizeComponent,
   data: {
   title: 'editpersonalizewebsite'
+ }
+},
+{
+  path: 'profile/changepassword',
+  component: ChangePasswordComponent,
+  data: {
+  title: 'Change Password'
  }
 }
 ];

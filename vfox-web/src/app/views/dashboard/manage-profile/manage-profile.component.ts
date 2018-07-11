@@ -1,0 +1,76 @@
+import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
+import { Response, Http, Headers } from '@angular/http';
+import { UtilService } from "../../../common-services/util-services";
+import { ValidationService } from '../../../common-services/validation-services';
+import { ClientService } from '../../../services/client.service';
+import { ToastrService } from 'ngx-toastr';
+
+
+@Component({
+  selector: 'change-password',
+  templateUrl: './change-password.component.html'
+})
+export class ChangePasswordComponent {
+
+  ChangePassForm: FormGroup;
+  currentUser:any ;
+ 
+  constructor(private route: ActivatedRoute, private router: Router, private translate: TranslateService, public clientService: ClientService,
+    private utilService : UtilService, private http: Http,private _toastrService: ToastrService
+      ) { 
+
+     }
+
+  ngOnInit() {
+
+    this.currentUser = this.utilService.getData('loginDataDetail');
+    var formBuilder = new FormBuilder();
+    this.ChangePassForm = formBuilder.group({
+
+    currPassword: new FormControl(null, [Validators.required]),
+    password: new FormControl(null, [Validators.required, ValidationService.passwordValidator, Validators.minLength(8)]),
+    confirmPassword: new FormControl(null, [Validators.required]),
+  }, { validator: ValidationService.confirmPasswords('password', 'confirmPassword') });
+   
+
+
+  } 
+
+
+  onSubmit() {
+    //debugger
+           let obj = this.ChangePassForm.value;
+           if (obj.currPassword !== '' || obj.password !== '') {
+           this.clientService.addClient(obj.currPassword, obj.password, this.currentUser.userId).subscribe(
+             (response) => {
+               if(this.utilService.isEmpty(response)){
+                 this._toastrService.error("Something went wrong please try again", 'Oops!');
+               }
+               if (response.code == 200) {
+                this._toastrService.success(response.msg);
+                this.ChangePassForm.reset();
+               } else {
+                 this._toastrService.error(response.msg, 'Oops!');
+                 this.ChangePassForm.reset();
+    
+             }
+             },
+    
+             (error) => {
+              this._toastrService.error("Something went wrong please try again", 'Oops!');
+               this.utilService.logError(error);
+             },
+             () => {  }
+    
+           );
+         } else {
+            this._toastrService.error("Email OR Password cannot be empty !", 'Oops!');
+    
+       }
+    
+         }
+
+}
