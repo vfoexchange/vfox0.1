@@ -74,9 +74,10 @@ export class ServiceProviderComponent {
     body.classList.remove('ins_bg');
   }
 
-  addBilling(providerName) {
+  addBilling(provider) {
 
-    this.providersService.addBilling(providerName, this.currentUser.userEmail).subscribe(
+
+    this.providersService.addBilling(provider, this.currentUser).subscribe(
       (response) => {
 
         if (this.utilService.isEmpty(response)) {

@@ -3,9 +3,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { Response, Http, Headers } from '@angular/http';
-import { UtilService } from "../../../common-services/util-services";
-import { ValidationService } from '../../../common-services/validation-services';
-import { ClientService } from '../../../services/client.service';
+import { UtilService } from "../../../../common-services/util-services";
+import { ValidationService } from '../../../../common-services/validation-services';
+import { ClientService } from '../../../../services/client.service';
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -53,7 +53,7 @@ export class AddClientComponent {
                 this._toastrService.success(response.msg);
                 this.clientForm.reset();
                } else {
-                 this._toastrService.error(response.msg, 'Oops!');
+                // this._toastrService.error(response.msg, 'Oops!');
                  this.clientForm.reset();
     
              }

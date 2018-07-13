@@ -17,10 +17,8 @@ export class Configuration {
     public SESSION_TOKEN_REFRESH_TIME:number = 20000;
     //*****************************URL Access Permission *****************************/
     public restrictedPageForAdmin: string[] = ['/dashboard/','/dashboard/selectservices','/dashboard/addclient'];
-    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/addclient','/dashboard/comingsoon'];
+    public restrictedPageForADVISOR: string[] =  ['/dashboard/','/dashboard/selectservices','/dashboard/service','/dashboard/maintainwebsite/addclient','/dashboard/comingsoon', '/dashboard/maintainwebsite/addpersonalize',  '/dashboard/maintainwebsite/viewpersonalize', '/dashboard/maintainwebsite/selectprovider', '/dashboard/maintainwebsite/editpersonalize'];
     public restrictedPageForUser: string[] =  ['/dashboard/','/dashboard/service'];
-
-
 
 
     //*****************************Api URLs *****************************/
@@ -35,6 +33,9 @@ export class Configuration {
     public API_SERVICE_BILLING: string = 'update/provider/billing';
     public API_GET_CAPTCHA: string = 'user/captcha';
     public API_POST_CONTACT: string = 'enquiring/contact/details';
+    public API_ADD_PERSONALIZE_WEBSITE_URL: string = 'save/advisor/website';
+    public API_VIEW_PERSONALIZE_WEBSITE_URL: string = 'fetch/advisor/website';
+
 
 
       //*****************************Api URLs Ends *****************************/
@@ -57,14 +58,16 @@ export class Configuration {
     public ServiceName: any = {
     'bill_pay': 'Bill Pay',
     'insurance': 'Insurance',
-    'investment': 'Alternate Investment',
+    'investment': 'Alternative Investment',
     'welth_manage': 'Wealth Management',
     'tax_mitigation': 'Tax Mitigation',
     'asset_protection': 'Asset Protection',
     'trust_services': 'Trust Services',
     'business_valuation': 'Business Valuation',
     'cost_remediation': 'Cost Remediation',
-    'business_transition': 'Business Transition'
+    'business_transition': 'Business Transition',
+    'charitable_strategies': 'Charitable Strategies',
+    'concierge_services': 'Concierge Services'
     };
 
 
@@ -77,8 +80,10 @@ export class Configuration {
     'asset_protection': true,
     'trust_services': true,
     'business_valuation': true,
-    'cost_remediation': true,
-    'business_transition': true
+    'cost_remediation': true,    
+    'business_transition': true,
+    'charitable_strategies': true,
+    'concierge_services': true
     };
     
     //*****************************Footer Menu *****************************/
@@ -92,7 +97,26 @@ export class Configuration {
         'trust_services_menu': true,
         'business_valuation_menu': true,
         'cost_remediation_menu': true,
-        'business_transition_menu': true
+        'business_transition_menu': true,
+        'charitable_strategies_menu': true,
+        'concierge_services_menu': true
         };
+
+    public ColorSchemeList = [
+        {
+          key: 'default',
+          value: 'Defualt'
+        },
+        {
+          key: 'blue',
+          value: 'Blue'
+        },
+        {
+          key: 'red',
+          value: 'Red'
+        }         
+    ];    
+
+    public allowedImageType = ["image/jpeg", "image/png", "image/gif", "image/jpg"];  
 
 }

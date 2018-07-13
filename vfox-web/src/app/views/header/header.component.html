@@ -1,110 +1,100 @@
 <!--Home Header Starts here-->
 <div *ngIf="currentUser">
-    <nav class="my-2 my-md-0 top_nav">
-        <!-- Dashboard route -->
-        <a class="p-0 m-2" [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a>
-        <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <span dropdown [autoClose]="true" container="body">
-            <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
-            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
-                <li [routerLink]="['/service/tax_mitigation']" role="menuitem">
-                    <a class="dropdown-item">Tax Mitigation</a>
-                </li>
-                <li [routerLink]="['/service/insurance']" role="menuitem">
-                    <a class="dropdown-item">Insurance</a>
-                </li>
-                <li [routerLink]="['/service/investment']" role="menuitem">
-                    <a class="dropdown-item">Alternate Investment</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Bill Pay</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Wealth Management</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Asset Protection</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Trust Services</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Business Valuation</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Cost Remediation</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Business Transition</a>
-                </li>
+        <nav class="top_nav">
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop"/>
+            <ul class="menu">
+                <li><a [routerLink]="['/dashboard/selectservices']" [routerLinkActive]="['active']">Dashboard</a></li>
+                <li><a [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a></li>
+                <li><!-- First Tier Drop Down -->
+                    <label for="drop-1" class="toggle mob_l_20">Services <i class="fa fa-caret-down"></i></label>
+                    <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')">Services <i class="fa fa-caret-down"></i></a>
+                    <input type="checkbox" id="drop-1"/>
+                    <ul>
+                        <li>
+                            <!-- Second Tier Drop Down -->
+                            <label for="drop-3" class="toggle" [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']">Tax Mitigation <i class="fa fa-caret-down"></i></label>
+                            <a [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']">Tax Mitigation <i class="fa fa-caret-down"></i></a>
+                            <input type="checkbox" id="drop-3"/>
+                            <ul>
+                                <li> <a class="dis_link">Business Income</a> </li>
+                                <li> <a class="dis_link">Other Income</a> </li>
+                                <li> <a class="dis_link">Capital Gains</a> </li>
+                                <li> <a class="dis_link">Estate</a> </li>
+                            </ul>
+                        </li>
+                        <li> <a [routerLink]="['/service/insurance']" [routerLinkActive]="['active']">Insurance</a> </li>
+                        <li> <a [routerLink]="['/service/investment']" [routerLinkActive]="['active']">Alternative Investment</a> </li>
+                        <li> <a class="dis_link">Bill Pay</a> </li>
+                        <li> <a class="dis_link">Wealth Management</a> </li>
+                        <li> <a class="dis_link">Asset Protection</a> </li>
+                        <li> <a class="dis_link">Trust Services</a> </li>
+                        <li> <a class="dis_link">Business Valuation</a> </li>
+                        <li> <a class="dis_link">Cost Remediation</a> </li>
+                        <li> <a class="dis_link">Business Transition</a> </li>
+                        <li> <a class="dis_link">Charitable Strategies</a> </li>
+                        <li> <a class="dis_link">Concierge Services</a> </li>
+                        <li> <a [routerLink]="['/service/qualified_leverage']" [routerLinkActive]="['active']" >Qualified Leverage Strategy</a> </li>
+                    </ul></li>
+    
+                <li><a [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a></li>
+                <li><a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a></li>
+                <li><a (click)="logout()" class="m-r-0">Sign Out</a></li>
             </ul>
-        </span>
-        <a class="p-0 m-2" [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-        <a class="p-0 m-2" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-        <a class="p-0 m-r-0" (click)="logout()">Sign Out</a>
-    </nav>
-    <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto">
-            <img src="assets/img/vfox_logo.png" alt="VFOX" />
-        </h5>
-        <div class="user_profile">
-            <img src="assets/img/default_profile.png" alt="Profile" class="float-left" />
-            <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
+        </nav>
+        <div class="d-flex flex-column flex-md-row align-items-center home_header">
+            <h5 class="my-0 mr-md-auto"> <img src="assets/img/vfox_logo.png" alt="VFOX"/> </h5>
+            <div class="user_profile"> <img src="assets/img/default_profile.png" alt="Profile" class="float-left"/>
+                <div class="float-left welcome_top">Welcome {{currentUser.userName}}</div>
+            </div>
         </div>
-
     </div>
-</div>
-
-
-<div *ngIf="!currentUser">
-    <nav class="my-2 my-md-0 top_nav">
-        <a class="p-0 m-2" [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a>
-        <a class="p-0 m-2" [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a>
-        <span dropdown [autoClose]="true" container="body">
-            <a [routerLinkActive]="['active']" id="button-nested" dropdownToggle class="dropdown-toggle p-0 m-2">Services</a>
-            <ul id="dropdown-nested" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-nested">
-                <li [routerLink]="['/service/tax_mitigation']" role="menuitem">
-                    <a class="dropdown-item">Tax Mitigation</a>
-                </li>
-                <li [routerLink]="['/service/insurance']" role="menuitem">
-                    <a class="dropdown-item">Insurance</a>
-                </li>
-                <li [routerLink]="['/service/investment']" role="menuitem">
-                    <a class="dropdown-item">Alternate Investment</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Bill Pay</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Wealth Management</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Asset Protection</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Trust Services</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Business Valuation</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Cost Remediation</a>
-                </li>
-                <li role="menuitem">
-                    <a class="dropdown-item">Business Transition</a>
-                </li>
+    <div *ngIf="!currentUser">
+        <nav class="top_nav">
+            <label for="drop" class="toggle">Menu</label>
+            <input type="checkbox" id="drop"/>
+            <ul class="menu">
+                <li><a [routerLink]="['/login']" [routerLinkActive]="['active']">Home</a></li>
+                <li><a [routerLink]="['/whatwedo']" [routerLinkActive]="['active']">What we do</a></li>
+                <li><!-- First Tier Drop Down -->
+                    <label for="drop-1" class="toggle mob_l_20">Services <i class="fa fa-caret-down"></i></label>
+                    <a [class.active]="router.isActive('/service/insurance') || router.isActive('/service/investment') || router.isActive('/service/tax_mitigation') || router.isActive('/service/qualified_leverage')">Services <i class="fa fa-caret-down"></i></a>
+                    <input type="checkbox" id="drop-1"/>
+                    <ul>
+                        <li>
+                            <!-- Second Tier Drop Down -->
+                            <label for="drop-3" class="toggle" [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']">Tax Mitigation <i class="fa fa-caret-down"></i></label>
+                            <a [routerLink]="['/service/tax_mitigation']" [routerLinkActive]="['active']">Tax Mitigation <i class="fa fa-caret-down"></i></a>
+                            <input type="checkbox" id="drop-3"/>
+                            <ul>
+                                <li> <a class="dis_link">Business Income</a> </li>
+                                <li> <a class="dis_link">Other Income</a> </li>
+                                <li> <a class="dis_link">Capital Gains</a> </li>
+                                <li> <a class="dis_link">Estate</a> </li>
+                            </ul>
+                        </li>
+                        <li> <a [routerLink]="['/service/insurance']" [routerLinkActive]="['active']">Insurance</a> </li>
+                        <li> <a [routerLink]="['/service/investment']" [routerLinkActive]="['active']">Alternative Investment</a> </li>
+                        <li> <a class="dis_link">Bill Pay</a> </li>
+                        <li> <a class="dis_link">Wealth Management</a> </li>
+                        <li> <a class="dis_link">Asset Protection</a> </li>
+                        <li> <a class="dis_link">Trust Services</a> </li>
+                        <li> <a class="dis_link">Business Valuation</a> </li>
+                        <li> <a class="dis_link">Cost Remediation</a> </li>
+                        <li> <a class="dis_link">Business Transition</a> </li>
+                        <li> <a class="dis_link">Charitable Strategies</a> </li>
+                        <li> <a class="dis_link">Concierge Services</a> </li>
+                        <li> <a [routerLink]="['/service/qualified_leverage']" [routerLinkActive]="['active']" >Qualified Leverage Strategy</a> </li>
+                    </ul></li>
+    
+                <li><a [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a></li>
+                <li><a [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a></li>
             </ul>
-        </span>
-        <a class="p-0 m-2" [routerLink]="['/aboutus']" [routerLinkActive]="['active']">About Us</a>
-        <a class="p-0 m-r-0" [routerLink]="['/contact']" [routerLinkActive]="['active']">Contact Us</a>
-    </nav>
-    <div class="d-flex flex-column flex-md-row align-items-center home_header">
-        <h5 class="my-0 mr-md-auto">
-            <img src="assets/img/vfox_logo.png" alt="VFOX" />
-        </h5>
-        <a *ngIf="router.url == '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN' | translate}}</a>
-        <a *ngIf="router.url != '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER' | translate}}</a>
+        </nav>
+        <div class="d-flex flex-column flex-md-row align-items-center home_header">
+            <h5 class="my-0 mr-md-auto"> <img src="assets/img/vfox_logo.png" alt="VFOX"/> </h5>
+            <a *ngIf="router.url == '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/login']">{{'LOGIN'
+                | translate}}</a> <a *ngIf="router.url != '/home'" class="btn btn-outline-primary btn-outline-white" [routerLink]="['/home']">{{'REGISTER'
+            | translate}}</a> </div>
     </div>
-
-</div>
-<!--Home Header Ends here-->
+    <!--Home Header Ends here-->
