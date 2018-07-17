@@ -1,6 +1,7 @@
 package com.vfoexchange.restServer.controllerAdvice;
 
 import com.vfoexchange.restServer.Constants.AppConstants;
+import com.vfoexchange.restServer.exceptions.UserAlreadyActiveException;
 import com.vfoexchange.restServer.exceptions.UserNotFoundException;
 import com.vfoexchange.restServer.exceptions.UserRoleNotFoundException;
 import com.vfoexchange.restServer.model.ErrorDetails;
@@ -34,5 +35,13 @@ public class CustomizedResponseEntityExceptionHandler {
         ErrorDetails errorDetails = new ErrorDetails(AppUtil.getDate(AppConstants.DATE_FORMAT), ex.getMessage(),
                 request.getDescription(false));
         return new ResponseEntity<>(errorDetails, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(UserAlreadyActiveException.class)
+    public final ResponseEntity<ErrorDetails> handleUserRoleNotFoundException(UserAlreadyActiveException ex, WebRequest request) {
+        LOGGER.debug("handling 400 error on email verify");
+        ErrorDetails errorDetails = new ErrorDetails(AppUtil.getDate(AppConstants.DATE_FORMAT), ex.getMessage(),
+                request.getDescription(false));
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 }

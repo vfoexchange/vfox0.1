@@ -40,7 +40,9 @@ export class ServiceCenterComponent implements OnInit {
       trust_services: new FormControl(null),
       business_valuation: new FormControl(null),
       cost_remediation: new FormControl(null),
-      business_transition: new FormControl(null)
+      business_transition: new FormControl(null),
+      charitable_strategies: new FormControl(null),
+      concierge_services: new FormControl(null)
     });
 
     this.getUserService();

@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { PopoverModule } from 'ngx-bootstrap';
+import { PopoverModule, ModalModule } from 'ngx-bootstrap';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -46,6 +46,7 @@ import { AuthGuard } from "./common-services/auth-guard-service";
 //import { RegisterService } from "./services/register.service";
 import { HomeService } from "./services/home.service";
 import { ClientService } from "./services/client.service";
+import { MaintainWebsite } from "./services/maintain-website.service";
 import { ProvidersService } from "./services/providers.service";
 //import { PaymentService } from "./services/payment.service";
 //import { PrintService } from "./services/report.service";
@@ -55,14 +56,14 @@ import { SuccessComponent } from "./views/success/success.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLangService } from "./services/translate.service";
-import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent } from './views/static-page/staticpage.component';
+import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiComponent, ServiceInvestmentComponent, ServiceInsuranceComponent, QualifiedLeverageComponent } from './views/static-page/staticpage.component';
 
 
 @NgModule({
   imports: [
     CommonModule,
-      FormsModule,
-        ReactiveFormsModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -72,6 +73,7 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     TabsModule.forRoot(),
     ChartsModule,
     PopoverModule.forRoot(),
+    ModalModule.forRoot(),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -79,8 +81,8 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
         deps: [HttpClient]
       }
     }),
-     ToastrModule.forRoot({closeButton: true, timeOut: 4000, preventDuplicates: true}),
-     BrowserAnimationsModule
+    ToastrModule.forRoot({ closeButton: true, timeOut: 4000, preventDuplicates: true }),
+    BrowserAnimationsModule
 
   ],
   declarations: [
@@ -97,27 +99,29 @@ import { AboutComponent, ContactComponent, WhatweComponent, ServiceTaxMitiCompon
     ServiceTaxMitiComponent, //Static services page
     ServiceInvestmentComponent,
     ServiceInsuranceComponent,
+    QualifiedLeverageComponent,
     // RegisterComponent,
     HomeComponent,
     VerifyEmailPageComponent,
     SuccessComponent
-   
+
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: PathLocationStrategy
   },
     LoginService,
-     Configuration,
+    Configuration,
     HttpService,
     UtilService,
     Authentication,
     AuthGuard,
     HomeService,
     ClientService,
+    MaintainWebsite,
     ProvidersService,
     TranslateLangService],
-  bootstrap: [ AppComponent ]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 

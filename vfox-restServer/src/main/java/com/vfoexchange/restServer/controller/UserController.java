@@ -1,5 +1,6 @@
 package com.vfoexchange.restServer.controller;
 
+import com.vfoexchange.restServer.component.MailComponent;
 import com.vfoexchange.restServer.dto.*;
 import com.vfoexchange.restServer.model.Captcha;
 import com.vfoexchange.restServer.model.Mail;
@@ -16,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,15 +28,18 @@ import java.util.List;
 @RestController
 public class UserController {
     private static Logger LOGGER = LoggerFactory.getLogger(UserController.class);
-    @Autowired
-    private Environment environment;
+
     @Autowired
     private UserService userService;
+
     @Autowired
     private EmailServices emailServices;
+
+    @Autowired
+    private MailComponent mailComponent;
+
     @Value("${mail.contactus.recipients}")
     private String recipients;
-
 
     /*
     Method for adding new user(user can be advisor or admin)
@@ -54,7 +59,7 @@ public class UserController {
         }
         try {
             Mail mail = new Mail();
-            mail.setFrom(environment.getProperty("spring.mail.username"));
+            mail.setFrom(mailComponent.getUsername());
             mail.setTo(userDto.getUsername());
             mail.setSubject("Verify Your Email Address");
             mail.setContent(AppUtil.getMailBody(AppUtil.getURL(AppUtil.getEncodedString(userDto.getUsername()))));
@@ -179,19 +184,22 @@ public class UserController {
     */
     @RequestMapping(value = "/user/verification", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ResponseDTO userVerification(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<ResponseDTO> userVerification(@RequestBody UserDTO userDTO) {
         ResponseDTO resp = new ResponseDTO();
+        ResponseEntity<ResponseDTO> responseEntity;
         try {
             userService.userVerification(userDTO.getUsername());
-            resp.setCode("200");
+            resp.setCode(HttpStatus.OK.toString());
             resp.setMsg("User verification done successfully");
-            LOGGER.info("User verification done successfully");
+            LOGGER.info("User "+userDTO.getUsername()+" verification done successfully ");
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
         } catch (Exception e) {
-            resp.setCode("400");
-            resp.setMsg("Error occurred while updating user verification");
+            resp.setCode(HttpStatus.BAD_REQUEST.toString());
+            resp.setMsg("Error occurred while updating user verification: "+e.getMessage());
+            responseEntity = new ResponseEntity<ResponseDTO>(resp, HttpStatus.OK);
             LOGGER.error("Error occurred while updating user verification " + e.getMessage());
         }
-        return resp;
+        return responseEntity;
     }
 
     /*

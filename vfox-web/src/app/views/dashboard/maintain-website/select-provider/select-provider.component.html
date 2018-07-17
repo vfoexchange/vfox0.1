@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-sm-12">
+            <div class="card started_bg">
+                <div class="card-body">
+                    <form class="maintain_web">
+                        <div class="row mbtm_37">
+                            <div class="col-12 col-lg-8">
+                                <div class="def_head"><img src="assets/img/sel_pro.png"/> Select or De-select Service Providers as per your needs</div>
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                <button class="btn btn-lg btn-outline-primary btn-purple float-right"
+                                        type="submit">Save & Continue
+                                </button>
+                            </div>
+                        </div>
+                        <!-- <form> -->
+                                <div class="row">
+                                        <div class="col-md-6"><ngx-treeview [config]="config" [items]="items1" (selectedChange)="values = $event">
+                                            </ngx-treeview></div>
+                                        <div class="col-md-6"><ngx-treeview [config]="config" [items]="items2" (selectedChange)="values = $event">
+                                            </ngx-treeview></div>
+                                            </div>
+                        
+                        <!-- </form> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div></div>

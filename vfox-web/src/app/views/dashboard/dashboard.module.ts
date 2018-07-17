@@ -10,10 +10,14 @@ import { CommonModule } from '@angular/common';
 import { ScModalModule } from 'angular-5-popup';
 import { FileUploadModule } from "angular-file-uploader";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { TreeviewModule } from 'ngx-treeview';
 
 import { ServiceCenterComponent } from './select-service/select-service.component';
-import { AddClientComponent } from './manage-client/client.component';
+import { AddClientComponent } from './maintain-website/manage-client/client.component';
 import { ServiceProviderComponent } from './service-providers/serviceprovider.component';
+import { AddPersonalizeComponent, ViewPersonalizeComponent, UpdatePersonalizeComponent } from './maintain-website/personalize/personalize.component';
+import { PopoverModule } from 'ngx-bootstrap';
+import { SelectProviderComponent } from './maintain-website/select-provider/select-provider.component';
 
 @NgModule({
   imports: [
@@ -22,11 +26,12 @@ import { ServiceProviderComponent } from './service-providers/serviceprovider.co
     ChartsModule,
     BsDropdownModule,
     ButtonsModule.forRoot(),
+    TreeviewModule.forRoot(),
     FormsModule,
-    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,
+    ReactiveFormsModule, ScModalModule, TranslateModule, FileUploadModule,PopoverModule,
     NgbModule.forRoot()
   ],
-  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent]
+  declarations: [ DashboardComponent,  ServiceCenterComponent, ServiceProviderComponent, AddClientComponent, ComingsoonPageComponent, AddPersonalizeComponent, ViewPersonalizeComponent, SelectProviderComponent, UpdatePersonalizeComponent]
 })
 export class DashboardModule {
 
